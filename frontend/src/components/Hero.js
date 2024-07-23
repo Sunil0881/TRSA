@@ -3,7 +3,7 @@ import skating from "../assets/skatinggirl.png"
 
 const Hero = () => {
   return (
-    <div className='lg:pb-20' >
+    <div className='pb-10 md:pb-16 lg:pb-20' >
         <div className='text-lg md:text-3xl lg:text-5xl text-center  py-10 md:py-16 lg:pt-20 lg:pb-20'>
             <h1 className='text-black font-semibold  text-2xl md:text-4xl lg:text-6xl'>Roller Skating Association</h1>
             <h2 className='text-slate-600 pt-2 md:pt-5'>Popularize Skating Sports and Promote</h2>
