@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Hero from "../components/Hero"
 import Imgslide from '../components/Imgslide'
 import GridDesign from '../components/GridDesign'
+import LegalHelp from '../components/LegalHelp'
 
 const Home = () => {
   return (
@@ -33,6 +34,8 @@ const Home = () => {
          <div className='hidden md:block'>
         <GridDesign />
         </div>
+
+        <LegalHelp />
 
     </div>
   )
