@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Hero from "../components/Hero"
 import Imgslide from '../components/Imgslide'
+import GridDesign from '../components/GridDesign'
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
         </div>
         <Imgslide />
 
-        <div className='md:flex md:gap-32 lg:gap-96 px-5 md:px-20 lg:px-36 pb-20'>
+        <div className='md:flex md:gap-32 lg:gap-96 px-5 md:px-20 lg:px-36 pb-10 md:pb-20'>
           <div>
             <h1 className='text-blue-900 text-lg md:text-2xl lg:text-3xl'>Introduction</h1>
             <h2 className='text-2xl md:text-3xl lg:text-5xl pt-2 md:pt-4'>About Association</h2>
@@ -27,6 +28,10 @@ const Home = () => {
             <p className='pt-1 md:pt-4 lg:pt-9 md:text-lg lg:text-xl max-w-3xl'>From basic skills to advanced tricks, our experienced instructors are here to help you glide smoothly on your skates.</p>
           </div>
 
+        </div>
+         
+         <div className='hidden md:block'>
+        <GridDesign />
         </div>
 
     </div>
