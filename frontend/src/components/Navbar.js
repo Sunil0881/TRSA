@@ -24,7 +24,7 @@ const Navbar = () => {
       <div className="relative flex justify-between px-5 md:px-10">
         <div className="flex items-center">
           <a href='/' > <img src={logo} width={100} height={100} alt='logo'></img></a>
-          <a href='/' ><h1 className="text-black  ml-4   text-xl md:text-2xl font-bold">Thiruvallur District Roller <br className="hidden lg:block" /> Skating Association.</h1></a>
+          <a href='/' ><h1 className="text-black  ml-4   text-md md:text-3xl font-bold">Thiruvallur District Roller <br className="hidden md:block" /> Skating Association.</h1></a>
         </div>
         <div className="flex  md:hidden">
           <button
@@ -35,19 +35,7 @@ const Navbar = () => {
           </button>
         </div>
         <nav className="hidden items-center md:flex lg:gap-8 md:gap-4 ">
-          <Link to="/" className="text-black hover:scale-95 text-xl">
-            Home
-          </Link>
-          <Link to="/about" className="text-black hover:scale-95 text-xl">
-            Membership
-          </Link>
-          <Link to="/about" className="text-black hover:scale-95 text-xl">
-            About
-          </Link>
-          
-          <Link to="/display" className="text-black hover:scale-95 text-xl">
-           Contact
-          </Link>
+         
           <a href='/contact' ><button className="text-white p-2 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl">
             Member Login
           </button></a>
