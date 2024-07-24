@@ -1,14 +1,9 @@
 // src/MobileMenu.js
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+
 
 const MobileMenu = ({ isOpen, onClose }) => {
-  const navigate = useNavigate();
 
-  const handleServiceClick = () => {
-    onClose(); // Close the mobile menu
-    navigate('/', { state: { scrollToService: true } });
-  };
 
   return (
     <div
@@ -24,24 +19,32 @@ const MobileMenu = ({ isOpen, onClose }) => {
       </div>
       <nav className="flex flex-col items-center mt-8 space-y-4">
         <a href="/" className="text-black text-xl" onClick={onClose}>
-          Home
-        </a>
-        <a href="/about" className="text-black text-xl" onClick={onClose}>
           About
         </a>
-        <button onClick={handleServiceClick} className="text-black text-xl">
-          Service
-        </button>
-        <a href="/display" className="text-black text-xl" onClick={onClose}>
-          Blogs
+        <a href="/events" className="text-black text-xl" onClick={onClose}>
+          Events
         </a>
-       <a href='/contact'>
-        <button
-          className="text-amber-500 px-2 py-1 bg-stone-800 rounded-sm text-xl"
-          onClick={onClose}
-        >
-          Contact Us
-        </button></a>
+        
+        <a href="/news" className="text-black text-xl" onClick={onClose}>
+          News
+        </a>
+
+        <a href="/club" className="text-black text-xl" onClick={onClose}>
+          Associative Club
+        </a>
+
+        <a href="/achievements" className="text-black text-xl" onClick={onClose}>
+          Achievements
+        </a>
+
+        <a href="/skaters-profile" className="text-black text-xl" onClick={onClose}>
+          Skaters Profile
+        </a>
+
+        <a href="/membership" className="text-black text-xl" onClick={onClose}>
+          Membership
+        </a>
+       
       </nav>
     </div>
   );
