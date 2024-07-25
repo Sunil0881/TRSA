@@ -10,8 +10,10 @@ const Imgslide = () => {
   const controls = useAnimation();
 
   useEffect(() => {
+    let isMounted = true;
+
     const sequence = async () => {
-      while (true) {
+      if (isMounted) {
         await controls.start({ x: 0 });
         await controls.start({ x: "-100%" });
         await controls.start({ x: "-200%" });
@@ -19,7 +21,12 @@ const Imgslide = () => {
       }
     };
 
-    sequence();
+    const interval = setInterval(sequence, 24000); // Repeat the sequence every 24 seconds (6s x 4 steps)
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, [controls]);
 
   return (

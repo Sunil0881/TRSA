@@ -16,6 +16,7 @@ const Navbar = () => {
 
   const linkClasses = (path) => 
     `hover:scale-95  md:text-lg lg:text-xl md:my-4 lg:my-5 md:px-2 lg:px-4 py-2 rounded ${location.pathname === path ? 'bg-white text-blue-800' : ''}`;
+     console.log(location.pathname);
 
   return (
     <div>
