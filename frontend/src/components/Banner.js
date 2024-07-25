@@ -4,7 +4,7 @@ import skating from "../assets/skatinggirl.png"
 const Banner = () => {
   return (
     
-        <div className="relative flex items-center justify-center pt-5 md:pt-10">
+        <div className="relative flex items-center justify-center pt-5 md:pt-10 pb-10">
   <div className="relative w-full  max-w-xs md:max-w-2xl lg:max-w-7xl  bg-white shadow-lg rounded-lg overflow-hidden"> {/* Increased max-width */}
     <img
       src={skating}
