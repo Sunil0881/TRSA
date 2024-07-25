@@ -7,7 +7,7 @@ import youtube from "../assets/youtube.png"
 const Footer = () => {
   return (
     <div className='bg-blue-800'>
-        <div className='md:pt-10 md:px-6 md:flex lg:pl-40 lg:pr-20 lg:pt-14'>
+        <div className=' pt-5 px-4 md:pt-10 md:px-6 md:flex lg:pl-40 lg:pr-20 lg:pt-14'>
             <div>
                 <div className="flex items-center">
                     <a href='/' > <img src={logo} width={100} height={100} alt='logo'></img></a>
@@ -17,7 +17,7 @@ const Footer = () => {
                 <p className='text-white lg:max-w-md md:max-w-sm lg:text-lg pt-5'>At Thiruvallur District Roller Skating Association, we believe in the power of roller skating to bring people together and keep them active.</p>
             </div>
 
-            <div className='flex text-white pt-5 md:gap-5 lg:gap-20 lg:ml-72 md:ml-10'>
+            <div className='flex text-white pt-10 gap-3 md:gap-5 lg:gap-20 lg:ml-72 md:ml-10 justify-center '>
                 <div>
                     <h1 className='text-xl font-semibold pb-3'>Product</h1>
                     <div className=''>
@@ -52,9 +52,9 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <div className='md:flex md:justify-between lg:px-40 lg:pt-10 md:items-center md:px-10 md:pt-8' >
-            <p className='text-white'>2024, All rights reserved</p>
-            <div className='md:flex md:gap-3 md:pb-3'>
+        <div className='md:flex md:justify-between pt-10 text-center lg:px-40 lg:pt-10 md:items-center md:px-10 md:pt-8' >
+            <p className='text-white '>2024, All rights reserved</p>
+            <div className='flex gap-3 pb-3 pt-3 md:pt-0 justify-center'>
                 <img src={insta} alt='insta' className='h-10'></img>
                 <img src={twitter} alt='twitter' className='h-10'></img>
                 <img src={youtube} alt='youtube' className='h-10'></img>
