@@ -4,6 +4,7 @@ import Hero from "../components/Hero"
 import Imgslide from '../components/Imgslide'
 import GridDesign from '../components/GridDesign'
 import LegalHelp from '../components/LegalHelp'
+import Count from '../components/Count'
 
 const Home = () => {
   return (
@@ -36,6 +37,7 @@ const Home = () => {
         </div>
 
         <LegalHelp />
+        <Count />
 
     </div>
   )
