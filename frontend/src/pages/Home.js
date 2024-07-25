@@ -6,6 +6,7 @@ import GridDesign from '../components/GridDesign'
 import LegalHelp from '../components/LegalHelp'
 import Count from '../components/Count'
 import Questions from '../components/Questions'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
@@ -40,6 +41,7 @@ const Home = () => {
         <LegalHelp />
         <Count />
         <Questions />
+        <Footer />
 
     </div>
   )
