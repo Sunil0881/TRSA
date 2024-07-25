@@ -1,8 +1,11 @@
 import React from 'react'
+import Banner from '../components/Banner'
 
 const Membership = () => {
   return (
-    <div></div>
+    <div>
+        <Banner />
+    </div>
   )
 }
 
