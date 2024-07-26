@@ -1,6 +1,9 @@
 import React from 'react'
 import Banner from '../components/Banner'
 import signup from "../assets/signup.png"
+import Questions from "../components/Questions"
+import Footer from "../components/Footer"
+import MemberCard from '../components/MemberCard'
 
 const Membership = () => {
   return (
@@ -21,6 +24,11 @@ const Membership = () => {
             <p className='md:text-md lg:text-2xl lg:pt-5 '>Join Our Skating Community! Enjoy unlimited access to all open skate sessions, exclusive member events, and discounts on rentals and merchandise. Sign up today and roll into fun with Thiruvallur District Roller Skating Association!</p>
           </div>
         </div>
+
+        <MemberCard />
+        <Questions />
+        <Footer />
+        
 
     </div>
   )
