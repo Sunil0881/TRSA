@@ -28,10 +28,19 @@ module.exports = {
           '80%': { transform: 'rotate(-5deg)' },
           '90%': { transform: 'rotate(5deg)' },
         },
+        bulge: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.1)' },
+        },
       },
       animation: {
         slide: 'slide 10s linear infinite',
         ring: 'ring 0.5s infinite',
+        bulge: 'bulge 0.3s ease-in-out',
+      },
+      bulge: {
+        '0%, 100%': { transform: 'scale(1)' },
+        '50%': { transform: 'scale(1.1)' },
       },
     },
   },
