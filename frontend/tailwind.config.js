@@ -6,5 +6,20 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+  theme: {
+    extend: {
+      keyframes: {
+        slide: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+      animation: {
+        slide: 'slide 10s linear infinite',
+      },
+    },
+  },
 }

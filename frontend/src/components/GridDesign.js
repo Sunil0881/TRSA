@@ -13,11 +13,11 @@ const GridDesign = () => {
       </div>
 
       <div className='col-span-2 row-span-2 rounded-2xl'>
-        <img src={gridimg} alt='img' className='w-full h-full object-cover' />
+        <img src={gridimg} alt='img' className='w-full h-full object-cover rounded-2xl' />
       </div>
 
       <div className='row-span-2 rounded-2xl'>
-        <img src={skating} alt='img' className='w-full h-full object-cover' />
+        <img src={skating} alt='img' className='w-full h-full object-cover rounded-2xl' />
       </div>
 
       <div className='flex flex-col justify-center px-10 rounded-2xl md:px-5 bg-blue-800 text-white'>

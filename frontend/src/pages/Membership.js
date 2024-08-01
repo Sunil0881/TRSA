@@ -3,7 +3,7 @@ import Banner from '../components/Banner'
 import signup from "../assets/signup.png"
 import Questions from "../components/Questions"
 import Footer from "../components/Footer"
-import MemberCard from '../components/MemberCard'
+
 
 const Membership = () => {
   return (
@@ -25,7 +25,7 @@ const Membership = () => {
           </div>
         </div>
 
-        <MemberCard />
+       
         <Questions />
         <Footer />
         
