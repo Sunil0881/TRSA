@@ -12,6 +12,10 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
+        ticker: {
+          '0%': { transform: 'translateX(10%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
         slide: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-100%)' },
@@ -37,6 +41,8 @@ module.exports = {
         slide: 'slide 10s linear infinite',
         ring: 'ring 0.5s infinite',
         bulge: 'bulge 0.3s ease-in-out',
+        ticker: 'ticker 30s linear infinite',
+        
       },
       bulge: {
         '0%, 100%': { transform: 'scale(1)' },

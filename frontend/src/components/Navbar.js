@@ -38,7 +38,7 @@ const Navbar = () => {
         </div>
         <header className="hidden items-center md:flex lg:gap-8 md:gap-4">
           <a href='/contact'><button className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl">
-            Member Login
+            Gallery
           </button></a>
         </header>
       </div>
