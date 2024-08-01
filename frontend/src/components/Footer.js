@@ -31,7 +31,7 @@ const Footer = () => {
 
                 <div>
                     <h1 className='text-xl font-semibold pb-3'>Association</h1>
-                    <div>
+                    <div className='text-center'>
                         <p className='py-2'>About</p>
                         <p className='py-2'>Press</p>
                         <p className='py-2'>Careers</p>
