@@ -8,7 +8,10 @@ import Footer from "../components/Footer"
 const Membership = () => {
   return (
     <div>
-        <Banner />
+        <Banner 
+  mainText="One Membership,"
+  subTexts="Unlimited benefits, and More rewards for you! Exclusive access to events! Special discounts and offers!"
+/>
 
         <div>
           <h1 className='text-3xl md:text-5xl font-semibold px-5 md:px-20 lg:text-6xl lg:px-28 '>Join Our Skating <br className='hidden md:block'></br>Community!</h1>

@@ -5,8 +5,8 @@ const Achievements = () => {
   return (
     <div>
        <Banner 
-  mainText="One Membership,"
-  subTexts="Unlimited benefits, and More rewards for you! Exclusive access to events! Special discounts and offers!"
+  mainText="One Achievements"
+  subTexts="Exceptional milestones, transformative projects, and outstanding contributions! Proudly showcasing our remarkable successes and advancements!"
 />
 
      
