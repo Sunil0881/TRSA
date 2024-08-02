@@ -1,6 +1,7 @@
 import React from 'react'
 import Banner from '../components/Banner'
 import AchievementsList from '../components/AchievementsList'
+import Footer from "../components/Footer"
 
 const Achievements = () => {
   return (
@@ -14,6 +15,7 @@ const Achievements = () => {
             <AchievementsList />
 
       </div>
+      <Footer />
        
 
      

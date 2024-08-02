@@ -59,9 +59,9 @@ const AchievementsList = () => {
     };
 
     return (
-        <div className="container mx-auto ">
+        <div className="container mx-auto lg:px-32 ">
             {/* Filter Button */}
-            <div className="flex justify-end mb-4 lg:mr-24">
+            <div className="flex justify-end mb-4 ">
                 <button
                     onClick={toggleFilters}
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
