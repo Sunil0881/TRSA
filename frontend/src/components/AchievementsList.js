@@ -6,6 +6,7 @@ const AchievementsList = () => {
     const [filteredAchievements, setFilteredAchievements] = useState([]);
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedLevels, setSelectedLevels] = useState([]);
+    const [showFilters, setShowFilters] = useState(false);
 
     // Generate an array of years from 1995 to 2024
     const yearRange = Array.from({ length: 2024 - 1995 + 1 }, (_, i) => 1995 + i);
@@ -53,53 +54,68 @@ const AchievementsList = () => {
         );
     };
 
-    return (
-        <div className="">
-            
-            <div className="flex flex-col sm:flex-row gap-6 mb-6">
-           
-                <div className="w-full sm:w-1/2">
-                    <label htmlFor="year" className="block text-base font-medium text-gray-800 mb-2">Year</label>
-                    <select
-                        id="year"
-                        value={selectedYear}
-                        onChange={handleYearChange}
-                        className="w-full max-w-xs border border-gray-300 rounded-lg p-2 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
-                    >
-                        <option value="">Select Year</option>
-                        {yearRange.map((year) => (
-                            <option key={year} value={year}>{year}</option>
-                        ))}
-                    </select>
-                </div>
+    const toggleFilters = () => {
+        setShowFilters(!showFilters);
+    };
 
-                {/* Level Checkboxes */}
-                <div className="w-full sm:w-1/2">
-                    <p className="block text-base font-medium text-gray-800 mb-2">Level</p>
-                    <div className="flex flex-col space-y-2">
-                        <label className="flex items-center">
-                            <input
-                                type="checkbox"
-                                value="state"
-                                checked={selectedLevels.includes('state')}
-                                onChange={handleLevelChange}
-                                className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
-                            />
-                            <span className="ml-2 text-gray-800">State</span>
-                        </label>
-                        <label className="flex items-center">
-                            <input
-                                type="checkbox"
-                                value="national"
-                                checked={selectedLevels.includes('national')}
-                                onChange={handleLevelChange}
-                                className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
-                            />
-                            <span className="ml-2 text-gray-800">National</span>
-                        </label>
+    return (
+        <div className="container mx-auto ">
+            {/* Filter Button */}
+            <div className="flex justify-end mb-4 lg:mr-24">
+                <button
+                    onClick={toggleFilters}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                >
+                    {showFilters ? 'Hide Filters' : 'Show Filters'}
+                </button>
+            </div>
+
+            {/* Filters Section */}
+            {showFilters && (
+                <div className="flex flex-col sm:flex-row gap-6 mb-6 lg:ml-24">
+                    <div className="w-full sm:w-1/2">
+                        <label htmlFor="year" className="block text-base font-medium text-gray-800 mb-2">Year</label>
+                        <select
+                            id="year"
+                            value={selectedYear}
+                            onChange={handleYearChange}
+                            className="w-full max-w-xs border border-gray-300 rounded-lg p-2 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                        >
+                            <option value="">Select Year</option>
+                            {yearRange.map((year) => (
+                                <option key={year} value={year}>{year}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Level Checkboxes */}
+                    <div className="w-full sm:w-1/2">
+                        <p className="block text-base font-medium text-gray-800 mb-2">Level</p>
+                        <div className="flex flex-col space-y-2">
+                            <label className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value="state"
+                                    checked={selectedLevels.includes('state')}
+                                    onChange={handleLevelChange}
+                                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
+                                />
+                                <span className="ml-2 text-gray-800">State</span>
+                            </label>
+                            <label className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value="national"
+                                    checked={selectedLevels.includes('national')}
+                                    onChange={handleLevelChange}
+                                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
+                                />
+                                <span className="ml-2 text-gray-800">National</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
 
             {/* Achievements List */}
             <div>
