@@ -20,19 +20,19 @@ const Banner = ({ mainText, subTexts }) => {
           <h1 className="text-xl md:text-3xl lg:text-6xl font-semibold text-white">
             {mainText}
           </h1>
-          <div className="relative overflow-hidden bg-blue-800 rounded-lg md:mx-40 mx-10 mt-2 lg:mx-72 lg:mt-5 md:mt-3 h-16 flex items-center">
+          <div className="relative overflow-hidden bg-blue-800 rounded-lg md:mx-40 mx-10 mt-2 lg:mx-72 lg:mt-5 md:mt-3 h-8 md:h-16 lg:h-16 flex items-center">
             <div className="flex animate-ticker whitespace-nowrap">
               {/* Duplicate the split texts for seamless scrolling */}
               <div className="flex flex-shrink-0">
                 {splitTexts.map((text, index) => (
-                  <h1 key={index} className="text-xl md:text-3xl lg:text-6xl font-semibold text-white flex-shrink-0 mx-6">
+                  <h1 key={index} className="text-md md:text-xl lg:text-3xl font-semibold text-white flex-shrink-0 mx-6">
                     {text}
                   </h1>
                 ))}
               </div>
               <div className="flex flex-shrink-0">
                 {splitTexts.map((text, index) => (
-                  <h1 key={`duplicate-${index}`} className="text-xl md:text-3xl lg:text-6xl font-semibold text-white flex-shrink-0 mx-6">
+                  <h1 key={`duplicate-${index}`} className="text-md md:text-xl lg:text-3xl font-semibold text-white flex-shrink-0 mx-6">
                     {text}
                   </h1>
                 ))}

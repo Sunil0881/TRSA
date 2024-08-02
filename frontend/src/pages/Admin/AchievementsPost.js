@@ -6,6 +6,8 @@ const AchievementsPost = () => {
   const [description, setDescription] = useState('');
   const [year, setYear] = useState('');
   const [level, setLevel] = useState('');
+  const maxDescriptionLength = 325;
+  const maxTitleLength = 45;
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -61,9 +63,11 @@ const AchievementsPost = () => {
             type="text"
             placeholder="Achievement Title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value.slice(0, maxTitleLength))}
             style={{ display: 'block', marginBottom: '10px', padding: '10px' }}
+            maxLength={maxTitleLength}
           />
+          <p className="text-sm text-gray-500 text-right">{title.length}/{maxTitleLength} characters</p>
         </div>
         <div className="px-3 pb-3 lg:px-7">
           <input
@@ -79,10 +83,12 @@ const AchievementsPost = () => {
             className="w-full p-2 border border-gray-300 rounded-md"
             placeholder="Description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value.slice(0, maxDescriptionLength))}
             rows={4}
             style={{ marginBottom: '10px' }}
+            maxLength={maxDescriptionLength}
           />
+          <p className="text-sm text-gray-500 text-right">{description.length}/{maxDescriptionLength} characters</p>
         </div>
         <div className="flex justify-center space-x-3 px-3 lg:px-7">
           <input
