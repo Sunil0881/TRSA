@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AchievementsCard from '../components/AchievementCard';
+import Updates from './Updates';
 
 const AchievementsList = () => {
     const [achievements, setAchievements] = useState([]);
@@ -59,9 +60,9 @@ const AchievementsList = () => {
     };
 
     return (
-        <div className="container mx-auto lg:px-32 ">
+        <div className="container mx-auto lg:px-32">
             {/* Filter Button */}
-            <div className="flex justify-end mb-4 ">
+            <div className="flex justify-end mb-4">
                 <button
                     onClick={toggleFilters}
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
@@ -117,18 +118,26 @@ const AchievementsList = () => {
                 </div>
             )}
 
-            {/* Achievements List */}
-            <div>
-                {filteredAchievements.length > 0 ? filteredAchievements.map((achievement) => (
-                    <AchievementsCard
-                        key={achievement._id}
-                        image={achievement.image}
-                        title={achievement.title}
-                        description={achievement.description}
-                        year={achievement.year}
-                        level={achievement.level}
-                    />
-                )) : <p>No achievements found</p>}
+            {/* Main Content: Achievements and Updates */}
+            <div className="flex flex-col lg:flex-row gap-6">
+                {/* Achievements List (2/3 of the screen) */}
+                <div className="w-full lg:w-2/3">
+                    {filteredAchievements.length > 0 ? filteredAchievements.map((achievement) => (
+                        <AchievementsCard
+                            key={achievement._id}
+                            image={achievement.image}
+                            title={achievement.title}
+                            description={achievement.description}
+                            year={achievement.year}
+                            level={achievement.level}
+                        />
+                    )) : <p>No achievements found</p>}
+                </div>
+
+                {/* Updates (1/3 of the screen) */}
+                <div className="w-full lg:w-1/3">
+                    <Updates />
+                </div>
             </div>
         </div>
     );

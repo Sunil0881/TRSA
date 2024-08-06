@@ -4,6 +4,7 @@ import Membership from './pages/Membership';
 import Navbar from './components/Navbar';
 import Achievements from './pages/Achievements';
 import AchievementsPost from './pages/Admin/AchievementsPost';
+import About from './pages/About';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Navbar />
        <Routes>
          <Route path="/" element={<Home />} />
+         <Route path="/about" element={<About />} />
          <Route path="/membership" element={<Membership />} />
          <Route path="/achievements" element={<Achievements />} />
          <Route path="/achievementspost" element={<AchievementsPost />} />

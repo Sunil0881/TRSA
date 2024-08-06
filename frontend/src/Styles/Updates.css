@@ -1,0 +1,44 @@
+/* src/components/LatestUpdates.css */
+.update-item {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .update-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 7px; /* Default width of the blue color on the right side */
+    background-color: #1e3a8a; /* Tailwind's bg-blue-800 */
+    transition: width 0.3s ease;
+  }
+  
+  .update-item:hover::before {
+    width: 100%; /* Full width on hover */
+  }
+  
+  .update-item span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.3s ease;
+  }
+  
+  .update-item:hover span {
+    color: white;
+  }
+  
+  .update-item .right-bar {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .update-item:hover .hover-bg {
+    width: 100%;
+  }
+  
+  .update-item .hover-bg {
+    width: 3px;
+  }
+  
