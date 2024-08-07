@@ -77,6 +77,35 @@ mongoose
 
 
 
+  const updateSchema = new mongoose.Schema({
+    text: String,
+  });
+  
+  const Update = mongoose.model('Update', updateSchema);
+
+
+  app.get('/api/updates', async (req, res) => {
+    const updates = await Update.find();
+    res.json(updates);
+  });
+  
+  // Add a new update
+  app.post('/api/updates', async (req, res) => {
+    const newUpdate = new Update(req.body);
+    await newUpdate.save();
+    res.status(201).json(newUpdate);
+  });
+
+
+  app.delete('/api/updates/:id', async (req, res) => {
+    const { id } = req.params;
+    await Update.findByIdAndDelete(id);
+    res.status(204).end();
+  });
+  
+
+
+
 
 
 const port = process.env.PORT || 5000;
