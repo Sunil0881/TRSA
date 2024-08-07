@@ -4,7 +4,7 @@ const AddUpdates = () => {
   const [updateText, setUpdateText] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const maxUpdateLength = 40;
+  const maxUpdateLength = 50;
 
   const handleAddUpdate = async () => {
     if (!updateText.trim()) {
