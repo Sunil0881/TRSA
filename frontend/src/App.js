@@ -6,6 +6,7 @@ import Achievements from './pages/Achievements';
 import AchievementsPost from './pages/Admin/AchievementsPost';
 import About from './pages/About';
 import AddUpdates from './pages/Admin/AddUpdates';
+import AchievementsDetails from './pages/AchievementsDetails';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
          <Route path="/achievements" element={<Achievements />} />
          <Route path="/achievementspost" element={<AchievementsPost />} />
          <Route path="/addupdates" element={<AddUpdates />} />
+         <Route path="/achievement/:id" element={<AchievementsDetails />} />
 
          
        </Routes>

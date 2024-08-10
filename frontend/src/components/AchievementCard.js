@@ -1,10 +1,13 @@
+// src/components/AchievementsCard.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const AchievementsCard = ({ image, title, description, year, level }) => {
+const AchievementsCard = ({ id, image, title, description, year, level }) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const navigate = useNavigate();
 
     const toggleReadMore = () => {
-        setIsExpanded(!isExpanded);
+        navigate(`/achievement/${id}`);
     };
 
     const truncateText = (text, limit) => {
@@ -28,14 +31,16 @@ const AchievementsCard = ({ image, title, description, year, level }) => {
                     <div className="flex flex-col h-full">
                         <h2 className="text-lg sm:text-xl md:text-3xl font-semibold text-blue-800">{title}</h2>
                         <p className="text-gray-600 mt-4 text-base md:text-lg flex-grow">
-                            {isExpanded ? description : truncateText(description, descriptionLimit)}
+                            {truncateText(description, descriptionLimit)}
                         </p>
-                        <button
-                            onClick={toggleReadMore}
-                            className="text-blue-500 mt-2 text-sm focus:outline-none"
-                        >
-                            {isExpanded ? 'Read Less' : 'Read More'}
-                        </button>
+                        <div className="flex justify-end">
+                            <button
+                                onClick={toggleReadMore}
+                                className="mt-2 px-3 py-2 bg-blue-800 text-white text-sm rounded-lg focus:outline-none transition-transform transform hover:scale-105"
+                            >
+                                Read More
+                            </button>
+                        </div>
                     </div>
                     <div className="mt-4 flex justify-between items-center text-gray-700">
                         <div className="text-sm md:text-xl font-semibold">

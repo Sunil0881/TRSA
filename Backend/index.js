@@ -76,6 +76,23 @@ mongoose
   });
 
 
+  app.get('/api/achievements/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const achievement = await Achievement.findById(id);
+
+        if (!achievement) {
+            return res.status(404).json({ message: 'Achievement not found' });
+        }
+
+        res.json(achievement);
+    } catch (error) {
+        console.error('Error fetching achievement:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+
 
   const updateSchema = new mongoose.Schema({
     text: String,
