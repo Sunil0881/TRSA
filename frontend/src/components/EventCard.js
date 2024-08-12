@@ -9,7 +9,10 @@ const EventCard = ({ title, date, image }) => {
   });
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden pb-40 mt-10" style={{ width: '300px', height: '350px' }}>
+    <div
+      className="bg-white rounded-lg shadow-xl border-2 overflow-hidden pb-40 m-12 transition-transform transform hover:scale-105"
+      style={{ width: '300px', height: '350px' }}
+    >
       <img src={image} alt="Event Banner" className="w-full h-2/3 object-cover" />
       <div className="p-4">
         <h2 className="text-xl font-bold text-center mb-2">{title}</h2>
@@ -18,7 +21,6 @@ const EventCard = ({ title, date, image }) => {
           <button className="text-blue-600 hover:text-blue-800 font-semibold">More</button>
         </div>
       </div>
-     
       <div className="w-full flex justify-center mb-2">
         <button className="bg-blue-800 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700">
           Register Now
