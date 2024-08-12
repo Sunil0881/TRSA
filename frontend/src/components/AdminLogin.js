@@ -2,12 +2,37 @@
 import React, { useState } from 'react';
 
 const AdminLogin = () => {
-    const [name, setName] = useState('');
+    const [admin, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const urlvar = 'http://localhost:5000';
     
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try {
+            const response = await fetch(`${urlvar}/api/login`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ admin, password }),
+            });
+            const data = await response.json();
+            console.log(data);
+            if (response.ok) {
+              console.log(data.message);
+              window.localStorage.setItem("authenticated", true);
+              window.location.href = "./admin";
+            } else {
+              alert("Authentication failed. Please check your credentials.");
+            }
+          } catch (error) {
+            console.error("Error logging in:", error);
+            alert("Error logging in. Please try again.");
+          }
+        
+  
         
        
         
@@ -19,14 +44,14 @@ const AdminLogin = () => {
                 <h1 className="text-2xl font-semibold mb-6 text-center">Admin Login</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name</label>
+                        <label htmlFor="admin" className="block text-gray-700 font-medium mb-2">Name</label>
                         <input
-                            id="name"
+                            id="admin"
                             type="text"
                             placeholder="Enter your name"
                             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={admin}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
                     <div className="mb-6">
