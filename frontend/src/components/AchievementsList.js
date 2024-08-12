@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AchievementsCard from '../components/AchievementCard';
 import Updates from './Updates';
-import Footer from "../components/Footer"
+
 
 const AchievementsList = () => {
     const [achievements, setAchievements] = useState([]);
@@ -61,9 +61,9 @@ const AchievementsList = () => {
     };
 
     return (
-        <div className="container mx-auto lg:px-28">
+        <div className="container mx-auto lg:px-5 lg:pl-32">
             {/* Filter Button */}
-            <div className="flex justify-end mb-4">
+            <div className="flex justify-end mb-4 lg:mr-20">
                 <button
                     onClick={toggleFilters}
                     className="px-4 py-2 bg-blue-700 text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
@@ -122,7 +122,7 @@ const AchievementsList = () => {
             {/* Main Content: Achievements and Updates */}
             <div className="flex flex-col lg:flex-row gap-2">
                 {/* Achievements List (2/3 of the screen) */}
-                <div className="w-full lg:w-2/3">
+                <div className="w-full lg:w-2/3 lg:max-h-screen lg:overflow-y-auto lg:pr-4">
                     {filteredAchievements.length > 0 ? filteredAchievements.map((achievement) => (
                         <AchievementsCard
                             key={achievement._id}
@@ -137,7 +137,7 @@ const AchievementsList = () => {
                 </div>
 
                 {/* Updates (1/3 of the screen), moved further to the right */}
-                <div className="w-full lg:w-1/3 lg:ml-16 flex justify-center lg:block">
+                <div className="w-full lg:w-1/3 lg:ml-8 flex justify-center lg:block">
                     <Updates />
                 </div>
             </div>
