@@ -9,6 +9,7 @@ import AchievementsDetails from './pages/AchievementsDetails';
 import AdminHome from './pages/Admin/AdminHome';
 import Login from './pages/Admin/Login';
 import Events from './pages/Events';
+import AddEvents from './pages/Admin/AddEvents';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
          <Route path="/admin" element={<AdminHome />} />
          <Route path="/achievementspost" element={<AchievementsPost />} />
          <Route path="/addupdates" element={<AddUpdates />} />
+         <Route path="/addevents" element={<AddEvents />} />
          
 
          

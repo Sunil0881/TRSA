@@ -171,6 +171,44 @@ mongoose
   
 
 
+  const eventSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    date: { type: Date, required: true },
+    image: { type: String },
+    createdAt: { type: Date, default: Date.now },
+  });
+  
+  const Event = mongoose.model('Event', eventSchema);
+  
+
+  app.post('/api/events', async (req, res) => {
+    const { title, date, image } = req.body;
+  
+    const newEvent = new Event({
+      title,
+      date,
+      image,
+    });
+  
+    try {
+      const savedEvent = await newEvent.save();
+      res.status(201).json(savedEvent);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+
+  app.get('/api/events', async (req, res) => {
+    try {
+      const events = await Event.find();
+      res.status(200).json(events);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+  
+  
 
 
 
