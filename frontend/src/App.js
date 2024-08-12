@@ -23,7 +23,7 @@ function App() {
          <Route path="/achievement/:id" element={<AchievementsDetails />} />
 
          <Route path="/login" element={<Login />} />
-         <Route path="/adminhome" element={<AdminHome />} />
+         <Route path="/admin" element={<AdminHome />} />
          <Route path="/achievementspost" element={<AchievementsPost />} />
          <Route path="/addupdates" element={<AddUpdates />} />
          

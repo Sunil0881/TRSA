@@ -44,15 +44,16 @@ const AdminNavbar = () => {
        
       </div>
       <nav className="hidden items-center md:flex md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
+      <Link to="/admin" className={linkClasses("/news")}>
+          Home
+        </Link>
         <Link to="/achievementspost" className={linkClasses("/achievementspost")}>
         AchievementsPost
         </Link>
         <Link to="/addupdates" className={linkClasses("/addupdates")}>
         AddUpdates
         </Link>
-        <Link to="/news" className={linkClasses("/news")}>
-          News  
-        </Link>
+        
        
         <Link to="/skaters-profile" className={linkClasses("/skaters-profile")}>
           Skaters Profile
