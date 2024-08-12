@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AchievementsCard from '../components/AchievementCard';
 import Updates from './Updates';
-
+import  "../Styles/Scroll.css";
 
 const AchievementsList = () => {
     const [achievements, setAchievements] = useState([]);
@@ -122,7 +122,7 @@ const AchievementsList = () => {
             {/* Main Content: Achievements and Updates */}
             <div className="flex flex-col lg:flex-row gap-2">
                 {/* Achievements List (2/3 of the screen) */}
-                <div className="w-full lg:w-2/3 lg:max-h-screen lg:overflow-y-auto lg:pr-4">
+                <div className="w-full lg:w-2/3 lg:max-h-screen lg:overflow-y-auto lg:pr-4 custom-scrollbar">
                     {filteredAchievements.length > 0 ? filteredAchievements.map((achievement) => (
                         <AchievementsCard
                             key={achievement._id}
