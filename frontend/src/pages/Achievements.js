@@ -2,10 +2,12 @@ import React from 'react'
 import Banner from '../components/Banner'
 import AchievementsList from '../components/AchievementsList'
 import Footer from "../components/Footer"
+import Navbar from '../components/Navbar'
 
 const Achievements = () => {
   return (
     <div>
+      <Navbar />
        <Banner 
         mainText="One Achievements"
         subTexts="Exceptional milestones, transformative projects, and outstanding contributions! Proudly showcasing our remarkable successes and advancements!"

@@ -3,11 +3,13 @@ import Banner from '../components/Banner'
 import signup from "../assets/signup.png"
 import Questions from "../components/Questions"
 import Footer from "../components/Footer"
+import Navbar from '../components/Navbar'
 
 
 const Membership = () => {
   return (
     <div>
+      <Navbar />
         <Banner 
   mainText="One Membership,"
   subTexts="Unlimited benefits, and More rewards for you! Exclusive access to events! Special discounts and offers!"

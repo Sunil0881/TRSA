@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AdminNavbar from '../../components/AdminNavbar';
 
 const AddUpdates = () => {
   const [updateText, setUpdateText] = useState('');
@@ -40,6 +41,8 @@ const AddUpdates = () => {
   };
 
   return (
+    <div>
+      <AdminNavbar />
     <div className="p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto mt-24">
       <h2 className="text-blue-800 text-2xl font-semibold mb-4">Add New Update</h2>
       <div className="mb-4">
@@ -63,6 +66,7 @@ const AddUpdates = () => {
       </div>
       {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
       {success && <p className="text-green-600 text-sm mt-2">{success}</p>}
+    </div>
     </div>
   );
 };

@@ -6,12 +6,13 @@ import LegalHelp from '../components/LegalHelp'
 import Count from '../components/Count'
 import Questions from '../components/Questions'
 import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
 
 const Home = () => {
   return (
     
     <div>
-        
+        <Navbar />
         <Hero />
         <div className='text-blue-800 pl-5 md:pl-20 text-lg md:text-2xl lg:pl-32 lg:text-4xl  pb-5 md:pb-10 font-semibold '>
           What We Do ?

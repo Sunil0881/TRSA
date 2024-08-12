@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const AchievementsDetails = () => {
     const { id } = useParams();
@@ -35,6 +36,7 @@ const AchievementsDetails = () => {
 
     return (
         <div>
+            <Navbar />
         <div className="flex justify-center p-4 sm:p-6  min-h-screen">
             <div className="max-w-4xl w-full bg-white border border-gray-300 shadow-lg rounded-lg overflow-hidden">
                 <div className="relative">

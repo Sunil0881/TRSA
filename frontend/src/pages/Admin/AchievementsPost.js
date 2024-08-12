@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AdminNavbar from '../../components/AdminNavbar';
 
 const AchievementsPost = () => {
   const [image, setImage] = useState(null);
@@ -6,7 +7,7 @@ const AchievementsPost = () => {
   const [description, setDescription] = useState('');
   const [year, setYear] = useState('');
   const [level, setLevel] = useState('');
-  const maxDescriptionLength = 325;
+  const maxDescriptionLength = 500;
   const maxTitleLength = 45;
 
   const handleImageUpload = (event) => {
@@ -52,14 +53,16 @@ const AchievementsPost = () => {
   };
 
   return (
+    <div>
+      <AdminNavbar />
     <div className="px-4 md:px-6 lg:px-72 pt-20">
-      <h1 className="text-2xl md:text-4xl font-semibold text-center pb-10">
+      <h1 className="text-2xl md:text-4xl font-semibold text-center pb-10 text-blue-800">
         Post Your Achievement
       </h1>
       <div className="bg-white rounded-3xl shadow-2xl shadow-slate-500">
         <div className="flex justify-center pt-3 pb-3">
           <input
-            className="text-center"
+            className="text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
             placeholder="Achievement Title"
             value={title}
@@ -71,6 +74,7 @@ const AchievementsPost = () => {
         </div>
         <div className="px-3 pb-3 lg:px-7">
           <input
+          
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
@@ -80,7 +84,7 @@ const AchievementsPost = () => {
         {image && <img src={image} alt="Uploaded" style={{ maxWidth: '100%', marginBottom: '10px' }} />}
         <div className="px-3 lg:px-7">
           <textarea
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value.slice(0, maxDescriptionLength))}
@@ -92,25 +96,27 @@ const AchievementsPost = () => {
         </div>
         <div className="flex justify-center space-x-3 px-3 lg:px-7">
           <input
-            className="w-1/2 p-2 border border-gray-300 rounded-md"
+            className="w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
             placeholder="Year"
             value={year}
             onChange={(e) => setYear(e.target.value)}
             style={{ marginBottom: '10px' }}
           />
-          <input
-            className="w-1/2 p-2 border border-gray-300 rounded-md"
-            type="text"
-            placeholder="Level"
+          <select
+            className="w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={level}
             onChange={(e) => setLevel(e.target.value)}
             style={{ marginBottom: '10px' }}
-          />
+          >
+            <option value="" disabled>Select Level</option>
+            <option value="State">State</option>
+            <option value="National">National</option>
+          </select>
         </div>
         <div className="flex justify-center pt-10 pb-5">
           <button
-            className="bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition duration-300"
+            className="bg-blue-800 text-white py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
             onClick={handleSaveAchievement}
             style={{ marginTop: '10px', padding: '10px' }}
           >
@@ -118,6 +124,7 @@ const AchievementsPost = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };
