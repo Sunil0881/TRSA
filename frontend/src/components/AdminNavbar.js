@@ -58,8 +58,8 @@ const AdminNavbar = () => {
         <Link to="/addevents" className={linkClasses("/addevents")}>
           Add events
         </Link>
-        <Link to="/membership" className={linkClasses("/membership")}>
-          Membership
+        <Link to="/addskaters" className={linkClasses("/addskaters")}>
+          Add Skaters
         </Link>
       </nav>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />

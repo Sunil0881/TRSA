@@ -212,7 +212,65 @@ mongoose
     }
   });
   
+
+
+
+  const skaterProfileSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    age: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+    gender: {
+        type: String,
+        required: true,
+        enum: ['Male', 'Female', 'Other']  // Adjust the options as needed
+    },
+    level: {
+        type: String,
+        required: true,
+        enum: ['Beginner', 'Intermediate', 'Advanced']  // Adjust the options as needed
+    }
+}, {
+    timestamps: true  // Automatically add createdAt and updatedAt fields
+});
+
+const SkaterProfile = mongoose.model('SkaterProfile', skaterProfileSchema);
+
   
+
+app.post('/api/skaterprofiles', async (req, res) => {
+  const { name, age, gender, level } = req.body;
+
+  const newSkaterProfile = new SkaterProfile({
+      name,
+      age,
+      gender,
+      level
+  });
+
+  try {
+      const savedSkaterProfile = await newSkaterProfile.save();
+      res.status(201).json(savedSkaterProfile);
+  } catch (error) {
+      res.status(400).json({ message: error.message });
+  }
+});
+
+
+app.get('/api/skaterprofiles', async (req, res) => {
+  try {
+      const skaterProfiles = await SkaterProfile.find();
+      res.status(200).json(skaterProfiles);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+});
 
 
 

@@ -10,6 +10,7 @@ import AdminHome from './pages/Admin/AdminHome';
 import Login from './pages/Admin/Login';
 import Events from './pages/Events';
 import AddEvents from './pages/Admin/AddEvents';
+import AddSkaters from './pages/Admin/AddSkaters';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
          <Route path="/achievementspost" element={<AchievementsPost />} />
          <Route path="/addupdates" element={<AddUpdates />} />
          <Route path="/addevents" element={<AddEvents />} />
+         <Route path="/addskaters" element={<AddSkaters />} />
          
 
          
