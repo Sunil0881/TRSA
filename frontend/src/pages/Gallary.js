@@ -43,7 +43,7 @@ const Gallary = () => {
 
       <div className="p-4">
         {/* New Heading */}
-        <h2 className="text-4xl font-extrabold text-gray-800 mb-6 text-center">
+        <h2 className=" text-xl md:text-3xl lg:text-4xl font-extrabold text-gray-800 mb-6 text-center">
           Our Cherishable Moments
         </h2>
 
