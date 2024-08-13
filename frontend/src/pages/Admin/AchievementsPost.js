@@ -7,7 +7,7 @@ const AchievementsPost = () => {
   const [description, setDescription] = useState('');
   const [year, setYear] = useState('');
   const [level, setLevel] = useState('');
-  const maxDescriptionLength = 500;
+  const maxDescriptionLength = 3000;
   const maxTitleLength = 45;
 
   const handleImageUpload = (event) => {

@@ -50,7 +50,7 @@ const AchievementsDetails = () => {
                         <div className="achievement-images">
                             <img src={achievement.image} alt="Achievement 1" />
                             <img src={achievement.image} alt="Achievement 2" />
-                            <img src={achievement.image} alt="Achievement 3" />
+                            
                         </div>
                         <p className="achievement-caption">{achievement.title}</p>
                     </div>

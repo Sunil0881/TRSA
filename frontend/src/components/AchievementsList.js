@@ -19,16 +19,17 @@ const AchievementsList = () => {
             try {
                 const response = await fetch('http://localhost:5000/api/achievements');
                 const data = await response.json();
+    
                 console.log('Fetched Achievements:', data);
                 setAchievements(data);
-                setFilteredAchievements(data); // Initialize filteredAchievements
-                setLoading(false);  // Stop loading once data is fetched
+                setFilteredAchievements(data);
+                setLoading(false); // Stop loading once data is fetched
             } catch (error) {
                 console.error('Error fetching achievements:', error);
-                setLoading(false);  // Stop loading even if there's an error
+                setLoading(false); // Stop loading even if there's an error
             }
         };
-
+    
         fetchAchievements();
     }, []);
 
@@ -157,4 +158,3 @@ const AchievementsList = () => {
 };
 
 export default AchievementsList;
-    
