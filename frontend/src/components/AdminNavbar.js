@@ -60,6 +60,9 @@ const AdminNavbar = () => {
         </Link>
         <Link to="/addskaters" className={linkClasses("/addskaters")}>
           Add Skaters
+        </Link> 
+        <Link to="/addimage" className={linkClasses("/addimage")}>
+          Add Gallery
         </Link>
       </nav>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />

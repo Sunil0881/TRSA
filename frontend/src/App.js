@@ -13,6 +13,7 @@ import AddEvents from './pages/Admin/AddEvents';
 import AddSkaters from './pages/Admin/AddSkaters';
 import SkaterProfile from './pages/SkatersProfile';
 import Gallary from './pages/Gallary';
+import AddImages from './pages/Admin/AddImages';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
          <Route path="/addupdates" element={<AddUpdates />} />
          <Route path="/addevents" element={<AddEvents />} />
          <Route path="/addskaters" element={<AddSkaters />} />
+         <Route path="/addimage" element={<AddImages />} />
          
 
          

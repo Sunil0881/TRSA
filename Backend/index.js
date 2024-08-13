@@ -272,6 +272,36 @@ app.get('/api/skaterprofiles', async (req, res) => {
   }
 });
 
+const galleryImageSchema = new mongoose.Schema({
+  url: {
+    type: String,
+    required: true,
+  },
+});
+
+const GalleryImage = mongoose.model('GalleryImage', galleryImageSchema);
+
+app.post('/api/gallery', async (req, res) => {
+  try {
+    const { images } = req.body;
+    const savedImages = await GalleryImage.insertMany(images.map(url => ({ url })));
+    res.status(200).json(savedImages);
+  } catch (error) {
+    console.error('Error saving images:', error);
+    res.status(500).json({ message: 'Error saving images' });
+  }
+});
+
+app.get('/api/gallery', async (req, res) => {
+  try {
+    const images = await GalleryImage.find({});
+    res.json(images);
+  } catch (error) {
+    console.error('Error fetching images:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 
 const port = process.env.PORT || 5000;
