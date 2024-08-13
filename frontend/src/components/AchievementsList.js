@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AchievementsCard from '../components/AchievementCard';
 import Updates from './Updates';
-import  "../Styles/Scroll.css";
+import "../Styles/Scroll.css";
 
 const AchievementsList = () => {
     const [achievements, setAchievements] = useState([]);
@@ -9,6 +9,7 @@ const AchievementsList = () => {
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [showFilters, setShowFilters] = useState(false);
+    const [loading, setLoading] = useState(true);  // Loading state
 
     // Generate an array of years from 1995 to 2024
     const yearRange = Array.from({ length: 2024 - 1995 + 1 }, (_, i) => 1995 + i);
@@ -21,8 +22,10 @@ const AchievementsList = () => {
                 console.log('Fetched Achievements:', data);
                 setAchievements(data);
                 setFilteredAchievements(data); // Initialize filteredAchievements
+                setLoading(false);  // Stop loading once data is fetched
             } catch (error) {
                 console.error('Error fetching achievements:', error);
+                setLoading(false);  // Stop loading even if there's an error
             }
         };
 
@@ -123,17 +126,25 @@ const AchievementsList = () => {
             <div className="flex flex-col lg:flex-row gap-2">
                 {/* Achievements List (2/3 of the screen) */}
                 <div className="w-full lg:w-2/3 lg:max-h-screen lg:overflow-y-auto lg:pr-4 custom-scrollbar">
-                    {filteredAchievements.length > 0 ? filteredAchievements.map((achievement) => (
-                        <AchievementsCard
-                            key={achievement._id}
-                            id={achievement._id}
-                            image={achievement.image}
-                            title={achievement.title}
-                            description={achievement.description}
-                            year={achievement.year}
-                            level={achievement.level}
-                        />
-                    )) : <p>No achievements found</p>}
+                    {loading ? (
+                        <div className="loading">
+                            <div className="spinner"></div>
+                        </div>
+                    ) : filteredAchievements.length > 0 ? (
+                        filteredAchievements.map((achievement) => (
+                            <AchievementsCard
+                                key={achievement._id}
+                                id={achievement._id}
+                                image={achievement.image}
+                                title={achievement.title}
+                                description={achievement.description}
+                                year={achievement.year}
+                                level={achievement.level}
+                            />
+                        ))
+                    ) : (
+                        <p>No achievements found</p>
+                    )}
                 </div>
 
                 {/* Updates (1/3 of the screen), moved further to the right */}
@@ -141,9 +152,9 @@ const AchievementsList = () => {
                     <Updates />
                 </div>
             </div>
-           
         </div>
     );
 };
 
 export default AchievementsList;
+    
