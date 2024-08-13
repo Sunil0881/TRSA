@@ -3,6 +3,7 @@ import AdminNavbar from '../../components/AdminNavbar';
 
 const AchievementsPost = () => {
   const [image, setImage] = useState(null);
+  const [image2, setImage2] = useState(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [year, setYear] = useState('');
@@ -19,6 +20,15 @@ const AchievementsPost = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleImageUpload2 = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage2(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSaveAchievement = async () => {
     const achievement = {
       title,
@@ -26,6 +36,7 @@ const AchievementsPost = () => {
       year,
       level,
       image,
+      image2
     };
 
     const urlvar = 'http://localhost:5000';
@@ -80,6 +91,13 @@ const AchievementsPost = () => {
             onChange={handleImageUpload}
             style={{ display: 'block', marginBottom: '10px' }}
           />
+          <input
+          
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload2}
+          style={{ display: 'block', marginBottom: '10px' }}
+        />
         </div>
         {image && <img src={image} alt="Uploaded" style={{ maxWidth: '100%', marginBottom: '10px' }} />}
         <div className="px-3 lg:px-7">

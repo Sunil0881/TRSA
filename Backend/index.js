@@ -92,13 +92,14 @@ mongoose
     year: { type: String, required: true },
     level: { type: String, required: true },
     image: { type: String },
+    image2: { type: String },
     createdAt: { type: Date, default: Date.now },
   });
   
   const Achievement = mongoose.model('Achievement', achievementSchema);
 
   app.post('/api/achievementspost', async (req, res) => {
-    const { title, description, year, level, image } = req.body;
+    const { title, description, year, level, image, image2 } = req.body;
   
     const newAchievement = new Achievement({
       title,
@@ -106,6 +107,7 @@ mongoose
       year,
       level,
       image,
+      image2 
     });
   
     try {
