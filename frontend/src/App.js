@@ -11,6 +11,8 @@ import Login from './pages/Admin/Login';
 import Events from './pages/Events';
 import AddEvents from './pages/Admin/AddEvents';
 import AddSkaters from './pages/Admin/AddSkaters';
+import SkaterProfile from './pages/SkatersProfile';
+
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
          <Route path="/achievements" element={<Achievements />} />
          <Route path="/achievement/:id" element={<AchievementsDetails />} />
          <Route path="/events" element={<Events />} />
+         <Route path="/skatersprofile" element={<SkaterProfile />} />
 
 
          <Route path="/login" element={<Login />} />
