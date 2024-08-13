@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import React from 'react'
-import logo from "../assets/logo.png"
+import logo from "../assets/footerlogo.png"
 import Recline from '../assets/recline.png'
 import MobileMenu from './MobileMenu';
 import { Link, useLocation } from "react-router-dom";
@@ -37,7 +37,7 @@ const Navbar = () => {
           </button>
         </div>
         <header className="hidden items-center md:flex lg:gap-8 md:gap-4">
-          <a href='/contact'><button className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl">
+          <a href='/gallery'><button className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl">
             Gallery
           </button></a>
         </header>

@@ -12,6 +12,7 @@ import Events from './pages/Events';
 import AddEvents from './pages/Admin/AddEvents';
 import AddSkaters from './pages/Admin/AddSkaters';
 import SkaterProfile from './pages/SkatersProfile';
+import Gallary from './pages/Gallary';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
          <Route path="/achievement/:id" element={<AchievementsDetails />} />
          <Route path="/events" element={<Events />} />
          <Route path="/skatersprofile" element={<SkaterProfile />} />
+         <Route path="/gallery" element={<Gallary/>} />
 
 
          <Route path="/login" element={<Login />} />
