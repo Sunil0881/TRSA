@@ -61,7 +61,7 @@ const AchievementsList = () => {
     };
 
     return (
-        <div className="container mx-auto lg:px-5 lg:pl-32">
+        <div className="container mx-auto lg:px-5 lg:pl-28">
             {/* Filter Button */}
             <div className="flex justify-end mb-4 lg:mr-20">
                 <button

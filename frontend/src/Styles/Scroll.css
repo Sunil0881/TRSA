@@ -16,3 +16,9 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #1e40af; /* Darker shade of Blue 800 */
 }
+
+/* Add this to your global CSS or Scroll.css */
+.custom-scrollbar {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+

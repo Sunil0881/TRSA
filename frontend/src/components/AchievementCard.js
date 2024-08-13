@@ -18,7 +18,7 @@ const AchievementsCard = ({ id, image, title, description, year, level }) => {
 
     return (
         <div className="flex justify-center">
-            <div className="flex flex-col sm:flex-row max-w-7xl w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden h-auto sm:h-80 mb-8 transition-transform transform hover:scale-105 hover:shadow-xl">
+            <div className="flex flex-col sm:flex-row max-w-7xl w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden h-auto sm:h-80 mb-8 transition-transform transform hover:scale-90 hover:shadow-xl">
                 <div className="relative w-full sm:w-2/5">
                     <img
                         className="w-full h-48 sm:h-full object-cover rounded-t-lg sm:rounded-t-none sm:rounded-l-lg"
