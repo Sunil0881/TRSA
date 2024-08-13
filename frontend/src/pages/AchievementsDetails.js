@@ -1,8 +1,8 @@
-// src/components/FullAchievementDetails.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import '../Styles/AchievementDetail.css'; // Import the CSS file
 
 const AchievementsDetails = () => {
     const { id } = useParams();
@@ -31,40 +31,34 @@ const AchievementsDetails = () => {
         fetchAchievementData();
     }, [id]);
 
-    if (loading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
-    if (error) return <div className="flex justify-center items-center min-h-screen">{error}</div>;
-
     return (
         <div>
             <Navbar />
-        <div className="flex justify-center p-4 sm:p-6  min-h-screen">
-            <div className="max-w-4xl w-full bg-white border border-gray-300 shadow-lg rounded-lg overflow-hidden">
-                <div className="relative">
-                    <img
-                        className="w-full h-64 sm:h-80 object-cover rounded-t-lg"
-                        src={achievement.image}
-                        alt={achievement.title}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 rounded-t-lg"></div>
-                    <h1 className="absolute bottom-4 left-4 text-white text-2xl sm:text-4xl font-bold drop-shadow-md">
-                        {achievement.title}
-                    </h1>
+            {loading ? (
+                <div className="loading">
+                    <div className="spinner"></div>
                 </div>
-                <div className="p-6 sm:p-8">
-                    <div className="flex flex-col sm:flex-row justify-between items-center text-gray-700 mb-6">
-                        <div className="text-lg sm:text-xl font-semibold">
-                            Year: <span className="font-normal">{achievement.year}</span>
-                        </div>
-                        <div className="text-lg sm:text-xl font-semibold mt-2 sm:mt-0">
-                            Level: <span className="font-normal">{achievement.level}</span>
-                        </div>
+            ) : error ? (
+                <div className="error">{error}</div>
+            ) : (
+                <div className="achievement-container">
+                    <div className="achievement-header">
+                        <p className="achievement-level">Achievement / <span>{achievement.level}</span></p>
+                        <h2>{achievement.title}</h2>
                     </div>
-                    <div className="text-gray-800 text-base sm:text-lg leading-relaxed space-y-4">
+                    <div className="achievement-content">
+                        <div className="achievement-images">
+                            <img src={achievement.image} alt="Achievement 1" />
+                            <img src={achievement.image} alt="Achievement 2" />
+                            <img src={achievement.image} alt="Achievement 3" />
+                        </div>
+                        <p className="achievement-caption">{achievement.title}</p>
+                    </div>
+                    <div className="achievement-description">
                         <p>{achievement.description}</p>
                     </div>
                 </div>
-            </div>
-            </div>
+            )}
             <Footer />
         </div>
     );
