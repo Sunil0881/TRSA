@@ -23,9 +23,11 @@ const EventsList = () => {
       {events.map((event) => (
         <EventCard
           key={event._id}
+          id={event._id}  
           title={event.title}
           date={event.date}
           image={event.image}
+          
         />
       ))}
     </div>

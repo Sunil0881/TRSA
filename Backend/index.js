@@ -177,8 +177,10 @@ mongoose
 
   const eventSchema = new mongoose.Schema({
     title: { type: String, required: true },
+    description: { type: String, required: true },
     date: { type: Date, required: true },
     image: { type: String },
+    location: { type: String },
     createdAt: { type: Date, default: Date.now },
   });
   
@@ -186,12 +188,14 @@ mongoose
   
 
   app.post('/api/events', async (req, res) => {
-    const { title, date, image } = req.body;
+    const { title, date, image, location, description } = req.body;
   
     const newEvent = new Event({
       title,
       date,
       image,
+      location,
+      description
     });
   
     try {
