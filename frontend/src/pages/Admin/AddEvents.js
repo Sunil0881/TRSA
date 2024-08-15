@@ -31,7 +31,7 @@ const AddEvents = () => {
       image,
     };
 
-    const urlvar = 'http://localhost:5000';
+    const urlvar = 'https://trsabackend.vercel.app';
 
     try {
       const response = await fetch(`${urlvar}/api/events`, {

@@ -8,7 +8,7 @@ const AchievementsPost = () => {
   const [description, setDescription] = useState('');
   const [year, setYear] = useState('');
   const [level, setLevel] = useState('');
-  const maxDescriptionLength = 3000;
+  const maxDescriptionLength = 1500;
   const maxTitleLength = 45;
 
   const handleImageUpload = (event) => {
@@ -39,7 +39,7 @@ const AchievementsPost = () => {
       image2
     };
 
-    const urlvar = 'http://localhost:5000';
+    const urlvar = 'https://trsabackend.vercel.app';
 
     try {
       const response = await fetch(`${urlvar}/api/achievementspost`, {

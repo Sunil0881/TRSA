@@ -9,7 +9,8 @@ const AchievementsList = () => {
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [showFilters, setShowFilters] = useState(false);
-    const [loading, setLoading] = useState(true);  // Loading state
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null); // Error state
 
     // Generate an array of years from 1995 to 2024
     const yearRange = Array.from({ length: 2024 - 1995 + 1 }, (_, i) => 1995 + i);
@@ -18,33 +19,51 @@ const AchievementsList = () => {
         const fetchAchievements = async () => {
             try {
                 const response = await fetch('https://trsabackend.vercel.app/api/achievements');
+                
+                // Check if the response status is OK
+                if (!response.ok) {
+                    const errorDetails = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status}. Details: ${errorDetails}`);
+                }
+                
                 const data = await response.json();
-    
-                console.log('Fetched Achievements:', data);
-                setAchievements(data);
-                setFilteredAchievements(data);
-                setLoading(false); // Stop loading once data is fetched
+                
+                // Verify if the data is an array
+                if (Array.isArray(data)) {
+                    setAchievements(data);
+                    setFilteredAchievements(data);
+                } else {
+                    throw new Error('Unexpected data format');
+                }
             } catch (error) {
-                console.error('Error fetching achievements:', error);
-                setLoading(false); // Stop loading even if there's an error
+                console.error('Error fetching achievements:', error.message);
+                setError(`Failed to load achievements. Error: ${error.message}`);
+            } finally {
+                setLoading(false);
             }
         };
     
         fetchAchievements();
     }, []);
+    
 
     useEffect(() => {
-        let filtered = achievements;
+        // Filter achievements based on selected year and levels
+        const filterAchievements = () => {
+            let filtered = achievements;
 
-        if (selectedYear) {
-            filtered = filtered.filter((achievement) => achievement.year.toLowerCase() === selectedYear.toLowerCase());
-        }
+            if (selectedYear) {
+                filtered = filtered.filter(achievement => achievement.year.toString() === selectedYear);
+            }
 
-        if (selectedLevels.length > 0) {
-            filtered = filtered.filter((achievement) => selectedLevels.includes(achievement.level.toLowerCase()));
-        }
+            if (selectedLevels.length > 0) {
+                filtered = filtered.filter(achievement => selectedLevels.includes(achievement.level.toLowerCase()));
+            }
 
-        setFilteredAchievements(filtered);
+            setFilteredAchievements(filtered);
+        };
+
+        filterAchievements();
     }, [selectedYear, selectedLevels, achievements]);
 
     const handleYearChange = (e) => {
@@ -61,7 +80,7 @@ const AchievementsList = () => {
     };
 
     const toggleFilters = () => {
-        setShowFilters(!showFilters);
+        setShowFilters(prevShowFilters => !prevShowFilters);
     };
 
     return (
@@ -131,6 +150,8 @@ const AchievementsList = () => {
                         <div className="loading">
                             <div className="spinner"></div>
                         </div>
+                    ) : error ? (
+                        <p className="text-red-500 text-center">{error}</p>
                     ) : filteredAchievements.length > 0 ? (
                         filteredAchievements.map((achievement) => (
                             <AchievementsCard

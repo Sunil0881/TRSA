@@ -22,7 +22,7 @@ const AddImages = () => {
       images
     };
 
-    const urlvar = 'http://localhost:5000';
+    const urlvar = 'https://trsabackend.vercel.app';
 
     try {
       const response = await fetch(`${urlvar}/api/gallery`, {  // Adjusted endpoint for gallery
