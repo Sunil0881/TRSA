@@ -43,15 +43,13 @@ const Navbar = () => {
         </header>
       </div>
       <nav className="hidden items-center md:flex md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
-        <Link to="/about" className={linkClasses("/about")}>
-          About
+        <Link to="/" className={linkClasses("/")}>
+         Home
         </Link>
         <Link to="/events" className={linkClasses("/events")}>
           Events
         </Link>
-        <Link to="/news" className={linkClasses("/news")}>
-          News  
-        </Link>
+       
         <Link to="/club" className={linkClasses("/club")}>
           Associative Club
         </Link>
