@@ -36,7 +36,6 @@ const EventDetails = () => {
         fetchEventData();
     }, [id]);
 
-    // Convert the date to the desired format
     const formattedDate = event ? new Date(event.date).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
@@ -51,27 +50,44 @@ const EventDetails = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const { name, age, email, phone } = formData;
 
-        // Simple validation
         if (!name || !age || !email || !phone) {
             setFormError('All fields are required.');
             return;
         }
 
-        // Handle form submission logic here (e.g., send data to a server)
-        console.log('Form data submitted:', formData);
+        try {
+            const response = await fetch('https://trsabackend.vercel.app/api/registrations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ...formData, eventId: id }),
+            });
 
-        // Clear the form and error after submission
-        setFormData({
-            name: '',
-            age: '',
-            email: '',
-            phone: '',
-        });
-        setFormError(null);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Registration successful:', data);
+                setFormData({
+                    name: '',
+                    age: '',
+                    email: '',
+                    phone: '',
+                });
+                setFormError(null);
+                alert('Registration successful!');
+            } else {
+                const errorData = await response.json();
+                console.error('Failed to register:', errorData);
+                setFormError('Failed to register. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error registering:', error);
+            setFormError('Error registering. Please try again.');
+        }
     };
 
     return (
@@ -168,7 +184,7 @@ const EventDetails = () => {
                 </div>
             ) : (
                 <div className="text-center text-gray-500 py-8">
-                    <p>No event details found.</p>
+                    <p>No event details available.</p>
                 </div>
             )}
             <Footer />

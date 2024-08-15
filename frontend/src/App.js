@@ -15,6 +15,7 @@ import SkaterProfile from './pages/SkatersProfile';
 import Gallary from './pages/Gallary';
 import AddImages from './pages/Admin/AddImages';
 import EventDetails from './pages/EventDetail';
+import RegistrationList from './pages/Admin/RegistrationData';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
          <Route path="/addevents" element={<AddEvents />} />
          <Route path="/addskaters" element={<AddSkaters />} />
          <Route path="/addimage" element={<AddImages />} />
+         <Route path="/registrations" element={<RegistrationList />} />
          
 
          
