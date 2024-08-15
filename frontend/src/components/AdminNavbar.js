@@ -1,24 +1,31 @@
-import { useState } from 'react'
-import React from 'react'
-import logo from "../assets/logo.png"
-import Recline from '../assets/recline.png'
+import { useState } from 'react';
+import React from 'react';
+import logo from "../assets/logo.png";
+import Recline from '../assets/recline.png';
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AdminMobile from './AdminMobile';
-
 
 const AdminNavbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleLogout = () => {
+    // Clear authentication data
+    window.localStorage.removeItem("authenticated");
+
+    // Redirect to the login page
+    navigate('/login');
+  };
+
   const linkClasses = (path) => 
     `hover:scale-95  md:text-lg lg:text-xl md:my-4 lg:my-5 md:px-2 lg:px-4 py-2 rounded ${location.pathname === path ? 'bg-white text-blue-800' : ''}`;
-     console.log(location.pathname);
-
+  
   return (
     <div>
       <div className="mb-3 ">
@@ -38,25 +45,24 @@ const AdminNavbar = () => {
           </button>
         </div>
         <header className="hidden items-center md:flex lg:gap-8 md:gap-4">
-          <a href='/'><button className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl">
+          <button 
+            onClick={handleLogout} 
+            className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl"
+          >
             Logout
-          </button></a>
+          </button>
         </header>
-       
       </div>
       <nav className="hidden items-center md:flex md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
-      <Link to="/admin" className={linkClasses("/news")}>
+        <Link to="/admin" className={linkClasses("/news")}>
           Home
         </Link>
         <Link to="/achievementspost" className={linkClasses("/achievementspost")}>
-        AchievementsPost
+          AchievementsPost
         </Link>
-
         <Link to="/addupdates" className={linkClasses("/addupdates")}>
-        AddUpdates
+          AddUpdates
         </Link>
-        
-       
         <Link to="/addevents" className={linkClasses("/addevents")}>
           Add events
         </Link>

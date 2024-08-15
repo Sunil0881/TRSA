@@ -102,24 +102,24 @@ const EventDetails = () => {
                     <p>{error}</p>
                 </div>
             ) : event ? (
-                <div className="px-2 md:px-8 lg:px-16 xl:px-24 bg-white pt-4 md:pt-10 border-2 border-gray-200 rounded-lg shadow-lg">
+                <div className="px-2 md:px-8 lg:px-52 bg-white pt-4 md:pt-10 border-2 border-gray-200 rounded-lg shadow-lg">
                     <p className='text-blue-800 text-center text-2xl font-semibold mb-4'>Be Part of the Event - Register Here!</p>
                     <div className="w-full h-full flex flex-col items-center">
                         <img className="rounded-lg shadow-md object-cover w-full h-60 md:h-80 max-w-4xl" src={event.image} alt="Event" />
-                        <h2 className="text-xl md:text-3xl mt-4 font-semibold text-gray-800 text-center">{event.title}</h2>
+                        <h2 className="text-xl md:text-3xl mt-8 font-semibold text-gray-800 text-center">{event.title}</h2>
                     </div>
                     <div className="my-8 px-4 md:px-6 lg:px-8">
-                        <p className="text-gray-700 text-base md:text-xl mb-2">
+                        <p className="text-gray-700 text-base md:text-xl mb-2 ">
                             <span className="font-semibold">Description:</span> {event.description || 'No description available.'}
                         </p>
-                        <p className="text-gray-700 text-base md:text-xl mb-2">
+                        <p className="text-gray-700 text-base md:text-xl mb-2 lg:pt-5">
                             <span className="font-semibold">Location:</span> {event.location || 'Location not specified.'}
                         </p>
-                        <p className="text-gray-700 text-base md:text-xl">
+                        <p className="text-gray-700 text-base md:text-xl lg:pt-5">
                             <span className="font-semibold">Date:</span> {formattedDate}
                         </p>
                     </div>
-                    <div className="my-8 px-4 md:px-6 lg:px-8">
+                    <div className="my-8 px-4 md:px-6 lg:px-72">
                         <form onSubmit={handleSubmit} className="bg-gray-200 p-6 rounded-lg shadow-md">
                             <h3 className="text-lg font-semibold mb-4">Register for the Event</h3>
                             {formError && (

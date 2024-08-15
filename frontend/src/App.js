@@ -19,6 +19,7 @@ import RegistrationList from './pages/Admin/RegistrationData';
 
 
 function App() {
+  const isLoggedIn = localStorage.getItem('authenticated');
   return (
     <div>
     <Router>
@@ -35,15 +36,15 @@ function App() {
          <Route path="/skatersprofile" element={<SkaterProfile />} />
          <Route path="/gallery" element={<Gallary/>} />
 
-
+         
          <Route path="/login" element={<Login />} />
-         <Route path="/admin" element={<AdminHome />} />
-         <Route path="/achievementspost" element={<AchievementsPost />} />
-         <Route path="/addupdates" element={<AddUpdates />} />
-         <Route path="/addevents" element={<AddEvents />} />
-         <Route path="/addskaters" element={<AddSkaters />} />
-         <Route path="/addimage" element={<AddImages />} />
-         <Route path="/registrations" element={<RegistrationList />} />
+         <Route path='/admin' element={isLoggedIn === 'true'?<AdminHome />:<Login />} />
+         <Route path="/achievementspost" element={isLoggedIn === 'true'?<AchievementsPost />:<Login />} />
+         <Route path="/addupdates" element={isLoggedIn === 'true'?<AddUpdates />:<Login />} />
+         <Route path="/addevents" element={isLoggedIn === 'true'?<AddEvents />:<Login />} />
+         <Route path="/addskaters" element={isLoggedIn === 'true'?<AddSkaters />:<Login />} />
+         <Route path="/addimage" element={isLoggedIn === 'true'?<AddImages />:<Login />} />
+         <Route path="/registrations" element={isLoggedIn === 'true'?<RegistrationList />:<Login />} />
          
 
          
