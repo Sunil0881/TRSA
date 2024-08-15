@@ -7,14 +7,14 @@ require('dotenv').config();
 
 const app = express();
 
-const corsOptions = {
-    origin: ['https://trsafrontend.vercel.app'],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-    optionsSuccessStatus: 204,
-  };
+// const corsOptions = {
+//     origin: ['https://trsafrontend.vercel.app'],
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true,
+//     optionsSuccessStatus: 204,
+//   };
 
-  app.use(cors(corsOptions));
+  app.use(cors());
  
 
   app.use(express.json({ limit: '10mb' })); // Increase limit to 10MB
