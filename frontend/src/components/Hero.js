@@ -1,5 +1,6 @@
 import React from 'react'
 import skating from "../assets/skatinggirl.png"
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -24,9 +25,11 @@ const Hero = () => {
       <p className="mt-8 text-white md:max-w-md lg:max-w-xl md:text-lg lg:text-2xl">
         Discover the joy of roller skating with us! Whether you're a beginner or a pro, our community is the perfect place to skate, learn, and have fun.
       </p>
+      <Link to="/membership">
       <button className=" mt-10 md:mt-14 lg:mt-20 px-4 py-2 bg-white text-lg md:text-2xl text-blue-800 font-semibold rounded-lg hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
         Join as member
       </button>
+      </Link>
     </div>
   </div>
 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { FaPhoneAlt } from 'react-icons/fa';
 
 const Questions = () => {
-  const phoneNumber = "7845448491"; // Replace with the actual phone number
+  const phoneNumber = "7871428556"; // Replace with the actual phone number
 
   return (
     <div className='pt-20 pb-16 pl-7 md:pt-28 md:pl-28 lg:pl-60 lg:pt-52 lg:pb-32 md:pb-20'>
