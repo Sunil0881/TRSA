@@ -12,7 +12,7 @@ const Gallary = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/gallery');
+        const response = await fetch('https://trsabackend.vercel.app/gallery');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

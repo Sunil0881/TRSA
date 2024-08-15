@@ -4,14 +4,14 @@ import React, { useState } from 'react';
 const AdminLogin = () => {
     const [admin, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const urlvar = 'http://localhost:5000';
+    const urlvar = 'https://trsabackend.vercel.app';
     
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`${urlvar}/api/login`, {
+            const response = await fetch(`${urlvar}/login`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
