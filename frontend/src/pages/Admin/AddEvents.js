@@ -5,9 +5,12 @@ const AddEvents = () => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [image, setImage] = useState(null);
+  const [description, setDescription] = useState(''); // New state for description
+  const [location, setLocation] = useState(''); // New state for location
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const maxTitleLength = 45;
+  const maxDescriptionLength = 300; // Added max length for description
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -29,6 +32,8 @@ const AddEvents = () => {
       title,
       date,
       image,
+      description, // Include description
+      location, // Include location
     };
 
     const urlvar = 'https://trsabackend.vercel.app';
@@ -49,6 +54,8 @@ const AddEvents = () => {
         setTitle('');
         setDate('');
         setImage(null);
+        setDescription('');
+        setLocation('');
         setError('');
       } else {
         const errorData = await response.json();
@@ -98,6 +105,37 @@ const AddEvents = () => {
                 onChange={(e) => setDate(e.target.value)}
                 className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                 required
+              />
+            </div>
+
+            {/* Event Description */}
+            <div>
+              <label htmlFor="description" className="block text-gray-700 font-semibold mb-2">
+                Event Description
+              </label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value.slice(0, maxDescriptionLength))}
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                placeholder="Enter event description"
+                rows="4"
+              />
+              <p className="text-gray-500 text-sm mt-2">{description.length}/{maxDescriptionLength} characters</p>
+            </div>
+
+            {/* Event Location */}
+            <div>
+              <label htmlFor="location" className="block text-gray-700 font-semibold mb-2">
+                Event Location
+              </label>
+              <input
+                type="text"
+                id="location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                placeholder="Enter event location"
               />
             </div>
 

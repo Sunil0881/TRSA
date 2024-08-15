@@ -320,6 +320,99 @@ app.get('/api/gallery', async (req, res) => {
 });
 
 
+const registrationSchema = new mongoose.Schema({
+  eventId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Event', // Reference to the Event model if applicable
+      required: true
+  },
+  name: {
+      type: String,
+      required: true,
+      trim: true
+  },
+  age: {
+      type: Number,
+      required: true,
+      min: 0
+  },
+  email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true
+  },
+  phone: {
+      type: String,
+      required: true,
+      trim: true
+  },
+  registeredAt: {
+      type: Date,
+      default: Date.now
+  }
+});
+
+// Create the model from the schema
+const Registration = mongoose.model('Registration', registrationSchema);
+
+
+
+app.post('/api/registrations', async (req, res) => {
+  const { eventId, name, age, email, phone } = req.body;
+
+  // Validate the data if needed (you can add more validation rules here)
+  if (!eventId || !name || !age || !email || !phone) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  // Create a new registration document
+  const newRegistration = new Registration({
+    eventId,
+    name,
+    age,
+    email,
+    phone
+  });
+
+  try {
+    // Save the new registration to the database
+    const savedRegistration = await newRegistration.save();
+    res.status(201).json(savedRegistration);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+
+app.get('/api/registrations', async (req, res) => {
+  try {
+    const registrations = await Registration.find();
+    res.status(200).json(registrations);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// GET endpoint to fetch registration data by event ID
+app.get('/api/registrations/:eventId', async (req, res) => {
+  const { eventId } = req.params;
+
+  try {
+    const registrations = await Registration.find({ eventId });
+    if (registrations.length === 0) {
+      return res.status(404).json({ message: 'No registrations found for this event' });
+    }
+    res.status(200).json(registrations);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
+
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
