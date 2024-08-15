@@ -17,7 +17,7 @@ const AchievementsList = () => {
     useEffect(() => {
         const fetchAchievements = async () => {
             try {
-                const response = await fetch('https://trsabackend.vercel.app/achievements');
+                const response = await fetch('https://trsabackend.vercel.app/api/achievements');
                 const data = await response.json();
     
                 console.log('Fetched Achievements:', data);

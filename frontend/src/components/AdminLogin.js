@@ -11,7 +11,7 @@ const AdminLogin = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`${urlvar}/login`, {
+            const response = await fetch(`${urlvar}/api/login`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

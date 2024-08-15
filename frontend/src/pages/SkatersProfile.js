@@ -10,7 +10,7 @@ const SkaterProfile = () => {
   useEffect(() => {
     const fetchSkaters = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/skaterprofiles');
+        const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles');
         const data = await response.json();
         setSkaters(data);
         setFilteredSkaters(data); // Initialize with all skaters

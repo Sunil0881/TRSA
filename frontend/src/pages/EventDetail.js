@@ -12,7 +12,7 @@ const EventDetails = () => {
     useEffect(() => {
         const fetchEventData = async () => {
             try {
-                const response = await fetch(`https://trsabackend.vercel.app/events/${id}`);
+                const response = await fetch(`https://trsabackend.vercel.app/api/events/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

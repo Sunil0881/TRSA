@@ -15,14 +15,14 @@ const AchievementsDetails = () => {
     useEffect(() => {
         const fetchAchievementData = async () => {
             try {
-                const response = await fetch(`https://trsabackend.vercel.app/achievements/${id}`);
+                const response = await fetch(`https://trsabackend.vercel.app/api/achievements/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
                 setAchievement(data);
 
-                const allAchievementsResponse = await fetch('https://trsabackend.vercel.app/achievements');
+                const allAchievementsResponse = await fetch('https://trsabackend.vercel.app/api/achievements');
                 const allAchievementsData = await allAchievementsResponse.json();
                 setAchievements(allAchievementsData);
 
