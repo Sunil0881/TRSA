@@ -1,9 +1,21 @@
 // src/MobileMenu.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
+
 
 
 const AdminMobile = ({ isOpen, onClose }) => {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear authentication data
+    window.localStorage.removeItem("authenticated");
+
+    // Redirect to the login page
+    navigate('/login');
+  };
+
 
 
   return (
@@ -47,6 +59,13 @@ const AdminMobile = ({ isOpen, onClose }) => {
         <Link to="/addimage"  className="text-black text-xl" onClick={onClose}>
         Add Gallery
         </Link>
+
+        <button 
+            onClick={handleLogout} 
+            className="text-black text-xl"
+          >
+            Logout
+          </button>
        
       </nav>
     </div>

@@ -54,7 +54,7 @@ const AddImages = () => {
           Add Images to Gallery
         </h1>
         <div className="bg-white rounded-3xl shadow-2xl shadow-slate-500">
-          <div className="px-3 pb-3 lg:px-7">
+          <div className="px-3 pb-3 pt-5 lg:px-7">
             <input
               type="file"
               accept="image/*"
