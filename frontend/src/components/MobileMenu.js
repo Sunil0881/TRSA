@@ -34,7 +34,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           Achievements
         </a>
 
-        <a href="/skaters-profile" className="text-black text-xl" onClick={onClose}>
+        <a href="/skatersprofile" className="text-black text-xl" onClick={onClose}>
           Skaters Profile
         </a>
 
