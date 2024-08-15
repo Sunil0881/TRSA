@@ -19,17 +19,22 @@ const EventsList = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center lg:px-28">
-      {events.map((event) => (
-        <EventCard
-          key={event._id}
-          id={event._id}  
-          title={event.title}
-          date={event.date}
-          image={event.image}
-          
-        />
-      ))}
+    <div className="p-4 lg:px-28">
+      {/* Title */}
+      <h2 className="text-3xl font-bold text-center mb-6">Upcoming Events</h2>
+
+      {/* Event Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+        {events.map((event) => (
+          <EventCard
+            key={event._id}
+            id={event._id}  
+            title={event.title}
+            date={event.date}
+            image={event.image}
+          />
+        ))}
+      </div>
     </div>
   );
 };
