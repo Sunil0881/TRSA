@@ -8,6 +8,7 @@ const AchievementsCard = ({ id, image, title, description, year, level }) => {
 
     const toggleReadMore = () => {
         navigate(`/achievement/${id}`);
+        window.scrollTo(0, 0);
     };
 
     const truncateText = (text, limit) => {
