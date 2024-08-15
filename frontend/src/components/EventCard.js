@@ -13,8 +13,9 @@ const EventCard = ({ id, title, date, image }) => {
 
   // Handle the button click to navigate to the event details page
   const handleRegisterClick = () => {
-    navigate(`/events/${id}`);
     window.scrollTo(0, 0);
+    navigate(`/events/${id}`);
+   
   };
 
   return (
