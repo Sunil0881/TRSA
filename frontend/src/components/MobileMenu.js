@@ -19,16 +19,13 @@ const MobileMenu = ({ isOpen, onClose }) => {
       </div>
       <nav className="flex flex-col items-center mt-8 space-y-4">
         <a href="/" className="text-black text-xl" onClick={onClose}>
-          About
+          Home
         </a>
         <a href="/events" className="text-black text-xl" onClick={onClose}>
           Events
         </a>
         
-        <a href="/news" className="text-black text-xl" onClick={onClose}>
-          News
-        </a>
-
+       
         <a href="/club" className="text-black text-xl" onClick={onClose}>
           Associative Club
         </a>
