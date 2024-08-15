@@ -7,7 +7,7 @@ const AchievementsCard = ({ id, image, title, description, year, level }) => {
     const navigate = useNavigate();
 
     const toggleReadMore = () => {
-        window.scrollTo(0, 0);
+     
         navigate(`/achievement/${id}`);
         
     };
