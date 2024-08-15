@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from "../src/pages/Home"
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Home from './pages/Home';
 import Membership from './pages/Membership';
 import Achievements from './pages/Achievements';
 import AchievementsPost from './pages/Admin/AchievementsPost';
@@ -16,42 +17,211 @@ import Gallary from './pages/Gallary';
 import AddImages from './pages/Admin/AddImages';
 import EventDetails from './pages/EventDetail';
 import RegistrationList from './pages/Admin/RegistrationData';
+import Club from './pages/Club';
+import PageTransition from './components/PageTransition'; // Import the transition component
+
+// Component to use location hook within Router context
+const AppRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <Routes location={location} key={location.pathname}>
+      <Route
+        path="/"
+        element={
+          <PageTransition>
+            <Home />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/about"
+        element={
+          <PageTransition>
+            <About />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/membership"
+        element={
+          <PageTransition>
+            <Membership />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/achievements"
+        element={
+          <PageTransition>
+            <Achievements />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/achievement/:id"
+        element={
+          <PageTransition>
+            <AchievementsDetails />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/club"
+        element={
+          <PageTransition>
+            <Club />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/events/:id"
+        element={
+          <PageTransition>
+            <EventDetails />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/events"
+        element={
+          <PageTransition>
+            <Events />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/skatersprofile"
+        element={
+          <PageTransition>
+            <SkaterProfile />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/gallery"
+        element={
+          <PageTransition>
+            <Gallary />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <PageTransition>
+            <Login />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <AdminHome />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+      <Route
+        path="/achievementspost"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <AchievementsPost />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+      <Route
+        path="/addupdates"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <AddUpdates />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+      <Route
+        path="/addevents"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <AddEvents />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+      <Route
+        path="/addskaters"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <AddSkaters />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+      <Route
+        path="/addimage"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <AddImages />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+      <Route
+        path="/registrations"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <RegistrationList />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+    </Routes>
+  );
+};
 
 
 function App() {
-  const isLoggedIn = localStorage.getItem('authenticated');
   return (
-    <div>
     <Router>
-   
-    
-       <Routes>
-         <Route path="/" element={<Home />} />
-         <Route path="/about" element={<About />} />
-         <Route path="/membership" element={<Membership />} />
-         <Route path="/achievements" element={<Achievements />} />
-         <Route path="/achievement/:id" element={<AchievementsDetails />} />
-         <Route path="/events/:id" element={<EventDetails />} />
-         <Route path="/events" element={<Events />} />
-         <Route path="/skatersprofile" element={<SkaterProfile />} />
-         <Route path="/gallery" element={<Gallary/>} />
-
-         
-         <Route path="/login" element={<Login />} />
-         <Route path='/admin' element={isLoggedIn === 'true'?<AdminHome />:<Login />} />
-         <Route path="/achievementspost" element={isLoggedIn === 'true'?<AchievementsPost />:<Login />} />
-         <Route path="/addupdates" element={isLoggedIn === 'true'?<AddUpdates />:<Login />} />
-         <Route path="/addevents" element={isLoggedIn === 'true'?<AddEvents />:<Login />} />
-         <Route path="/addskaters" element={isLoggedIn === 'true'?<AddSkaters />:<Login />} />
-         <Route path="/addimage" element={isLoggedIn === 'true'?<AddImages />:<Login />} />
-         <Route path="/registrations" element={isLoggedIn === 'true'?<RegistrationList />:<Login />} />
-         
-
-         
-       </Routes>
-     </Router>
-
-</div>
+      <AppRoutes />
+    </Router>
   );
 }
 
