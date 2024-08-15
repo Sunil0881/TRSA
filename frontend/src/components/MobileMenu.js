@@ -1,5 +1,6 @@
 // src/MobileMenu.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const MobileMenu = ({ isOpen, onClose }) => {
@@ -18,29 +19,33 @@ const MobileMenu = ({ isOpen, onClose }) => {
         </button>
       </div>
       <nav className="flex flex-col items-center mt-8 space-y-4">
-        <a href="/" className="text-black text-xl" onClick={onClose}>
+        <Link to="/" className="text-black text-xl" onClick={onClose}>
           Home
-        </a>
-        <a href="/events" className="text-black text-xl" onClick={onClose}>
+         </Link>
+        <Link to="/events" className="text-black text-xl" onClick={onClose}>
           Events
-        </a>
+         </Link>
         
        
-        <a href="/club" className="text-black text-xl" onClick={onClose}>
+        <Link to="/club" className="text-black text-xl" onClick={onClose}>
           Associative Club
-        </a>
+         </Link>
 
-        <a href="/achievements" className="text-black text-xl" onClick={onClose}>
+        <Link to="/achievements" className="text-black text-xl" onClick={onClose}>
           Achievements
-        </a>
+         </Link>
 
-        <a href="/skatersprofile" className="text-black text-xl" onClick={onClose}>
+        <Link to="/skatersprofile" className="text-black text-xl" onClick={onClose}>
           Skaters Profile
-        </a>
+         </Link>
 
-        <a href="/membership" className="text-black text-xl" onClick={onClose}>
+        <Link to="/membership" className="text-black text-xl" onClick={onClose}>
           Membership
-        </a>
+         </Link>
+
+         <Link to="/gallery"  className="text-black text-xl" onClick={onClose}>
+        Gallery
+        </Link>
        
       </nav>
     </div>

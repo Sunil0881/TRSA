@@ -37,9 +37,9 @@ const Navbar = () => {
           </button>
         </div>
         <header className="hidden items-center md:flex lg:gap-8 md:gap-4">
-          <a href='/gallery'><button className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl">
+          <Link to='/gallery'><button className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl">
             Gallery
-          </button></a>
+          </button></Link>
         </header>
       </div>
       <nav className="hidden items-center md:flex md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">

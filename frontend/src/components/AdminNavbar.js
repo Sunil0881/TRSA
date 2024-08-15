@@ -2,8 +2,9 @@ import { useState } from 'react'
 import React from 'react'
 import logo from "../assets/logo.png"
 import Recline from '../assets/recline.png'
-import MobileMenu from './MobileMenu';
+
 import { Link, useLocation } from "react-router-dom";
+import AdminMobile from './AdminMobile';
 
 
 const AdminNavbar = () => {
@@ -50,6 +51,7 @@ const AdminNavbar = () => {
         <Link to="/achievementspost" className={linkClasses("/achievementspost")}>
         AchievementsPost
         </Link>
+
         <Link to="/addupdates" className={linkClasses("/addupdates")}>
         AddUpdates
         </Link>
@@ -68,7 +70,7 @@ const AdminNavbar = () => {
           Add Gallery
         </Link>
       </nav>
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
+      <AdminMobile isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
     </div>
   );
 };
