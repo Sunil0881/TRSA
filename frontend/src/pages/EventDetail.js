@@ -111,7 +111,7 @@ const EventDetails = () => {
                     <div className="my-8 px-4 md:px-6 lg:px-8">
                         <p className="text-gray-700 text-base md:text-xl mb-2 ">
                             <span className="font-semibold">Description:</span> {event.description || 'No description available.'}
-                        </p>
+                        </p> 
                         <p className="text-gray-700 text-base md:text-xl mb-2 lg:pt-5">
                             <span className="font-semibold">Location:</span> {event.location || 'Location not specified.'}
                         </p>
