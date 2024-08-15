@@ -19,6 +19,7 @@ import EventDetails from './pages/EventDetail';
 import RegistrationList from './pages/Admin/RegistrationData';
 import Club from './pages/Club';
 import PageTransition from './components/PageTransition'; // Import the transition component
+import ClubDetail from './pages/ClubDetail';
 
 // Component to use location hook within Router context
 const AppRoutes = () => {
@@ -34,6 +35,13 @@ const AppRoutes = () => {
           </PageTransition>
         }
       />
+       <Route 
+         path="/clubs/:stateName" 
+         element={
+          <PageTransition>
+            <ClubDetail />
+            </PageTransition>
+          } />
       <Route
         path="/about"
         element={
