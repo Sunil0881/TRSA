@@ -68,6 +68,28 @@ const RegistrationList = () => {
     setAgeRange([min, max]);
   };
 
+  // Handle delete registration
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure you want to delete this registration?')) {
+      try {
+        const response = await fetch(`https://trsabackend.vercel.app/api/registrations/${id}`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          // Update the list after deletion
+          setRegistrations(registrations.filter(registration => registration._id !== id));
+          setFilteredRegistrations(filteredRegistrations.filter(registration => registration._id !== id));
+          alert('Registration deleted successfully!');
+        } else {
+          alert('Failed to delete the registration. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error deleting the registration:', error);
+        alert('Error deleting the registration. Please try again.');
+      }
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -132,6 +154,7 @@ const RegistrationList = () => {
                 <th className="py-3 px-6 text-left">Age</th>
                 <th className="py-3 px-6 text-left">Email</th>
                 <th className="py-3 px-6 text-left">Phone</th>
+                <th className="py-3 px-6 text-left">Actions</th> {/* Added Actions column */}
               </tr>
             </thead>
             <tbody>
@@ -144,11 +167,19 @@ const RegistrationList = () => {
                     <td className="py-3 px-6">{registration.age}</td>
                     <td className="py-3 px-6">{registration.email}</td>
                     <td className="py-3 px-6">{registration.phone}</td>
+                    <td className="py-3 px-6 text-center">
+                      <button
+                        onClick={() => handleDelete(registration._id)}
+                        className="text-red-600 hover:text-red-800"
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="py-3 px-6 text-center">No registrations found</td>
+                  <td colSpan="7" className="py-3 px-6 text-center">No registrations found</td>
                 </tr>
               )}
             </tbody>

@@ -113,12 +113,16 @@ const AddSkaters = () => {
         </div>
 
         <h1 className="text-2xl md:text-4xl font-semibold text-center pb-10 text-blue-800">
-          {isFormVisible ? 'Add New Skater' : 'View Skaters'}
+          {isFormVisible ? 'View Skaters' : 'Add New Skater'}
         </h1>
 
         <div className="bg-white rounded-3xl shadow-2xl shadow-slate-500 p-8">
           {isFormVisible ? (
-            <>
+             <Deleteskater />
+          ) : (
+            <div className="">
+            
+              <>
               {error && <p className="text-red-500 text-center mb-4">{error}</p>}
               <div className="mb-4">
                 <label className="block text-gray-700 font-semibold mb-2">Name</label>
@@ -176,9 +180,6 @@ const AddSkaters = () => {
                 </button>
               </div>
             </>
-          ) : (
-            <div className="text-center">
-              <Deleteskater />
               {/* You can add functionality here to display existing skater profiles */}
             </div>
           )}
