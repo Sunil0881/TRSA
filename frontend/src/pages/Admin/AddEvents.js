@@ -10,7 +10,7 @@ const AddEvents = () => {
   const [location, setLocation] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [isFormVisible, setIsFormVisible] = useState(true); // State for toggle
+  const [isFormVisible, setIsFormVisible] = useState(false); // Set default state to false (green side)
   const maxTitleLength = 45;
   const maxDescriptionLength = 300;
 
@@ -92,35 +92,34 @@ const AddEvents = () => {
               >
                 {isFormVisible ? (
                   <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
-                </svg>
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
                 ) : (
                   <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 4v16m8-8H4"
-                  ></path>
-                </svg>
-                  
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 4v16m8-8H4"
+                    ></path>
+                  </svg>
                 )}
               </div>
             </div>
@@ -128,11 +127,13 @@ const AddEvents = () => {
         </div>
 
         <h1 className="text-2xl md:text-4xl font-semibold text-center pb-10 text-blue-800">
-          {isFormVisible ? 'Add New Event' : 'Delete Event'}
+          {isFormVisible ? 'Delete Event' : 'Add New Event'}
         </h1>
 
         <div className="bg-white rounded-3xl shadow-2xl shadow-slate-500">
           {isFormVisible ? (
+            <DeleteEvent />
+          ) : (
             <form onSubmit={handleSubmit} className="p-6 space-y-6">
               {/* Event Title */}
               <div>
@@ -223,8 +224,6 @@ const AddEvents = () => {
                 </button>
               </div>
             </form>
-          ) : (
-            <DeleteEvent /> // Render the DeleteEvent component
           )}
 
           {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
