@@ -20,6 +20,7 @@ import RegistrationList from './pages/Admin/RegistrationData';
 import Club from './pages/Club';
 import PageTransition from './components/PageTransition'; // Import the transition component
 import ClubDetail from './pages/ClubDetail';
+import DeleteAchi from './pages/Admin/DeleteAchi';
 
 // Component to use location hook within Router context
 const AppRoutes = () => {
@@ -198,6 +199,20 @@ const AppRoutes = () => {
           localStorage.getItem('authenticated') === 'true' ? (
             <PageTransition>
               <AddImages />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+      <Route
+        path="/deleteachi"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <DeleteAchi />
             </PageTransition>
           ) : (
             <PageTransition>

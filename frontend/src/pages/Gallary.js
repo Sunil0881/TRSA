@@ -52,9 +52,9 @@ const Gallary = () => {
             <div className="spinner border-4 border-t-4 border-blue-600 border-opacity-50 w-12 h-12 rounded-full animate-spin"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
             {filteredImages.map((image, index) => (
-              <div key={index} className="bg-white border rounded-lg overflow-hidden shadow-lg">
+              <div key={index} className="bg-white border rounded-lg overflow-hidden shadow-lg ">
                 <img
                   src={image.url}
                   alt={`Gallery image ${index}`}
