@@ -685,10 +685,10 @@ const ClubDetail = () => {
         <div className='flex justify-center'>
         <img src={club.logo} alt={`${club.stateName} logo`} className="w-36 h-36 rounded-full object-cover mb-4" />
         </div>
-        <h1 className="text-gray-800 text-3xl font-semibold mb-4">{club.clubName}</h1>
+        <h1 className="text-blue-800 text-3xl font-semibold mb-4">{club.clubName}</h1>
         <p className="text-lg text-gray-600 mb-8">{club.location}</p>
         
-        <h2 className="text-gray-700 text-2xl font-medium border-b-2 border-gray-200 pb-2 mb-8">Members</h2>
+        <h2 className="text-blue-800 text-2xl font-medium border-b-2 border-gray-200 pb-2 mb-8">Members</h2>
         
         <div className="flex flex-wrap justify-center gap-6">
             {club.members.map((member, index) => (

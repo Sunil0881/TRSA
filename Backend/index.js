@@ -146,6 +146,22 @@ mongoose
 });
 
 
+app.delete('/api/achievements/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedAchievement = await Achievement.findByIdAndDelete(id);
+
+    if (!deletedAchievement) {
+      return res.status(404).json({ message: 'Achievement not found' });
+    }
+
+    res.status(200).json({ message: 'Achievement deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 
   const updateSchema = new mongoose.Schema({
     text: String,
@@ -230,6 +246,24 @@ mongoose
 });
 
 
+// Delete an event by ID
+app.delete('/api/events/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedEvent = await Event.findByIdAndDelete(id);
+
+    if (!deletedEvent) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+
+    res.status(200).json({ message: 'Event deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
 
 
   const skaterProfileSchema = new mongoose.Schema({
@@ -289,6 +323,23 @@ app.get('/api/skaterprofiles', async (req, res) => {
   }
 });
 
+// Delete a skater profile by ID
+app.delete('/api/skaterprofiles/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedSkaterProfile = await SkaterProfile.findByIdAndDelete(id);
+
+    if (!deletedSkaterProfile) {
+      return res.status(404).json({ message: 'Skater profile not found' });
+    }
+
+    res.status(200).json({ message: 'Skater profile deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 const galleryImageSchema = new mongoose.Schema({
   url: {
     type: String,
@@ -318,6 +369,24 @@ app.get('/api/gallery', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+// Delete a gallery image by ID
+app.delete('/api/gallery/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedImage = await GalleryImage.findByIdAndDelete(id);
+
+    if (!deletedImage) {
+      return res.status(404).json({ message: 'Image not found' });
+    }
+
+    res.status(200).json({ message: 'Image deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting image:', error);
+    res.status(500).json({ message: 'Error deleting image' });
+  }
+});
+
 
 
 const registrationSchema = new mongoose.Schema({
@@ -405,6 +474,23 @@ app.get('/api/registrations/:eventId', async (req, res) => {
       return res.status(404).json({ message: 'No registrations found for this event' });
     }
     res.status(200).json(registrations);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+// Delete a registration by ID
+app.delete('/api/registrations/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedRegistration = await Registration.findByIdAndDelete(id);
+
+    if (!deletedRegistration) {
+      return res.status(404).json({ message: 'Registration not found' });
+    }
+
+    res.status(200).json({ message: 'Registration deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
