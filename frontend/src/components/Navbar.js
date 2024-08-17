@@ -53,7 +53,7 @@ const Navbar = () => {
         <Link to="/club" className={linkClasses("/club")}>
           Associative Club
         </Link>
-        <Link to="/achievements" className={linkClasses("/achievement")}>
+        <Link to="/achievements" className={linkClasses("/achievements")}>
           Achievement
         </Link>
         <Link to="/skatersprofile" className={linkClasses("/skatersprofile")}>
