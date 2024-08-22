@@ -9,7 +9,7 @@ const Achievements = () => {
     <div>
       <Navbar />
        <Banner 
-        mainText="One Achievements"
+        mainText="Our Achievements"
         subTexts="Exceptional milestones, transformative projects, and outstanding contributions! Proudly showcasing our remarkable successes and advancements!"
       />
 
