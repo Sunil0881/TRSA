@@ -65,6 +65,9 @@ const Navbar = () => {
         <Link to="/membership" className={linkClasses("/membership")}>
           Membership
         </Link>
+        <Link to="/News"  >
+        News
+        </Link>
       </nav>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
     </div>

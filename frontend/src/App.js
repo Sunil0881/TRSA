@@ -10,6 +10,7 @@ import AchievementsDetails from './pages/AchievementsDetails';
 import AdminHome from './pages/Admin/AdminHome';
 import Login from './pages/Admin/Login';
 import Events from './pages/Events';
+import News from './pages/News';
 import AddEvents from './pages/Admin/AddEvents';
 import AddSkaters from './pages/Admin/AddSkaters';
 import SkaterProfile from './pages/SkatersProfile';
@@ -122,6 +123,13 @@ const AppRoutes = () => {
             <Login />
           </PageTransition>
         }
+      />
+      <Route
+      path ="/news"
+      element={
+      <PageTransition>
+        <News/>
+      </PageTransition>}
       />
       <Route
         path="/admin"
