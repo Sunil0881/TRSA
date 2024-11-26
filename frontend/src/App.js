@@ -23,6 +23,8 @@ import PageTransition from './components/PageTransition'; // Import the transiti
 import ClubDetail from './pages/ClubDetail';
 import DeleteAchi from './pages/Admin/DeleteAchi';
 import Team from "./components/Team";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 // Component to use location hook within Router context
 const AppRoutes = () => {
