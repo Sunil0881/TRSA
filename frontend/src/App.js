@@ -22,6 +22,7 @@ import Club from './pages/Club';
 import PageTransition from './components/PageTransition'; // Import the transition component
 import ClubDetail from './pages/ClubDetail';
 import DeleteAchi from './pages/Admin/DeleteAchi';
+import Team from "./components/Team";
 
 // Component to use location hook within Router context
 const AppRoutes = () => {
@@ -34,6 +35,14 @@ const AppRoutes = () => {
         element={
           <PageTransition>
             <Home />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/team"
+        element={
+          <PageTransition>
+            <Team />
           </PageTransition>
         }
       />
