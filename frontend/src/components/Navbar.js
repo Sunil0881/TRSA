@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import React from 'react'
-import logo from "../assets/footerlogo.png"
+import logo from "../assets/newlogo.png"
 import Recline from '../assets/recline.png'
 import MobileMenu from './MobileMenu';
 import { Link, useLocation } from "react-router-dom";
@@ -24,9 +24,12 @@ const Navbar = () => {
         <img src={Recline} alt="recline" />
       </div>
       <div className="relative flex justify-between px-5 md:px-10">
-        <div className="flex items-center">
+        <div className="flex ">
           <a href='/' > <img src={logo} width={100} height={100} alt='logo'></img></a>
-          <a href='/' ><h1 className="text-black ml-4 text-md md:text-3xl font-bold">Thiruvallur District Roller <br className="hidden md:block" /> Skating Association.</h1></a>
+          <div>
+          <a href='/' ><h1 className="text-black ml-24 mt-3 text-md md:text-3xl lg:text-5xl font-bold">Thiruvallur District Roller Skating Association.</h1></a>
+          <a href='/' ><h1 className="text-black ml-96  text-md md:text-3xl lg:text-xl font-semibold">(Affiliated to Tamilnadu Roller Skating Association)</h1></a>
+          </div>
         </div>
         <div className="flex md:hidden">
           <button
@@ -36,38 +39,39 @@ const Navbar = () => {
             &#9776; {/* Hamburger icon */}
           </button>
         </div>
-        <header className="hidden items-center md:flex lg:gap-8 md:gap-4">
+        {/* <header className="hidden items-center md:flex lg:gap-8 md:gap-4">
           <Link to='/gallery'><button className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl">
             Gallery
           </button></Link>
-        </header>
+        </header> */}
       </div>
       <nav className="hidden items-center md:flex md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
         <Link to="/" className={linkClasses("/")}>
          About
         </Link>
         <Link to="/team" className={linkClasses("/team")}>
-         Associative Team
+         Association
+        </Link>
+        <Link to="/News" className={linkClasses("/News")}>
+        News
         </Link>
         <Link to="/events" className={linkClasses("/events")}>
           Events
         </Link>
-       
-        <Link to="/club" className={linkClasses("/club")}>
-          Associative Club
-        </Link>
         <Link to="/achievements" className={linkClasses("/achievements")}>
           Achievement
         </Link>
+        <Link to="/club" className={linkClasses("/club")}>
+          Associative Club
+        </Link>
+       
         <Link to="/skatersprofile" className={linkClasses("/skatersprofile")}>
           Skaters Profile
         </Link>
-        <Link to="/membership" className={linkClasses("/membership")}>
-          Membership
+        <Link to="/gallery" className={linkClasses("/gallery")}>
+          Gallery
         </Link>
-        <Link to="/News"  >
-        News
-        </Link>
+        
       </nav>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
     </div>

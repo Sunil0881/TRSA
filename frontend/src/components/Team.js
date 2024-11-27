@@ -3,11 +3,25 @@ import TeamCard from "./TeamCard";
 import Navbar from "./Navbar";
 import Kumaran from "../assets/Kumaran_sir.jpg";
 import Chairman from "../assets/TRSA_Chairman.jpg";
+import Deepan from "../assets/Deepan.jpg";
+import manikandan from "../assets/manikandan.jpg";
+import rajakumar from "../assets/rajakumar.jpg";
+import karunathi from "../assets/karunathi.jpg";
+import kuttyraj from "../assets/kuttyraj.jpg";
+import kingsley from "../assets/kingsley.jpg";
+import elango from "../assets/elango.jpg";
+import chandrasekar from "../assets/chandrasekar.jpg";
+import ramathan from "../assets/ramathan.jpg";
+import jaganathan from "../assets/jaganathan.jpg";
+import rajasekar from "../assets/rajasekar.jpg";
+import soundar from "../assets/soundar.jpg";
+import anbu from "../assets/anbu.jpg";
+import Footer from "./Footer";
 
 const Team = () => {
   const teamMembers = [
     {
-      image: Chairman,
+      image: ramathan,
       name: "Mr. Ramanathan D",
       designation: "Chairman",
       socialLinks: {
@@ -16,7 +30,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: elango,
       name: "Mr. Elango AL",
       designation: "President",
       socialLinks: {
@@ -25,7 +39,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: jaganathan,
       name: "Mr. Jaganathan P",
       designation: "Vice President",
       socialLinks: {
@@ -52,7 +66,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: soundar,
       name: "Mr. Soundarrajan D",
       designation: "Joint Secretary",
       socialLinks: {
@@ -61,7 +75,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: anbu,
       name: "Mr. Anbu K",
       designation: "Joint Secretary",
       socialLinks: {
@@ -70,7 +84,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: chandrasekar,
       name: "Mr. Chandrasekar A R",
       designation: "Treasurer",
       socialLinks: {
@@ -79,7 +93,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: rajakumar,
       name: "Mr. RajKumar",
       designation: "Executive Member",
       socialLinks: {
@@ -88,7 +102,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: rajasekar,
       name: "Mr. Rajasekaran",
       designation: "Executive Member",
       socialLinks: {
@@ -97,7 +111,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: Deepan,
       name: "Mr. Deepan",
       designation: "Executive Member",
       socialLinks: {
@@ -106,7 +120,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: manikandan,
       name: "Mr. ManiKandan",
       designation: "Executive Member",
       socialLinks: {
@@ -115,7 +129,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: kuttyraj,
       name: "Mr. Kutty Raj",
       designation: "Executive Member",
       socialLinks: {
@@ -124,7 +138,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: kingsley,
       name: "Mr. Kingsley",
       designation: "Executive Member",
       socialLinks: {
@@ -133,7 +147,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: karunathi,
       name: "Mr. Karunanidhi",
       designation: "Executive Member",
       socialLinks: {
@@ -158,6 +172,7 @@ const Team = () => {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 };

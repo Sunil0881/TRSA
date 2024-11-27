@@ -1,54 +1,117 @@
 import React, { useState } from 'react';
-import AdminNavbar from '../../components/AdminNavbar';
-import Deleteskater from './Deleteskater';
 
 const AddSkaters = () => {
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
-  const [level, setLevel] = useState('');
-  const [error, setError] = useState('');
-  const [isFormVisible, setIsFormVisible] = useState(true); // Default to form view
+  const [formData, setFormData] = useState({
+    rsfiNo: '',
+    name: '',
+    parentName: '',
+    dob: '',
+    aadharNo: '',
+    phoneNo: '',
+    email: '',
+    eventCategory: '',
+    representativeClub: '',
+    coachName: '',
+    skaterPhoto: '', // Will store base64
+    identityProofType: '',
+    identityProofFile: '' // Will store base64
+  });
 
+  const [error, setError] = useState('');
+
+  // Function to convert file to base64
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  // Handle input changes, including file inputs
+  const handleInputChange = async (e) => {
+    const { name, value, files } = e.target;
+
+    // Handle file inputs for base64 conversion
+    if (name === 'skaterPhoto' || name === 'identityProofFile') {
+      if (files && files[0]) {
+        const base64 = await convertToBase64(files[0]);
+        setFormData(prev => ({
+          ...prev,
+          [name]: base64
+        }));
+      }
+    } else {
+      // Handle regular input changes
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
+
+  // Clubs list
+  const clubs = [
+    'RSFI Delhi', 
+    'Mumbai Skating Club', 
+    'Bangalore Roller Sports', 
+    'Chennai Skaters Association'
+  ];
+
+  // Save skater profile
   const handleSaveSkater = async () => {
-    // Basic form validation
-    if (!name || !age || !gender || !level) {
-      setError('Please fill out all fields.');
+    // Validation
+    const requiredFields = [
+      'name', 'parentName', 'dob', 'aadharNo', 
+      'phoneNo', 'email', 'eventCategory', 
+      'representativeClub', 'coachName', 
+      'skaterPhoto', 'identityProofType', 'identityProofFile'
+    ];
+    
+    const missingFields = requiredFields.filter(field => 
+      !formData[field]
+    );
+
+    if (missingFields.length > 0) {
+      setError(`Please fill out all required fields: ${missingFields.join(', ')}`);
       return;
     }
 
-    // Additional validation can be added here (e.g., age should be a number)
-
-    const skaterProfile = {
-      name,
-      age: Number(age), // Ensure age is a number
-      gender,
-      level,
-    };
-
-    const urlvar = 'https://trsabackend.vercel.app';
-
     try {
+      const urlvar = 'https://trsabackend.vercel.app';
+
       const response = await fetch(`${urlvar}/api/skaterprofiles`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(skaterProfile),
+        body: JSON.stringify(formData)
       });
+      
       const data = await response.json();
-      console.log(data);
+      
       if (response.ok) {
-        console.log('Skater profile saved successfully:', data);
         alert('Skater profile successfully added!');
-        // Reset the form
-        setName('');
-        setAge('');
-        setGender('');
-        setLevel('');
+        // Reset form
+        setFormData({
+          rsfiNo: '',
+          name: '',
+          parentName: '',
+          dob: '',
+          aadharNo: '',
+          phoneNo: '',
+          email: '',
+          eventCategory: '',
+          representativeClub: '',
+          coachName: '',
+          skaterPhoto: '',
+          identityProofType: '',
+          identityProofFile: ''
+        });
         setError('');
       } else {
-        alert('Failed to save the skater profile. Please try again.');
+        alert(`Failed to save the skater profile: ${data.message}`);
       }
     } catch (error) {
       console.error('Error saving the skater profile:', error);
@@ -57,133 +120,216 @@ const AddSkaters = () => {
   };
 
   return (
-    <div>
-      <AdminNavbar />
-      <div className="px-4 md:px-6 lg:px-72 pt-20 relative">
-        {/* Toggle Switch */}
-        <div className="absolute top-0 right-0 mt-5 mr-5">
-          <label className="flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              className="sr-only"
-              checked={isFormVisible}
-              onChange={() => setIsFormVisible(!isFormVisible)}
-            />
-            <div className="relative">
-              <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
-              <div
-                className={`absolute left-1 top-1 w-6 h-6 rounded-full transition-transform transform ${
-                  isFormVisible ? 'translate-x-full bg-red-500' : 'bg-green-500'
-                }`}
-              >
-                {isFormVisible ? (
-                  <svg
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    ></path>
-                  </svg>
-                ) : (
-                  <svg
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 4v16m8-8H4"
-                    ></path>
-                  </svg>
-                )}
-              </div>
-            </div>
-          </label>
+    <div className="container mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-6">Add Skater Profile</h2>
+      
+      {error && <p className="text-red-500 mb-4">{error}</p>}
+
+      {/* Form Fields */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* RSFI No (Optional) */}
+        <div>
+          <label className="block mb-2">RSFI No (Optional)</label>
+          <input
+            type="text"
+            name="rsfiNo"
+            value={formData.rsfiNo}
+            onChange={handleInputChange}
+            className="w-full p-2 border rounded"
+          />
         </div>
 
-        <h1 className="text-2xl md:text-4xl font-semibold text-center pb-10 text-blue-800">
-          {isFormVisible ? 'View Skaters' : 'Add New Skater'}
-        </h1>
+        {/* Name */}
+        <div>
+          <label className="block mb-2">Name *</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          />
+        </div>
 
-        <div className="bg-white rounded-3xl shadow-2xl shadow-slate-500 p-8">
-          {isFormVisible ? (
-             <Deleteskater />
-          ) : (
-            <div className="">
-            
-              <>
-              {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Name</label>
-                <input
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  type="text"
-                  placeholder="Enter skater's name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Age</label>
-                <input
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  type="number"
-                  placeholder="Enter skater's age"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  min="0"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Gender</label>
-                <select
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <option value="" disabled>Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-2">Level</label>
-                <select
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={level}
-                  onChange={(e) => setLevel(e.target.value)}
-                >
-                  <option value="" disabled>Select Level</option>
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                  <option value="Advanced">Advanced</option>
-                </select>
-              </div>
-              <div className="flex justify-center">
-                <button
-                  className="bg-blue-800 text-white py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
-                  onClick={handleSaveSkater}
-                >
-                  Save Skater
-                </button>
-              </div>
-            </>
-              {/* You can add functionality here to display existing skater profiles */}
-            </div>
+        {/* Parent Name */}
+        <div>
+          <label className="block mb-2">Parent/Guardian Name *</label>
+          <input
+            type="text"
+            name="parentName"
+            value={formData.parentName}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          />
+        </div>
+
+        {/* Date of Birth */}
+        <div>
+          <label className="block mb-2">Date of Birth *</label>
+          <input
+            type="date"
+            name="dob"
+            value={formData.dob}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          />
+        </div>
+
+        {/* Aadhar No */}
+        <div>
+          <label className="block mb-2">Aadhar No *</label>
+          <input
+            type="text"
+            name="aadharNo"
+            value={formData.aadharNo}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          />
+        </div>
+
+        {/* Phone No */}
+        <div>
+          <label className="block mb-2">Phone No *</label>
+          <input
+            type="tel"
+            name="phoneNo"
+            value={formData.phoneNo}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          />
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className="block mb-2">Email *</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          />
+        </div>
+
+        {/* Event Category */}
+        <div>
+          <label className="block mb-2">Event Category *</label>
+          <select
+            name="eventCategory"
+            value={formData.eventCategory}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          >
+            <option value="">Select Category</option>
+            <option value="Speed Skating">Speed Skating</option>
+            <option value="Figure Skating">Figure Skating</option>
+            <option value="Artistic Skating">Artistic Skating</option>
+            <option value="Inline Hockey">Inline Hockey</option>
+          </select>
+        </div>
+
+        {/* Representative Club */}
+        <div>
+          <label className="block mb-2">Representative Club *</label>
+          <select
+            name="representativeClub"
+            value={formData.representativeClub}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          >
+            <option value="">Select Club</option>
+            {clubs.map(club => (
+              <option key={club} value={club}>{club}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Coach Name */}
+        <div>
+          <label className="block mb-2">Coach Name *</label>
+          <input
+            type="text"
+            name="coachName"
+            value={formData.coachName}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          />
+        </div>
+
+        {/* Skater Photo */}
+        <div>
+          <label className="block mb-2">Skater Photo *</label>
+          <input
+            type="file"
+            name="skaterPhoto"
+            onChange={handleInputChange}
+            accept="image/*"
+            required
+            className="w-full p-2 border rounded"
+          />
+          {formData.skaterPhoto && (
+            <img 
+              src={formData.skaterPhoto} 
+              alt="Skater" 
+              className="mt-2 h-24 w-24 object-cover"
+            />
           )}
         </div>
+
+        {/* Identity Proof */}
+        <div>
+          <label className="block mb-2">Identity Proof Type *</label>
+          <select
+            name="identityProofType"
+            value={formData.identityProofType}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border rounded"
+          >
+            <option value="">Select Proof Type</option>
+            <option value="Aadhar">Aadhar</option>
+            <option value="Birth Certificate">Birth Certificate</option>
+          </select>
+        </div>
+
+        {/* Identity Proof File */}
+        <div>
+          <label className="block mb-2">Identity Proof File *</label>
+          <input
+            type="file"
+            name="identityProofFile"
+            onChange={handleInputChange}
+            accept="image/*,application/pdf"
+            required
+            className="w-full p-2 border rounded"
+          />
+          {formData.identityProofFile && (
+            <img 
+              src={formData.identityProofFile} 
+              alt="Identity Proof" 
+              className="mt-2 h-24 w-24 object-cover"
+            />
+          )}
+        </div>
+      </div>
+
+      {/* Save Button */}
+      <div className="mt-6">
+        <button
+          onClick={handleSaveSkater}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Save Skater Profile
+        </button>
       </div>
     </div>
   );

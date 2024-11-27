@@ -266,60 +266,104 @@ app.delete('/api/events/:id', async (req, res) => {
 
 
 
-  const skaterProfileSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true
+const skaterProfileSchema = new mongoose.Schema({
+  rsfiNo: { 
+    type: String, 
+    required: false 
+  },
+  name: { 
+    type: String, 
+    required: true 
+  },
+  parentName: { 
+    type: String, 
+    required: true 
+  },
+  dob: { 
+    type: Date, 
+    required: true 
+  },
+  aadharNo: { 
+    type: String, 
+    required: true 
+  },
+  phoneNo: { 
+    type: String, 
+    required: true 
+  },
+  email: { 
+    type: String, 
+    required: true 
+  },
+  eventCategory: { 
+    type: String, 
+    required: true,
+    enum: ['Speed Skating', 'Figure Skating', 'Artistic Skating', 'Inline Hockey']
+  },
+  representativeClub: { 
+    type: String, 
+    required: true 
+  },
+  coachName: { 
+    type: String, 
+    required: true 
+  },
+  skaterPhoto: { 
+    type: String, 
+    required: true 
+  },
+  identityProof: {
+    type: {
+      type: String,
+      enum: ['Aadhar', 'Birth Certificate'],
+      required: true
     },
-    age: {
-        type: Number,
-        required: true,
-        min: 0
-    },
-    gender: {
-        type: String,
-        required: true,
-        enum: ['Male', 'Female', 'Other']  // Adjust the options as needed
-    },
-    level: {
-        type: String,
-        required: true,
-        enum: ['Beginner', 'Intermediate', 'Advanced']  // Adjust the options as needed
+    fileUrl: {
+      type: String,
+      required: true
     }
-}, {
-    timestamps: true  // Automatically add createdAt and updatedAt fields
-});
+  }
+}, { timestamps: true });
 
 const SkaterProfile = mongoose.model('SkaterProfile', skaterProfileSchema);
 
+
   
 
+// Route to create skater profile
 app.post('/api/skaterprofiles', async (req, res) => {
-  const { name, age, gender, level } = req.body;
-
-  const newSkaterProfile = new SkaterProfile({
-      name,
-      age,
-      gender,
-      level
-  });
-
   try {
-      const savedSkaterProfile = await newSkaterProfile.save();
-      res.status(201).json(savedSkaterProfile);
+    // Create new skater profile from request body
+    const newSkaterProfile = new SkaterProfile(req.body);
+    
+    // Save to database
+    const savedSkaterProfile = await newSkaterProfile.save();
+    
+    // Respond with saved profile
+    res.status(201).json(savedSkaterProfile);
   } catch (error) {
-      res.status(400).json({ message: error.message });
+    // Handle validation errors
+    res.status(400).json({ 
+      message: 'Error creating skater profile', 
+      error: error.message 
+    });
   }
 });
 
-
+// Route to get all skater profiles
 app.get('/api/skaterprofiles', async (req, res) => {
   try {
-      const skaterProfiles = await SkaterProfile.find();
-      res.status(200).json(skaterProfiles);
+    // Fetch all skater profiles
+    const skaterProfiles = await SkaterProfile.find();
+    
+    // Respond with profiles
+    res.status(200).json(skaterProfiles);
   } catch (error) {
-      res.status(500).json({ message: error.message });
+    // Handle errors
+    res.status(500).json({ 
+      message: 'Error fetching skater profiles', 
+      error: error.message 
+    });
   }
 });
 
