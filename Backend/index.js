@@ -93,7 +93,7 @@ mongoose
 
 
     // created code for post news by admin people 
-  app.post('/api/AddNews', async(res,req) =>{
+  app.post('/api/news', async(res,req) =>{
     const {title,description,image} = req.body;
          const NewNews = new News({
           title,
@@ -112,7 +112,7 @@ mongoose
 
 
   // created code for get all news by admin people
-  app.delete('/api/DeleteNews/:id', async (res,req) => {
+  app.delete('/api/news/:id', async (res,req) => {
     
     try {
       const {id} = req.params;
@@ -131,7 +131,7 @@ mongoose
 
 
    // created code for get  news   (id) by admin people
-   app.get('./api/News/:id', async(res,req) =>{
+   app.get('./api/news/:id', async(res,req) =>{
      try { 
          const {id} = req.params;
            const news = await News.findById(id);
@@ -145,7 +145,7 @@ mongoose
    })
 
    // created code for get all news by admin people
-   app.get ('./api/News', async(res,req) =>{
+   app.get ('./api/news', async(res,req) =>{
                try {
                const news = await News.find();
                res.status(200).json(news);

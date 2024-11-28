@@ -60,6 +60,9 @@ const AdminNavbar = () => {
         <Link to="/achievementspost" className={linkClasses("/achievementspost")}>
           AchievementsPost
         </Link>
+        <Link to="/addnews" className={linkClasses("/addnews")}>
+          Add News
+        </Link>
         <Link to="/addupdates" className={linkClasses("/addupdates")}>
           AddUpdates
         </Link>

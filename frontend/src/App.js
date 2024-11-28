@@ -24,6 +24,8 @@ import ClubDetail from './pages/ClubDetail';
 import DeleteAchi from './pages/Admin/DeleteAchi';
 import Team from "./components/Team";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import DeleteNews from './pages/Admin/DeleteNews';
+import AddNews from './pages/Admin/AddNews';
 
 
 // Component to use location hook within Router context
@@ -218,6 +220,35 @@ const AppRoutes = () => {
           localStorage.getItem('authenticated') === 'true' ? (
             <PageTransition>
               <AddImages />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+      < Route 
+        path ='/addnews'
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <AddNews />
+            </PageTransition>
+            ) : (
+              <PageTransition>
+                <Login />
+              </PageTransition>
+              )
+              }
+              />
+
+           <Route
+        path="/deletenews"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+              <DeleteNews />
             </PageTransition>
           ) : (
             <PageTransition>
