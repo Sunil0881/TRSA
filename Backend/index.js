@@ -79,13 +79,84 @@ mongoose
       res.status(500).json({ message: 'Server error' });
     }
   });
+  // bro this the section of code
+  // for News BAckend operation
+  const NewsSchema = new mongoose.Schema({
+    title: { type:String, required: true},
+    description: { type:String, required: true},
+    image : { type:String, required: true}
+  });
 
 
- 
-  
+  //  created model code
+    const News = mongoose.model('News',NewsSchema);
 
 
+    // created code for post news by admin people 
+  app.post('/api/news', async(res,req) =>{
+    const {title,description,image} = req.body;
+         const NewNews = new News({
+          title,
+          description,
+          image
+         });
 
+    try {
+      const SavedNews = await NewNews.save();
+      res.status(201).json({ message: 'News added successfully' });
+    } catch (error) {
+      res.status(403).json({message: error.message})
+      
+    }
+  });
+
+
+  // created code for get all news by admin people
+  app.delete('/api/news/:id', async (res,req) => {
+    
+    try {
+      const {id} = req.params;
+
+      const deletedNews = await News.findByIdAndDelete(id);
+  if(!deletedNews){
+    return res.status(404).json({ message: 'News not found' });
+  }
+
+      res.status(200).json({ message: 'News deleted successfully' });
+      
+    } catch (error) {
+      res.status(403).json({message: error.message})
+    }
+   });
+
+
+   // created code for get  news   (id) by admin people
+   app.get('./api/news/:id', async(res,req) =>{
+     try { 
+         const {id} = req.params;
+           const news = await News.findById(id);
+           if(!News){
+            return res.status(404).json({ message: 'News not found' });
+           }
+           res.status(200).json(News);
+     } catch (error) {
+      res.status(403).json({message: error.message})
+     }
+   })
+
+   // created code for get all news by admin people
+   app.get ('./api/news', async(res,req) =>{
+               try {
+               const news = await News.find();
+               res.status(200).json(news);
+               } catch (error) {
+                res.status(403).json({message: error.message})
+               }
+
+   });
+/////////////////
+//////////
+///
   const achievementSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
