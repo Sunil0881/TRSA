@@ -89,7 +89,7 @@ mongoose
 
 
   //  created model code
-    const News = mongoose.model('News',NewsSchema);
+    const News = mongoose.model('news',NewsSchema);
 
 
     // created code for post news by admin people 
@@ -103,7 +103,7 @@ mongoose
 
     try {
       const SavedNews = await NewNews.save();
-      res.status(201).json({ message: 'News added successfully' });
+      res.status(201).json(SavedNews);
     } catch (error) {
       res.status(403).json({message: error.message})
       
@@ -135,10 +135,10 @@ mongoose
      try { 
          const {id} = req.params;
            const news = await News.findById(id);
-           if(!News){
+           if(!news){
             return res.status(404).json({ message: 'News not found' });
            }
-           res.status(200).json(News);
+           res.status(200).json(news);
      } catch (error) {
       res.status(403).json({message: error.message})
      }

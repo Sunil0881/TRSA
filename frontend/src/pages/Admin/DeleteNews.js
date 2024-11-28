@@ -14,7 +14,9 @@ const DeleteNews = () => {
 
         const fetchNews = async () =>{
             try {
-                const response = await fetch ('https://trsabackend.vercel.app/api/news')
+                const response = await fetch ('https://trsabackend.vercel.app/api/news',
+                
+                )
                 
               if(!response.ok){
                 const errorData = await response.text();
