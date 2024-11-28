@@ -32,8 +32,8 @@ const DeleteNews = () => {
                 throw new Error('Unexpected data format');
               }
             } catch (error) {
-                console.error('Error fetching events:', error.message);
-        setError(`Failed to load events. Error: ${error.message}`);
+                console.error('Error fetching news:', error.message);
+        setError(`Failed to load news. Error: ${error.message}`);
                 
             } finally{
                 setLoading(false);
@@ -95,7 +95,7 @@ const DeleteNews = () => {
              </div>
            ))
          ) : (
-           <p className="text-center">No events found</p>
+           <p className="text-center">No news found</p>
          )}
        </div>
      )}
