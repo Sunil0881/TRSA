@@ -33,23 +33,33 @@ const AddSkaters = () => {
   const handleInputChange = async (e) => {
     const { name, value, files } = e.target;
 
-    // Handle file inputs for base64 conversion
-    if (name === 'skaterPhoto' || name === 'identityProofFile') {
+    if (name === 'skaterPhoto') {
+      // Convert photo to base64
+      if (files && files[0]) {
+        const base64 = await convertToBase64(files[0]);
+        setFormData(prev => ({ ...prev, skaterPhoto: base64 }));
+      }
+    } else if (name === 'identityProofFile') {
+      // Convert identity proof file to base64
       if (files && files[0]) {
         const base64 = await convertToBase64(files[0]);
         setFormData(prev => ({
           ...prev,
-          [name]: base64
+          identityProof: { ...prev.identityProof, fileUrl: base64 }
         }));
       }
-    } else {
-      // Handle regular input changes
+    } else if (name === 'identityProofType') {
+      // Update identity proof type
       setFormData(prev => ({
         ...prev,
-        [name]: value
+        identityProof: { ...prev.identityProof, type: value }
       }));
+    } else {
+      // Update regular fields
+      setFormData(prev => ({ ...prev, [name]: value }));
     }
   };
+
 
   // Clubs list
   const clubs = [
@@ -59,19 +69,21 @@ const AddSkaters = () => {
     'Chennai Skaters Association'
   ];
 
-  // Save skater profile
   const handleSaveSkater = async () => {
-    // Validation
     const requiredFields = [
-      'name', 'parentName', 'dob', 'aadharNo', 
-      'phoneNo', 'email', 'eventCategory', 
-      'representativeClub', 'coachName', 
-      'skaterPhoto', 'identityProofType', 'identityProofFile'
+      'name', 'parentName', 'dob', 'aadharNo',
+      'phoneNo', 'email', 'eventCategory',
+      'representativeClub', 'coachName', 'skaterPhoto',
+      'identityProof.type', 'identityProof.fileUrl'
     ];
-    
-    const missingFields = requiredFields.filter(field => 
-      !formData[field]
-    );
+
+    // Check for missing fields
+    const missingFields = requiredFields.filter(field => {
+      const keys = field.split('.');
+      return keys.length > 1
+        ? !formData[keys[0]][keys[1]]
+        : !formData[field];
+    });
 
     if (missingFields.length > 0) {
       setError(`Please fill out all required fields: ${missingFields.join(', ')}`);
@@ -79,21 +91,16 @@ const AddSkaters = () => {
     }
 
     try {
-      const urlvar = 'https://trsabackend.vercel.app';
-
-      const response = await fetch(`${urlvar}/api/skaterprofiles`, {
+      const response = await fetch('http://localhost:5000/api/skaterprofiles', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         alert('Skater profile successfully added!');
-        // Reset form
         setFormData({
           rsfiNo: '',
           name: '',
@@ -106,8 +113,7 @@ const AddSkaters = () => {
           representativeClub: '',
           coachName: '',
           skaterPhoto: '',
-          identityProofType: '',
-          identityProofFile: ''
+          identityProof: { type: '', fileUrl: '' }
         });
         setError('');
       } else {
@@ -323,14 +329,14 @@ const AddSkaters = () => {
       </div>
 
       {/* Save Button */}
-      <div className="mt-6">
-        <button
-          onClick={handleSaveSkater}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Save Skater Profile
-        </button>
-      </div>
+      <div className="col-span-2 text-right">
+  <button
+    onClick={handleSaveSkater}
+    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+  >
+    Save Skater Profile
+  </button>
+</div>
     </div>
   );
 };
