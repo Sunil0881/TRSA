@@ -263,69 +263,93 @@ app.delete('/api/events/:id', async (req, res) => {
 });
 
 
-
-
-
-const skaterProfileSchema = new mongoose.Schema({
-  rsfiNo: { 
-    type: String, 
-    required: false 
-  },
-  name: { 
-    type: String, 
-    required: true 
-  },
-  parentName: { 
-    type: String, 
-    required: true 
-  },
-  dob: { 
-    type: Date, 
-    required: true 
-  },
-  aadharNo: { 
-    type: String, 
-    required: true 
-  },
-  phoneNo: { 
-    type: String, 
-    required: true 
-  },
-  email: { 
-    type: String, 
-    required: true 
-  },
-  eventCategory: { 
-    type: String, 
-    required: true,
-    enum: ['Speed Skating', 'Figure Skating', 'Artistic Skating', 'Inline Hockey']
-  },
-  representativeClub: { 
-    type: String, 
-    required: true 
-  },
-  coachName: { 
-    type: String, 
-    required: true 
-  },
-  skaterPhoto: { 
-    type: String, 
-    required: true 
-  },
-  identityProof: {
-    type: {
-      type: String,
-      enum: ['Aadhar', 'Birth Certificate'],
-      required: true
+const skaterProfileSchema = new mongoose.Schema(
+  {
+    rsfiNo: { 
+      type: String, 
+      required: false // Optional field
     },
-    fileUrl: {
-      type: String,
-      required: true
+    name: { 
+      type: String, 
+      required: true 
+    },
+    parentName: { 
+      type: String, 
+      required: true 
+    },
+    dob: { 
+      type: Date, 
+      required: true 
+    },
+    aadharNo: { 
+      type: String, 
+      required: true,
+      validate: {
+        validator: function (v) {
+          return /^\d{12}$/.test(v); // Aadhar must be 12 digits
+        },
+        message: "Aadhar number must be 12 digits."
+      }
+    },
+    phoneNo: { 
+      type: String, 
+      required: true,
+      validate: {
+        validator: function (v) {
+          return /^\d{10}$/.test(v); // Phone number must be 10 digits
+        },
+        message: "Phone number must be 10 digits."
+      }
+    },
+    email: { 
+      type: String, 
+      required: true,
+      validate: {
+        validator: function (v) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); // Basic email regex
+        },
+        message: "Invalid email format."
+      }
+    },
+    eventCategory: { 
+      type: String, 
+      required: true,
+      enum: ['Speed Skating', 'Figure Skating', 'Artistic Skating', 'Inline Hockey']
+    },
+    representativeClub: { 
+      type: String, 
+      required: true 
+    },
+    coachName: { 
+      type: String, 
+      required: true 
+    },
+    skaterPhoto: { 
+      type: String, 
+      required: true 
+    },
+    identityProof: {
+      type: {
+        proofType: {
+          type: String,
+          enum: ['Aadhar', 'Birth Certificate'],
+          required: true
+        },
+        fileUrl: {
+          type: String,
+          required: true
+        }
+      },
+      required: true // Ensure `identityProof` is a required field
     }
-  }
-}, { timestamps: true });
+  },
+  { timestamps: true }
+);
 
 const SkaterProfile = mongoose.model('SkaterProfile', skaterProfileSchema);
+
+
+
 
 
   
