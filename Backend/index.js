@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
-app.use(bodyParser.json()); 
+app.use(bodyParser.json({ limit: '100mb' })); // Increase the limit to 50mb
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 
 // const corsOptions = {
 //     origin: ['https://trsafrontend.vercel.app'],
@@ -408,19 +409,14 @@ const skaterProfileSchema = new mongoose.Schema(
       type: String, 
       required: true 
     },
-    identityProof: {
-      type: {
-        proofType: {
-          type: String,
-          enum: ['Aadhar', 'Birth Certificate'],
-          required: true
-        },
-        fileUrl: {
-          type: String,
-          required: true
-        }
-      },
-      required: true // Ensure `identityProof` is a required field
+    proofType: {
+      type: String,
+      enum: ['Aadhar', 'Birth Certificate'],
+      required: true
+    },
+    fileUrl: {
+      type: String,
+      required: true
     }
   },
   { timestamps: true }
@@ -437,17 +433,133 @@ const SkaterProfile = mongoose.model('SkaterProfile', skaterProfileSchema);
 // Route to create skater profile
 app.post('/api/skaterprofiles', async (req, res) => {
   try {
-    // Create new skater profile from request body
-    const newSkaterProfile = new SkaterProfile(req.body);
+    console.log('Received Request Body:', JSON.stringify(req.body, null, 2));
+
+    // Destructure and validate required fields
+    const {
+      rsfiNo, 
+      name, 
+      parentName, 
+      dob, 
+      aadharNo, 
+      phoneNo, 
+      email, 
+      eventCategory, 
+      representativeClub, 
+      coachName, 
+      skaterPhoto, 
+      proofType, 
+      fileUrl
+    } = req.body;
+
+    // Comprehensive validation
+    const errors = [];
+
+    // Name validation
+    if (!name) errors.push('Name is required');
     
+    // Parent Name validation
+    if (!parentName) errors.push('Parent Name is required');
+    
+    // Date of Birth validation
+    if (!dob) errors.push('Date of Birth is required');
+    
+    // Aadhar Number validation
+    if (!aadharNo || !/^\d{12}$/.test(aadharNo)) {
+      errors.push('Invalid Aadhar number. Must be 12 digits.');
+    }
+    
+    // Phone Number validation
+    if (!phoneNo || !/^\d{10}$/.test(phoneNo)) {
+      errors.push('Invalid phone number. Must be 10 digits.');
+    }
+    
+    // Email validation
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errors.push('Invalid email format.');
+    }
+    
+    // Event Category validation
+    const validCategories = ['Speed Skating', 'Figure Skating', 'Artistic Skating', 'Inline Hockey'];
+    if (!eventCategory || !validCategories.includes(eventCategory)) {
+      errors.push('Invalid event category.');
+    }
+    
+    // Representative Club validation
+    if (!representativeClub) errors.push('Representative Club is required');
+    
+    // Coach Name validation
+    if (!coachName) errors.push('Coach Name is required');
+    
+    // Skater Photo validation
+    if (!skaterPhoto || !skaterPhoto.startsWith('data:image')) {
+      errors.push('Invalid skater photo.');
+    }
+    
+    // Proof Type validation
+    const validProofTypes = ['Aadhar', 'Birth Certificate'];
+    if (!proofType || !validProofTypes.includes(proofType)) {
+      errors.push('Invalid proof type.');
+    }
+    
+    // Identity Proof File validation
+    if (!fileUrl || (!fileUrl.startsWith('data:image') && !fileUrl.startsWith('data:application/pdf'))) {
+      errors.push('Invalid identity proof file.');
+    }
+
+    // If there are any errors, return them
+    if (errors.length > 0) {
+      return res.status(400).json({ 
+        message: 'Validation Errors',
+        errors 
+      });
+    }
+
+    // Create new skater profile
+    const newSkaterProfile = new SkaterProfile({
+      rsfiNo: rsfiNo || undefined, // Use undefined if empty string
+      name,
+      parentName,
+      dob: new Date(dob), // Ensure date is converted
+      aadharNo,
+      phoneNo,
+      email,
+      eventCategory,
+      representativeClub,
+      coachName,
+      skaterPhoto,
+      proofType,
+      fileUrl
+    });
+
     // Save to database
     const savedSkaterProfile = await newSkaterProfile.save();
     
     // Respond with saved profile
     res.status(201).json(savedSkaterProfile);
   } catch (error) {
-    // Handle validation errors
-    res.status(400).json({ 
+    // Log the full error for server-side debugging
+    console.error('Detailed Error in Skater Profile Creation:', error);
+
+    // Handle mongoose validation errors
+    if (error.name === 'ValidationError') {
+      const errors = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({ 
+        message: 'Validation Error', 
+        errors 
+      });
+    }
+
+    // Handle duplicate key errors (if any unique constraints exist)
+    if (error.code === 11000) {
+      return res.status(409).json({ 
+        message: 'Duplicate entry detected',
+        error: error.message 
+      });
+    }
+
+    // Generic error handler
+    res.status(500).json({ 
       message: 'Error creating skater profile', 
       error: error.message 
     });

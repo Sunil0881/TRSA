@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from "../../components/Navbar";
+import AdminNavbar from '../../components/AdminNavbar';
 
 const AddSkaters = () => {
   const [formData, setFormData] = useState({
@@ -14,43 +14,39 @@ const AddSkaters = () => {
     representativeClub: '',
     coachName: '',
     skaterPhoto: '', // Will store base64
-    identityProofType: '',
-    identityProofFile: '' // Will store base64
+    proofType: '',
+    fileUrl: '' // Will store base64
   });
 
   const [error, setError] = useState('');
 
-  // Function to convert file to base64
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  };
-
   // Handle input changes, including file inputs
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-  
-    // Handle nested fields
-    if (name === "identityProofType") {
-      setFormData((prevData) => ({
-        ...prevData,
-        identityProof: {
-          ...prevData.identityProof,
-          type: value, // Update the nested type
-        },
-      }));
-    } else if (name === "identityProofFile") {
-      setFormData((prevData) => ({
-        ...prevData,
-        identityProof: {
-          ...prevData.identityProof,
-          fileUrl: value, // Update the nested fileUrl
-        },
-      }));
+    const { name, value, files } = e.target;
+
+    // Handle file inputs separately
+    if (name === "skaterPhoto" && files && files[0]) {
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: reader.result, // Store the base64 string of the image
+        }));
+      };
+      reader.readAsDataURL(file); // Convert file to base64
+    } else if (name === "fileUrl" && files && files[0]) {
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: reader.result, // Store the base64 string for proof file
+        }));
+      };
+      reader.readAsDataURL(file); // Convert file to base64
     } else {
       setFormData((prevData) => ({
         ...prevData,
@@ -58,8 +54,6 @@ const AddSkaters = () => {
       }));
     }
   };
-  
-
 
   // Clubs list
   const clubs = [
@@ -70,21 +64,7 @@ const AddSkaters = () => {
   ];
 
   const handleSaveSkater = async () => {
-    const requiredFields = [
-      'name', 'parentName', 'dob', 'aadharNo',
-      'phoneNo', 'email', 'eventCategory',
-      'representativeClub', 'coachName', 'skaterPhoto',
-      'identityProofType', 'identityProofFile'
-    ];
-  
-    // Check for missing fields
-    const missingFields = requiredFields.filter(field => !formData[field]);
-    if (missingFields.length > 0) {
-      setError(`Please fill out all required fields: ${missingFields.join(', ')}`);
-      return;
-    }
-  
-    // Reformat formData for the backend schema
+    // Create a full copy of the form data
     const formattedFormData = {
       rsfiNo: formData.rsfiNo || "", // Optional field
       name: formData.name,
@@ -97,24 +77,28 @@ const AddSkaters = () => {
       representativeClub: formData.representativeClub,
       coachName: formData.coachName,
       skaterPhoto: formData.skaterPhoto,
-      identityProof: {
-        proofType: formData.identityProofType,
-        fileUrl: formData.identityProofFile
-      }
+      proofType: formData.proofType,
+      fileUrl: formData.fileUrl
     };
   
+    console.log('Sending data:', JSON.stringify(formattedFormData, null, 2));
+  
     try {
-      console.log(formattedFormData);
       const response = await fetch('http://localhost:5000/api/skaterprofiles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formattedFormData)
       });
   
+      // Parse the response
       const data = await response.json();
+      
+      console.log('Response Status:', response.status);
+      console.log('Response Data:', data);
   
       if (response.ok) {
         alert('Skater profile successfully added!');
+        // Reset form
         setFormData({
           rsfiNo: '',
           name: '',
@@ -127,23 +111,28 @@ const AddSkaters = () => {
           representativeClub: '',
           coachName: '',
           skaterPhoto: '',
-          identityProofType: '',
-          identityProofFile: ''
+          proofType: '',
+          fileUrl: ''
         });
         setError('');
       } else {
-        alert(`Failed to save the skater profile: ${data.message}`);
+        // More detailed error handling
+        const errorMessage = data.errors 
+          ? data.errors.join(', ') 
+          : (data.message || 'Failed to save the skater profile');
+        
+        alert(errorMessage);
+        setError(errorMessage);
       }
     } catch (error) {
-      console.error('Error saving the skater profile:', error);
+      console.error('Full error:', error);
       alert('Error saving the skater profile. Please try again.');
     }
   };
-  
 
   return (
     <div>
-      <Navbar />
+     <AdminNavbar />
     <div className="container mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6">Add Skater Profile</h2>
       
@@ -301,20 +290,20 @@ const AddSkaters = () => {
             className="w-full p-2 border rounded"
           />
           {formData.skaterPhoto && (
-            <img 
-              src={formData.skaterPhoto} 
-              alt="Skater" 
+            <img
+              src={formData.skaterPhoto}
+              alt="Skater"
               className="mt-2 h-24 w-24 object-cover"
             />
           )}
         </div>
 
-        {/* Identity Proof */}
+        {/* Identity Proof Type */}
         <div>
           <label className="block mb-2">Identity Proof Type *</label>
           <select
-            name="identityProofType" // Matches the key in the handleInputChange
-            value={formData.identityProof?.type || ""} // Ensure it reads the nested value
+            name="proofType"
+            value={formData.proofType}
             onChange={handleInputChange}
             required
             className="w-full p-2 border rounded"
@@ -330,15 +319,15 @@ const AddSkaters = () => {
           <label className="block mb-2">Identity Proof File *</label>
           <input
             type="file"
-            name="identityProofFile"
+            name="fileUrl"
+            accept="image/*"
             onChange={handleInputChange}
-            accept="image/*,application/pdf"
             required
             className="w-full p-2 border rounded"
           />
-          {formData.identityProofFile && (
+          {formData.fileUrl && (
             <img 
-              src={formData.identityProofFile} 
+              src={formData.fileUrl} 
               alt="Identity Proof" 
               className="mt-2 h-24 w-24 object-cover"
             />
@@ -348,13 +337,13 @@ const AddSkaters = () => {
 
       {/* Save Button */}
       <div className="col-span-2 text-right">
-  <button
-    onClick={handleSaveSkater}
-    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-  >
-    Save Skater Profile
-  </button>
-</div>
+        <button
+          onClick={handleSaveSkater}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        >
+          Save Skater Profile
+        </button>
+      </div>
     </div>
     </div>
   );
