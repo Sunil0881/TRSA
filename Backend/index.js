@@ -94,8 +94,7 @@ mongoose
     const News = mongoose.model('news',NewsSchema);
 
 
-    // created code for post news by admin people 
-<<<<<<< HEAD
+ 
     app.post('/api/news', async (req, res) => {
       const { title, description, image } = req.body;
     
@@ -112,24 +111,7 @@ mongoose
         res.status(403).json({ message: error.message });
       }
     });
-=======
-  app.post('/api/news', async(res,req) =>{
-    const {title,description,image} = req.body;
-         const NewNews = new News({
-          title,
-          description,
-          image
-         });
 
-    try {
-      const SavedNews = await NewNews.save();
-      res.status(201).json(SavedNews);
-    } catch (error) {
-      res.status(403).json({message: error.message})
-      
-    }
-  });
->>>>>>> 2216f7b88f8107df9a5c56ac5cfaf53c73ced164
 
 
   // created code for get all news by admin people
