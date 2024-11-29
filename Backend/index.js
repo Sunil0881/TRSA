@@ -94,7 +94,7 @@ mongoose
     const News = mongoose.model('news',NewsSchema);
 
 
- 
+
     app.post('/api/news', async (req, res) => {
       const { title, description, image } = req.body;
     
@@ -115,22 +115,26 @@ mongoose
 
 
   // created code for get all news by admin people
-  app.delete('/api/news/:id', async (res,req) => {
-    
+  app.delete('/api/news/:id', async (req, res) => {
     try {
-      const {id} = req.params;
-
+      const { id } = req.params;
+  
+      // Attempt to delete the news item by its ID
       const deletedNews = await News.findByIdAndDelete(id);
-  if(!deletedNews){
-    return res.status(404).json({ message: 'News not found' });
-  }
-
+  
+      if (!deletedNews) {
+        // If no news item was found with the given ID, send a 404 error
+        return res.status(404).json({ message: 'News not found' });
+      }
+  
+      // If successful, return a success message
       res.status(200).json({ message: 'News deleted successfully' });
-      
     } catch (error) {
-      res.status(403).json({message: error.message})
+      // Handle errors (e.g., invalid ID, database connection issues)
+      res.status(500).json({ message: error.message });
     }
-   });
+  });
+  
 
 
    // created code for get  news   (id) by admin people

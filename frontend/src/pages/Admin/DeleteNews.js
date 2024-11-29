@@ -14,9 +14,10 @@ const DeleteNews = () => {
 
         const fetchNews = async () =>{
             try {
-                const response = await fetch ('https://trsabackend.vercel.app/api/news',
+              const response = await fetch('http://localhost:5000/api/news');
+
                 
-                )
+               
                 
               if(!response.ok){
                 const errorData = await response.text();
@@ -49,13 +50,14 @@ const DeleteNews = () => {
      const handleDelete = async (id) =>{
         if (window.confirm('Are you sure you want to delete this event?')) {
         try {
-             const response = await fetch (`https://trsabackend.vercel.app/api/news/${id}`, {
+             const response = await fetch (`http://localhost:5000/api/news/${id}`, {
                   method: 'DELETE',
-        }) 
+        }) ;
 
         if (response.ok){
            setNews( news.filter( (news) => news._id !== id
-           ));   
+           ));
+           setSuccess('Event deleted sucessfully');
         }
         else{
             const errorData = await response.text();
