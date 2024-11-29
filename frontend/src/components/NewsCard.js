@@ -13,9 +13,19 @@ const descriptionLenght = 120;
      navigate(`/news/${id}`);
    }
 //  code a fun to make decription good
-  const  truncate = (text, limit) => {
-    return text.lenght > limit ? text.slice(0,limit) +"...." :text;
+const truncate = (text, maxLength) => {
+  if (!text || typeof text !== 'string') {
+    return ''; // Return an empty string if text is undefined or not a string
   }
+
+  if (text.length > maxLength) {
+    return text.slice(0, maxLength) + '...';
+  }
+
+  return text;
+};
+
+
 
 
   return (
