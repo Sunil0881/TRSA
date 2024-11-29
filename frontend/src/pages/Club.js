@@ -2,159 +2,173 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import StateCard from '../components/StateCard';
+import tdrsalogo from "../assets/TDRSALOGO.jpg";
 
 const Club = () => {
   const stateCardData = [
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2022/01/andaman-logo.jpeg', // Replace with your logo URL
-      stateName: 'Andaman Nicobar',
-      clubName: 'ANDHAMAN AND NICOBAR ROLLER SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/andaman-logo.jpeg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Rockers Speed Sketing Academy',
+      // clubName: 'ANDHAMAN AND NICOBAR ROLLER SKATING ASSOCIATION'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/ap.jpg', // Replace with your logo URL
-      stateName: 'Andhra Pradesh',
-      clubName: 'ANDHRA PRADESH ROLLER SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/ap.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Sathya Speed Sketing Academy',
+      // clubName: 'ANDHRA PRADESH ROLLER SKATING ASSOCIATION'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2024/02/arunachal-logo.jpg', // Replace with your logo URL
-      stateName: 'Arunachal Pradesh',
-      clubName: 'ARUNACHAL PRADESH SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2024/02/arunachal-logo.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'SS Academy',
+      // clubName: 'ARUNACHAL PRADESH SKATING ASSOCIATION'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
-      stateName: 'Gujarat',
-      clubName: 'INDIA SKATE – GUJARAT*'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'U Can Do Sketing Academy',
+      // clubName: 'INDIA SKATE – GUJARAT*'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
-      stateName: 'Assam',
-      clubName: 'INDIA SKATE – ASSAM'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'SNJ Sketing Academy',
+      // clubName: 'INDIA SKATE – ASSAM'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
-      stateName: 'Bihar*',
-      clubName: 'INDIA SKATE – BIHAR'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Thaisha Roller Sketing Academy',
+      // clubName: 'INDIA SKATE – BIHAR'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/chandigarh.jpg', // Replace with your logo URL
-      stateName: 'Chandigarh',
-      clubName: 'CHANDIGARH ROLLER SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/chandigarh.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Parthi Sketing Academy',
+      // clubName: 'CHANDIGARH ROLLER SKATING ASSOCIATION'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/chattisgarh.jpg', // Replace with your logo URL
-      stateName: 'Chattisgarh',
-      clubName: 'CHATTISGARH ROLLER SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/chattisgarh.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Spunk',
+      // clubName: 'CHATTISGARH ROLLER SKATING ASSOCIATION'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/delhi.jpg', // Replace with your logo URL
-      stateName: 'Delhi',
-      clubName: 'DELHI SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/delhi.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Anna Nagar Roller Sketing Academy',
+      // clubName: 'DELHI SKATING ASSOCIATION'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/goa.jpg', // Replace with your logo URL
-      stateName: 'Goa',
-      clubName: 'SKATING ASSOCIATION OF GOA'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/goa.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Champions Roller Sketing Academy',
+      // clubName: 'SKATING ASSOCIATION OF GOA'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/haryana.jpg', // Replace with your logo URL
-      stateName: 'Haryana',
-      clubName: 'HARYANA ROLLER SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/haryana.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'New India Club',
+      // clubName: 'HARYANA ROLLER SKATING ASSOCIATION'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2022/01/HIMACHAL-LOGO.jpeg', // Replace with your logo URL
-      stateName: 'Himachal Pradesh',
-      clubName: 'HIMACHAL SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/HIMACHAL-LOGO.jpeg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'ES Sketing Academy',
+      // clubName: 'HIMACHAL SKATING ASSOCIATION'
     },
     {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
-      stateName: 'Jammu & Kashmir',
-      clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Success Spirits Academy',
+      // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
     },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2022/01/JHARKAND-LOGO.jpeg', // Replace with your logo URL
-      stateName: 'Jharkhand',
-      clubName: 'ROLLER SKATING ASSOCIATION OF JHARKHAND'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/karnataka.jpg', // Replace with your logo URL
-      stateName: 'Karnataka',
-      clubName: 'KARNATAKA ROLLER SKATING ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/kerala.jpg', // Replace with your logo URL
-      stateName: 'Kerala',
-      clubName: 'KERALA ROLLER SKATING ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2024/02/ladakh-logo-1.jpg', // Replace with your logo URL
-      stateName: 'Ladakh',
-      clubName: 'LADAKH ROLLER SKATING ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/madhyapradesh.jpg', // Replace with your logo URL
-      stateName: 'Madhya Pradesh',
-      clubName: 'ROLLER SKATE DEVELOPMENT ASSOCIATION MADHYA PRADESH'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/maharashtra.jpg', // Replace with your logo URL
-      stateName: 'Maharashtra',
-      clubName: 'SKATING ASSOCIATION OF MAHARASHTRA'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2022/01/MANIPUR-LOGO.jpeg', // Replace with your logo URL
-      stateName: 'Manipur',
-      clubName: 'MANIPUR EXTREME SPORTS AND SKATE ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/pondy.jpg', // Replace with your logo URL
-      stateName: 'Pondicherry',
-      clubName: 'PONDICHERRY ROLLER SKATING ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2022/01/ODISHA-LOGO.jpeg', // Replace with your logo URL
-      stateName: 'Odisha',
-      clubName: 'Skating Association of Odisha'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/punjab.jpg', // Replace with your logo URL
-      stateName: 'Punjab',
-      clubName: 'PUNJAB ROLLER SKATING ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2022/01/RAJASTHAN-LOGO.jpeg', // Replace with your logo URL
-      stateName: 'Rajasthan',
-      clubName: 'RAJASTHAN SKATE ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2024/02/sikkim-1.jpg', // Replace with your logo URL
-      stateName: 'Sikkim',
-      clubName: 'ALL SIKKIM SKATEBOARDING ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2021/11/logo-rect.png', // Replace with your logo URL
-      stateName: 'Telegana',
-      clubName: 'TELANGANA ROLLER SKATING ASSOCIATION*'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/tamilnadu.jpg', // Replace with your logo URL
-      stateName: 'Tamil Nadu',
-      clubName: 'TAMIL NADU ROLLER SKATING ASSOCIATION'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2020/03/uttar-pradesh.jpg', // Replace with your logo URL
-      stateName: 'Uttar Pradesh',
-      clubName: 'UTTAR PRADESH ROLLER SPORTS SANGH'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2022/01/UK-LOGO.jpeg', // Replace with your logo URL
-      stateName: 'Uttarkhand',
-      clubName: 'SKATES ASSOCIATION UTTARAKHAND'
-    },
-    {
-      logo: 'https://indiaskate.com/wp-content/uploads/2018/11/FAV.png', // Replace with your logo URL
-      stateName: 'West Bengal',
-      clubName: 'RSFI – WEST BENGAL*'
-    },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2022/01/JHARKAND-LOGO.jpeg', // Replace with your logo URL
+    //   stateName: 'Jharkhand',
+    //   // clubName: 'ROLLER SKATING ASSOCIATION OF JHARKHAND'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2020/03/karnataka.jpg', // Replace with your logo URL
+    //   stateName: 'Karnataka',
+    //   // clubName: 'KARNATAKA ROLLER SKATING ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2020/03/kerala.jpg', // Replace with your logo URL
+    //   stateName: 'Kerala',
+    //   // clubName: 'KERALA ROLLER SKATING ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2024/02/ladakh-logo-1.jpg', // Replace with your logo URL
+    //   stateName: 'Ladakh',
+    //   // clubName: 'LADAKH ROLLER SKATING ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2020/03/madhyapradesh.jpg', // Replace with your logo URL
+    //   stateName: 'Madhya Pradesh',
+    //   // clubName: 'ROLLER SKATE DEVELOPMENT ASSOCIATION MADHYA PRADESH'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2020/03/maharashtra.jpg', // Replace with your logo URL
+    //   stateName: 'Maharashtra',
+    //   // clubName: 'SKATING ASSOCIATION OF MAHARASHTRA'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2022/01/MANIPUR-LOGO.jpeg', // Replace with your logo URL
+    //   stateName: 'Manipur',
+    //   // clubName: 'MANIPUR EXTREME SPORTS AND SKATE ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2020/03/pondy.jpg', // Replace with your logo URL
+    //   stateName: 'Pondicherry',
+    //   // clubName: 'PONDICHERRY ROLLER SKATING ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2022/01/ODISHA-LOGO.jpeg', // Replace with your logo URL
+    //   stateName: 'Odisha',
+    //   // clubName: 'Skating Association of Odisha'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2020/03/punjab.jpg', // Replace with your logo URL
+    //   stateName: 'Punjab',
+    //   // clubName: 'PUNJAB ROLLER SKATING ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2022/01/RAJASTHAN-LOGO.jpeg', // Replace with your logo URL
+    //   stateName: 'Rajasthan',
+    //   // clubName: 'RAJASTHAN SKATE ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2024/02/sikkim-1.jpg', // Replace with your logo URL
+    //   stateName: 'Sikkim',
+    //   // clubName: 'ALL SIKKIM SKATEBOARDING ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2021/11/logo-rect.png', // Replace with your logo URL
+    //   stateName: 'Telegana',
+    //   // clubName: 'TELANGANA ROLLER SKATING ASSOCIATION*'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2020/03/tamilnadu.jpg', // Replace with your logo URL
+    //   stateName: 'Tamil Nadu',
+    //   // clubName: 'TAMIL NADU ROLLER SKATING ASSOCIATION'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2020/03/uttar-pradesh.jpg', // Replace with your logo URL
+    //   stateName: 'Uttar Pradesh',
+    //   // clubName: 'UTTAR PRADESH ROLLER SPORTS SANGH'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2022/01/UK-LOGO.jpeg', // Replace with your logo URL
+    //   stateName: 'Uttarkhand',
+    //   // clubName: 'SKATES ASSOCIATION UTTARAKHAND'
+    // },
+    // {
+    //   logo: 'https://indiaskate.com/wp-content/uploads/2018/11/FAV.png', // Replace with your logo URL
+    //   stateName: 'West Bengal',
+    //   // clubName: 'RSFI – WEST BENGAL*'
+    // },
 
   ];
 
@@ -169,7 +183,7 @@ const Club = () => {
               key={index}
               logo={card.logo}
               stateName={card.stateName}
-              clubName={card.clubName}
+              // clubName={card.clubName}
             />
           ))}
         </div>
