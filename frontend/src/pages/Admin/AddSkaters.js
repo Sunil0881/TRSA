@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from "../../components/Navbar";
 
 const AddSkaters = () => {
   const [formData, setFormData] = useState({
@@ -30,35 +31,34 @@ const AddSkaters = () => {
   };
 
   // Handle input changes, including file inputs
-  const handleInputChange = async (e) => {
-    const { name, value, files } = e.target;
-
-    if (name === 'skaterPhoto') {
-      // Convert photo to base64
-      if (files && files[0]) {
-        const base64 = await convertToBase64(files[0]);
-        setFormData(prev => ({ ...prev, skaterPhoto: base64 }));
-      }
-    } else if (name === 'identityProofFile') {
-      // Convert identity proof file to base64
-      if (files && files[0]) {
-        const base64 = await convertToBase64(files[0]);
-        setFormData(prev => ({
-          ...prev,
-          identityProof: { ...prev.identityProof, fileUrl: base64 }
-        }));
-      }
-    } else if (name === 'identityProofType') {
-      // Update identity proof type
-      setFormData(prev => ({
-        ...prev,
-        identityProof: { ...prev.identityProof, type: value }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+  
+    // Handle nested fields
+    if (name === "identityProofType") {
+      setFormData((prevData) => ({
+        ...prevData,
+        identityProof: {
+          ...prevData.identityProof,
+          type: value, // Update the nested type
+        },
+      }));
+    } else if (name === "identityProofFile") {
+      setFormData((prevData) => ({
+        ...prevData,
+        identityProof: {
+          ...prevData.identityProof,
+          fileUrl: value, // Update the nested fileUrl
+        },
       }));
     } else {
-      // Update regular fields
-      setFormData(prev => ({ ...prev, [name]: value }));
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value, // Update other fields
+      }));
     }
   };
+  
 
 
   // Clubs list
@@ -74,31 +74,45 @@ const AddSkaters = () => {
       'name', 'parentName', 'dob', 'aadharNo',
       'phoneNo', 'email', 'eventCategory',
       'representativeClub', 'coachName', 'skaterPhoto',
-      'identityProof.type', 'identityProof.fileUrl'
+      'identityProofType', 'identityProofFile'
     ];
-
+  
     // Check for missing fields
-    const missingFields = requiredFields.filter(field => {
-      const keys = field.split('.');
-      return keys.length > 1
-        ? !formData[keys[0]][keys[1]]
-        : !formData[field];
-    });
-
+    const missingFields = requiredFields.filter(field => !formData[field]);
     if (missingFields.length > 0) {
       setError(`Please fill out all required fields: ${missingFields.join(', ')}`);
       return;
     }
-
+  
+    // Reformat formData for the backend schema
+    const formattedFormData = {
+      rsfiNo: formData.rsfiNo || "", // Optional field
+      name: formData.name,
+      parentName: formData.parentName,
+      dob: formData.dob,
+      aadharNo: formData.aadharNo,
+      phoneNo: formData.phoneNo,
+      email: formData.email,
+      eventCategory: formData.eventCategory,
+      representativeClub: formData.representativeClub,
+      coachName: formData.coachName,
+      skaterPhoto: formData.skaterPhoto,
+      identityProof: {
+        proofType: formData.identityProofType,
+        fileUrl: formData.identityProofFile
+      }
+    };
+  
     try {
+      console.log(formattedFormData);
       const response = await fetch('http://localhost:5000/api/skaterprofiles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formattedFormData)
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         alert('Skater profile successfully added!');
         setFormData({
@@ -113,7 +127,8 @@ const AddSkaters = () => {
           representativeClub: '',
           coachName: '',
           skaterPhoto: '',
-          identityProof: { type: '', fileUrl: '' }
+          identityProofType: '',
+          identityProofFile: ''
         });
         setError('');
       } else {
@@ -124,8 +139,11 @@ const AddSkaters = () => {
       alert('Error saving the skater profile. Please try again.');
     }
   };
+  
 
   return (
+    <div>
+      <Navbar />
     <div className="container mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6">Add Skater Profile</h2>
       
@@ -295,8 +313,8 @@ const AddSkaters = () => {
         <div>
           <label className="block mb-2">Identity Proof Type *</label>
           <select
-            name="identityProofType"
-            value={formData.identityProofType}
+            name="identityProofType" // Matches the key in the handleInputChange
+            value={formData.identityProof?.type || ""} // Ensure it reads the nested value
             onChange={handleInputChange}
             required
             className="w-full p-2 border rounded"
@@ -337,6 +355,7 @@ const AddSkaters = () => {
     Save Skater Profile
   </button>
 </div>
+    </div>
     </div>
   );
 };

@@ -2,10 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
+const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
 const app = express();
+app.use(bodyParser.json()); 
 
 // const corsOptions = {
 //     origin: ['https://trsafrontend.vercel.app'],
@@ -93,22 +95,22 @@ mongoose
 
 
     // created code for post news by admin people 
-  app.post('/api/news', async(res,req) =>{
-    const {title,description,image} = req.body;
-         const NewNews = new News({
-          title,
-          description,
-          image
-         });
-
-    try {
-      const SavedNews = await NewNews.save();
-      res.status(201).json({ message: 'News added successfully' });
-    } catch (error) {
-      res.status(403).json({message: error.message})
-      
-    }
-  });
+    app.post('/api/news', async (req, res) => {
+      const { title, description, image } = req.body;
+    
+      const newNews = new News({
+        title,
+        description,
+        image
+      });
+    
+      try {
+        const savedNews = await newNews.save();
+        res.status(201).json({ message: 'News added successfully', savedNews });
+      } catch (error) {
+        res.status(403).json({ message: error.message });
+      }
+    });
 
 
   // created code for get all news by admin people
@@ -145,15 +147,17 @@ mongoose
    })
 
    // created code for get all news by admin people
-   app.get ('./api/news', async(res,req) =>{
-               try {
-               const news = await News.find();
-               res.status(200).json(news);
-               } catch (error) {
-                res.status(403).json({message: error.message})
-               }
+   app.get('/api/news', async (req, res) => {
+    try {
+        const news = await News.find(); // Fetch all news documents from the database
+        res.status(200).json(news); // Send the news data as a JSON response
+    } catch (error) {
+        console.error('Error fetching news:', error); // Log the error for debugging
+        res.status(500).json({ message: error.message }); // Send error response
+    }
+});
 
-   });
+
 /////////////////
 //////////
 ///
