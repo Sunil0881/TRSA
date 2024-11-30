@@ -103,7 +103,7 @@ const Navbar = () => {
           )}
         </div>
         <Link to="/club" className={linkClasses('/club')}>
-          Associative Club
+          Associative Clubs
         </Link>
         <div
           className="relative"
