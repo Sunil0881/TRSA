@@ -116,13 +116,13 @@ const Navbar = () => {
           {isSkatersDropdownOpen && (
             <div className="absolute left-0 mt-2 w-48 bg-white z-20 text-blue-800 shadow-lg rounded">
               <Link
-                to="/registration"
+                to="/skaterform"
                 className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
               >
                 Registration
               </Link>
               <Link
-                to="/profile"
+                to="/skatersprofile"
                 className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
               >
                 Profile
