@@ -51,20 +51,30 @@ const SkaterProfile = () => {
             <thead>
               <tr className="bg-gray-200 text-black">
                 <th className="py-3 px-6 text-left">S.no</th>
+                <th className="py-3 px-6 text-left">Photo</th>
                 <th className="py-3 px-6 text-left">Name</th>
-                <th className="py-3 px-6 text-left">Age</th>
-                <th className="py-3 px-6 text-left">Gender</th>
-                <th className="py-3 px-6 text-left">Level</th>
+                <th className="py-3 px-6 text-left">Date of Birth</th>
+                <th className="py-3 px-6 text-left">Event Category</th>
+                <th className="py-3 px-6 text-left">Representative Club</th>
+                <th className="py-3 px-6 text-left">Coach Name</th>
               </tr>
             </thead>
             <tbody>
               {filteredSkaters.map((skater, index) => (
                 <tr key={skater._id} className="bg-white border-b hover:bg-gray-100">
                   <td className="py-3 px-6">{index + 1}</td>
+                  <td className="py-3 px-6">
+                    <img
+                      src={skater.skaterPhoto}
+                      alt={skater.name}
+                      className="h-16 w-16 object-cover rounded-full"
+                    />
+                  </td>
                   <td className="py-3 px-6">{skater.name}</td>
-                  <td className="py-3 px-6">{skater.age}</td>
-                  <td className="py-3 px-6">{skater.gender}</td>
-                  <td className="py-3 px-6">{skater.level}</td>
+                  <td className="py-3 px-6">{new Date(skater.dob).toLocaleDateString()}</td>
+                  <td className="py-3 px-6">{skater.eventCategory}</td>
+                  <td className="py-3 px-6">{skater.representativeClub}</td>
+                  <td className="py-3 px-6">{skater.coachName}</td>
                 </tr>
               ))}
             </tbody>
