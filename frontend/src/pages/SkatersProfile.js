@@ -51,12 +51,11 @@ const SkaterProfile = () => {
             <thead>
               <tr className="bg-gray-200 text-black">
                 <th className="py-3 px-6 text-left">S.no</th>
-                <th className="py-3 px-6 text-left">Photo</th>
+                <th className="py-3 px-6 text-left">Profile Image</th>
                 <th className="py-3 px-6 text-left">Name</th>
-                <th className="py-3 px-6 text-left">Date of Birth</th>
+                <th className="py-3 px-6 text-left">Gender</th>
                 <th className="py-3 px-6 text-left">Event Category</th>
                 <th className="py-3 px-6 text-left">Representative Club</th>
-                <th className="py-3 px-6 text-left">Coach Name</th>
               </tr>
             </thead>
             <tbody>
@@ -71,10 +70,9 @@ const SkaterProfile = () => {
                     />
                   </td>
                   <td className="py-3 px-6">{skater.name}</td>
-                  <td className="py-3 px-6">{new Date(skater.dob).toLocaleDateString()}</td>
+                  <td className="py-3 px-6">{skater.gender}</td>
                   <td className="py-3 px-6">{skater.eventCategory}</td>
                   <td className="py-3 px-6">{skater.representativeClub}</td>
-                  <td className="py-3 px-6">{skater.coachName}</td>
                 </tr>
               ))}
             </tbody>

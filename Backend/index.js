@@ -362,6 +362,7 @@ const skaterProfileSchema = new mongoose.Schema(
       type: Date, 
       required: true 
     },
+    gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
     aadharNo: { 
       type: String, 
       required: true,
@@ -441,6 +442,7 @@ app.post('/api/skaterprofiles', async (req, res) => {
       name, 
       parentName, 
       dob, 
+      gender,
       aadharNo, 
       phoneNo, 
       email, 
@@ -463,6 +465,7 @@ app.post('/api/skaterprofiles', async (req, res) => {
     
     // Date of Birth validation
     if (!dob) errors.push('Date of Birth is required');
+    if (!gender) errors.push('Gender is required');
     
     // Aadhar Number validation
     if (!aadharNo || !/^\d{12}$/.test(aadharNo)) {
@@ -521,6 +524,7 @@ app.post('/api/skaterprofiles', async (req, res) => {
       name,
       parentName,
       dob: new Date(dob), // Ensure date is converted
+      gender,
       aadharNo,
       phoneNo,
       email,
