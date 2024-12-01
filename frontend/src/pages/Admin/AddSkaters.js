@@ -63,16 +63,22 @@ const AddSkaters = () => {
     return 'Not Categorized';
   };
 
-  const handleViewFile = (fileUrl) => {
-    console.log("file",fileUrl);
-    if (fileUrl) {
-      window.open(fileUrl, '_blank');
+  const handleViewFile = (fileData) => {
+    if (fileData) {
+      const decodedData = atob(fileData.split(',')[1]);
+      const byteNumbers = new Array(decodedData.length);
+      for (let i = 0; i < decodedData.length; i++) {
+        byteNumbers[i] = decodedData.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'image/jpeg' });
+      const imageUrl = URL.createObjectURL(blob);
+      window.open(imageUrl, '_blank');
     } else {
-      console.error("File URL is undefined");
+      console.error("File data is undefined");
       // You can add a user-friendly error message here, e.g., using a toast notification
     }
   };
-
   return (
     <div>
       <AdminNavbar />
