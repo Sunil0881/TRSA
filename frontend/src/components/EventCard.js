@@ -33,7 +33,7 @@ const EventCard = ({ id, title, date, image }) => {
           className="bg-blue-800 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700"
           onClick={handleRegisterClick}
         >
-          Register Now
+          View Event
         </button>
       </div>
     </div>

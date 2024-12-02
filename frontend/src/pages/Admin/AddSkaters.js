@@ -1,352 +1,308 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
+import { FaSearch, FaVenusMars, FaSkating, FaBuilding, FaCalendar, FaPhone, FaEnvelope, FaIdCard, FaFileAlt } from 'react-icons/fa';
 
 const AddSkaters = () => {
-  const [formData, setFormData] = useState({
-    rsfiNo: '',
-    name: '',
-    parentName: '',
-    dob: '',
-    aadharNo: '',
-    phoneNo: '',
-    email: '',
-    eventCategory: '',
-    representativeClub: '',
-    coachName: '',
-    skaterPhoto: '', // Will store base64
-    proofType: '',
-    fileUrl: '' // Will store base64
-  });
-
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [skaters, setSkaters] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredSkaters, setFilteredSkaters] = useState([]);
 
-  // Handle input changes, including file inputs
-  const handleInputChange = (e) => {
-    const { name, value, files } = e.target;
-
-    // Handle file inputs separately
-    if (name === "skaterPhoto" && files && files[0]) {
-      const file = files[0];
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: reader.result, // Store the base64 string of the image
+  useEffect(() => {
+    const fetchSkaters = async () => {
+      try {
+        const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles');
+        const data = await response.json();
+        console.log("Fetched skater data:", data); // Add this line
+        const skatersWithAge = data.map(skater => ({
+          ...skater,
+          age: calculateAge(skater.dob),
+          ageCategory: getAgeCategory(calculateAge(skater.dob))
         }));
-      };
-      reader.readAsDataURL(file); // Convert file to base64
-    } else if (name === "fileUrl" && files && files[0]) {
-      const file = files[0];
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: reader.result, // Store the base64 string for proof file
-        }));
-      };
-      reader.readAsDataURL(file); // Convert file to base64
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value, // Update other fields
-      }));
-    }
-  };
-
-  // Clubs list
-  const clubs = [
-    'RSFI Delhi', 
-    'Mumbai Skating Club', 
-    'Bangalore Roller Sports', 
-    'Chennai Skaters Association'
-  ];
-
-  const handleSaveSkater = async () => {
-    // Create a full copy of the form data
-    const formattedFormData = {
-      rsfiNo: formData.rsfiNo || "", // Optional field
-      name: formData.name,
-      parentName: formData.parentName,
-      dob: formData.dob,
-      aadharNo: formData.aadharNo,
-      phoneNo: formData.phoneNo,
-      email: formData.email,
-      eventCategory: formData.eventCategory,
-      representativeClub: formData.representativeClub,
-      coachName: formData.coachName,
-      skaterPhoto: formData.skaterPhoto,
-      proofType: formData.proofType,
-      fileUrl: formData.fileUrl
-    };
-  
-    console.log('Sending data:', JSON.stringify(formattedFormData, null, 2));
-  
-    try {
-      const response = await fetch('http://localhost:5000/api/skaterprofiles', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formattedFormData)
-      });
-  
-      // Parse the response
-      const data = await response.json();
-      
-      console.log('Response Status:', response.status);
-      console.log('Response Data:', data);
-  
-      if (response.ok) {
-        alert('Skater profile successfully added!');
-        // Reset form
-        setFormData({
-          rsfiNo: '',
-          name: '',
-          parentName: '',
-          dob: '',
-          aadharNo: '',
-          phoneNo: '',
-          email: '',
-          eventCategory: '',
-          representativeClub: '',
-          coachName: '',
-          skaterPhoto: '',
-          proofType: '',
-          fileUrl: ''
-        });
-        setError('');
-      } else {
-        // More detailed error handling
-        const errorMessage = data.errors 
-          ? data.errors.join(', ') 
-          : (data.message || 'Failed to save the skater profile');
-        
-        alert(errorMessage);
-        setError(errorMessage);
+        setSkaters(skatersWithAge);
+        setFilteredSkaters(skatersWithAge);
+      } catch (error) {
+        console.error('Error fetching skaters:', error);
       }
-    } catch (error) {
-      console.error('Full error:', error);
-      alert('Error saving the skater profile. Please try again.');
+    };
+
+    fetchSkaters();
+  }, []);
+
+  useEffect(() => {
+    const results = skaters.filter((skater) =>
+      Object.keys(skater).some((key) =>
+        ['name', 'gender', 'eventCategory', 'representativeClub', 'ageCategory'].includes(key)
+          ? skater[key].toString().toLowerCase().includes(searchTerm.toLowerCase())
+          : false
+      )
+    );
+    setFilteredSkaters(results);
+  }, [searchTerm, skaters]);
+
+  const calculateAge = (dob) => {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
     }
+    return age;
   };
 
+  const getAgeCategory = (age) => {
+    if (age >= 5 && age < 7) return 'Cadet (5-7)';
+    if (age >= 7 && age < 9) return 'Cadet (7-9)';
+    if (age >= 9 && age < 11) return 'Cadet (9-11)';
+    if (age >= 11 && age < 14) return 'Sub Junior';
+    if (age >= 14 && age < 17) return 'Junior';
+    if (age >= 17) return 'Senior';
+    return 'Not Categorized';
+  };
+
+  const handleViewFile = (fileData) => {
+    if (fileData) {
+      const decodedData = atob(fileData.split(',')[1]);
+      const byteNumbers = new Array(decodedData.length);
+      for (let i = 0; i < decodedData.length; i++) {
+        byteNumbers[i] = decodedData.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'image/jpeg' });
+      const imageUrl = URL.createObjectURL(blob);
+      window.open(imageUrl, '_blank');
+    } else {
+      console.error("File data is undefined");
+      // You can add a user-friendly error message here, e.g., using a toast notification
+    }
+  };
   return (
     <div>
-     <AdminNavbar />
-    <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">Add Skater Profile</h2>
-      
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-
-      {/* Form Fields */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* RSFI No (Optional) */}
-        <div>
-          <label className="block mb-2">RSFI No (Optional)</label>
-          <input
-            type="text"
-            name="rsfiNo"
-            value={formData.rsfiNo}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Name */}
-        <div>
-          <label className="block mb-2">Name *</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Parent Name */}
-        <div>
-          <label className="block mb-2">Parent/Guardian Name *</label>
-          <input
-            type="text"
-            name="parentName"
-            value={formData.parentName}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Date of Birth */}
-        <div>
-          <label className="block mb-2">Date of Birth *</label>
-          <input
-            type="date"
-            name="dob"
-            value={formData.dob}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Aadhar No */}
-        <div>
-          <label className="block mb-2">Aadhar No *</label>
-          <input
-            type="text"
-            name="aadharNo"
-            value={formData.aadharNo}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Phone No */}
-        <div>
-          <label className="block mb-2">Phone No *</label>
-          <input
-            type="tel"
-            name="phoneNo"
-            value={formData.phoneNo}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Email */}
-        <div>
-          <label className="block mb-2">Email *</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Event Category */}
-        <div>
-          <label className="block mb-2">Event Category *</label>
-          <select
-            name="eventCategory"
-            value={formData.eventCategory}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          >
-            <option value="">Select Category</option>
-            <option value="Speed Skating">Speed Skating</option>
-            <option value="Figure Skating">Figure Skating</option>
-            <option value="Artistic Skating">Artistic Skating</option>
-            <option value="Inline Hockey">Inline Hockey</option>
-          </select>
-        </div>
-
-        {/* Representative Club */}
-        <div>
-          <label className="block mb-2">Representative Club *</label>
-          <select
-            name="representativeClub"
-            value={formData.representativeClub}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          >
-            <option value="">Select Club</option>
-            {clubs.map(club => (
-              <option key={club} value={club}>{club}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* Coach Name */}
-        <div>
-          <label className="block mb-2">Coach Name *</label>
-          <input
-            type="text"
-            name="coachName"
-            value={formData.coachName}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Skater Photo */}
-        <div>
-          <label className="block mb-2">Skater Photo *</label>
-          <input
-            type="file"
-            name="skaterPhoto"
-            onChange={handleInputChange}
-            accept="image/*"
-            required
-            className="w-full p-2 border rounded"
-          />
-          {formData.skaterPhoto && (
-            <img
-              src={formData.skaterPhoto}
-              alt="Skater"
-              className="mt-2 h-24 w-24 object-cover"
+      <AdminNavbar />
+      <div className="px-4 md:px-6 lg:px-8 pt-20 relative">
+        {/* Toggle Switch */}
+        <div className="absolute top-0 right-0 mt-5 mr-5">
+          <label className="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              className="sr-only"
+              checked={isFormVisible}
+              onChange={() => setIsFormVisible(!isFormVisible)}
             />
-          )}
+            <div className="relative">
+              <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
+              <div
+                className={`absolute left-1 top-1 w-6 h-6 rounded-full transition-transform transform ${
+                  isFormVisible ? 'translate-x-full bg-red-500' : 'bg-green-500'
+                }`}
+              >
+                {isFormVisible ? (
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 4v16m8-8H4"
+                    ></path>
+                  </svg>
+                )}
+              </div>
+            </div>
+          </label>
         </div>
 
-        {/* Identity Proof Type */}
-        <div>
-          <label className="block mb-2">Identity Proof Type *</label>
-          <select
-            name="proofType"
-            value={formData.proofType}
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          >
-            <option value="">Select Proof Type</option>
-            <option value="Aadhar">Aadhar</option>
-            <option value="Birth Certificate">Birth Certificate</option>
-          </select>
-        </div>
+        <h1 className="text-2xl md:text-4xl font-semibold text-center pb-10 text-blue-800">
+          {isFormVisible ? 'Delete Skater' : 'Add New Skater'}
+        </h1>
 
-        {/* Identity Proof File */}
-        <div>
-          <label className="block mb-2">Identity Proof File *</label>
-          <input
-            type="file"
-            name="fileUrl"
-            accept="image/*"
-            onChange={handleInputChange}
-            required
-            className="w-full p-2 border rounded"
-          />
-          {formData.fileUrl && (
-            <img 
-              src={formData.fileUrl} 
-              alt="Identity Proof" 
-              className="mt-2 h-24 w-24 object-cover"
-            />
+        <div className="bg-white rounded-3xl shadow-2xl shadow-slate-500">
+          {isFormVisible ? (
+            <div className="p-6">
+              <h2 className="text-center text-lg font-semibold">
+                Delete Skater functionality coming soon...
+              </h2>
+            </div>
+          ) : (
+            <div className="container mx-auto px-4 py-8">
+              <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+                All {skaters.length} Rider Profiles from Thiruvallur
+              </h1>
+              <div className="max-w-md mx-auto mb-8">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search Profiles"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3 border rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-800"
+                  />
+                  <FaSearch className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400 text-xl" />
+                </div>
+              </div>
+
+              {/* Mobile view: Cards */}
+              <div className="md:hidden grid grid-cols-1 gap-6">
+                {filteredSkaters.map((skater, index) => (
+                  <div key={skater._id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div className="p-4">
+                      <div className="flex items-center mb-4">
+                        <img
+                          src={skater.skaterPhoto}
+                          alt={skater.name}
+                          className="h-16 w-16 object-cover rounded-full mr-4"
+                        />
+                        <div>
+                          <h2 className="text-xl font-semibold text-gray-800">{skater.name}</h2>
+                          <p className="text-sm text-gray-600">#{index + 1}</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <div className="flex items-center">
+                          <FaVenusMars className="mr-2 text-blue-500" />
+                          <span>{skater.gender}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <FaCalendar className="mr-2 text-red-500" />
+                          <span>{skater.age} years ({skater.ageCategory})</span>
+                        </div>
+                        <div className="flex items-center">
+                          <FaSkating className="mr-2 text-green-500" />
+                          <span>{skater.eventCategory}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <FaBuilding className="mr-2 text-purple-500" />
+                          <span>{skater.representativeClub}</span>
+                        </div>
+                        <div className="flex items-center col-span-2">
+                          <FaPhone className="mr-2 text-gray-500" />
+                          <span>{skater.phoneNo}</span>
+                        </div>
+                        <div className="flex items-center col-span-2">
+                          <FaEnvelope className="mr-2 text-gray-500" />
+                          <span>{skater.email}</span>
+                        </div>
+                        <div className="flex items-center col-span-2">
+                          <FaIdCard className="mr-2 text-gray-500" />
+                          <span>{skater.aadharNo}</span>
+                        </div>
+                        <div className="flex items-center col-span-2 mt-2">
+                          <button
+                            onClick={() => handleViewFile(skater.fileUrl)}
+                            className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center ${!skater.fileUrl ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            disabled={!skater.fileUrl}
+                          >
+                            <FaFileAlt className="mr-2" />
+                            {skater.fileUrl ? 'View File' : 'No File'}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop view: Table */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+                  <thead className="bg-gray-200">
+                    <tr>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">S.no</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Profile</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Name</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Gender</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Age</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Age Category</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Event Category</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Representative Club</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Phone</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Email</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Aadhar No</th>
+                      <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredSkaters.map((skater, index) => (
+                      <tr key={skater._id} className="border-b border-gray-200 hover:bg-gray-100 transition duration-150">
+                        <td className="py-4 px-6 text-gray-800">{index + 1}</td>
+                        <td className="py-4 px-6">
+                          <img
+                            src={skater.skaterPhoto}
+                            alt={skater.name}
+                            className="h-12 w-12 object-cover rounded-full"
+                          />
+                        </td>
+                        <td className="py-4 px-6 text-gray-800 font-medium">{skater.name}</td>
+                        <td className="py-4 px-6 text-gray-600">
+                          <div className="flex items-center">
+                            <FaVenusMars className="mr-2 text-blue-500" />
+                            <span>{skater.gender}</span>
+                          </div>
+                        </td>
+                        <td className="py-4 px-6 text-gray-600">{skater.age}</td>
+                        <td className="py-4 px-6 text-gray-600">{skater.ageCategory}</td>
+                        <td className="py-4 px-6 text-gray-600">
+                          <div className="flex items-center">
+                            <FaSkating className="mr-2 text-green-500" />
+                            <span>{skater.eventCategory}</span>
+                          </div>
+                        </td>
+                        <td className="py-4 px-6 text-gray-600">
+                          <div className="flex items-center">
+                            <FaBuilding className="mr-2 text-purple-500" />
+                            <span>{skater.representativeClub}</span>
+                          </div>
+                        </td>
+                        <td className="py-4 px-6 text-gray-600">{skater.phoneNo}</td>
+                        <td className="py-4 px-6 text-gray-600">{skater.email}</td>
+                        <td className="py-4 px-6 text-gray-600">{skater.aadharNo}</td>
+                        <td className="py-4 px-6">
+                          <button
+                            onClick={() => handleViewFile(skater.fileUrl)}
+                            className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center ${!skater.fileUrl ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            disabled={!skater.fileUrl}
+                          >
+                            <FaFileAlt className="mr-2" />
+                            {skater.fileUrl ? 'View File' : 'No File'}
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           )}
+          {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+          {success && <p className="text-green-600 text-sm mt-2">{success}</p>}
         </div>
       </div>
-
-      {/* Save Button */}
-      <div className="col-span-2 text-right">
-        <button
-          onClick={handleSaveSkater}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-        >
-          Save Skater Profile
-        </button>
-      </div>
-    </div>
     </div>
   );
 };
 
 export default AddSkaters;
+

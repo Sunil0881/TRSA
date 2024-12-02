@@ -8,13 +8,13 @@ const EventDetails = () => {
     const [event, setEvent] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [formData, setFormData] = useState({
-        name: '',
-        age: '',
-        email: '',
-        phone: '',
-    });
-    const [formError, setFormError] = useState(null);
+    // const [formData, setFormData] = useState({
+    //     name: '',
+    //     age: '',
+    //     email: '',
+    //     phone: '',
+    // });
+    // const [formError, setFormError] = useState(null);
 
     useEffect(() => {
         const fetchEventData = async () => {
@@ -42,53 +42,53 @@ const EventDetails = () => {
         day: 'numeric',
     }) : '';
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    //const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData(prevData => ({
+    //         ...prevData,
+    //         [name]: value,
+    //     }));
+    // };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const { name, age, email, phone } = formData;
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const { name, age, email, phone } = formData;
 
-        if (!name || !age || !email || !phone) {
-            setFormError('All fields are required.');
-            return;
-        }
+    //     if (!name || !age || !email || !phone) {
+    //         setFormError('All fields are required.');
+    //         return;
+    //     }
 
-        try {
-            const response = await fetch('https://trsabackend.vercel.app/api/registrations', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ...formData, eventId: id }),
-            });
+    //     try {
+    //         const response = await fetch('https://trsabackend.vercel.app/api/registrations', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({ ...formData, eventId: id }),
+    //         });
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Registration successful:', data);
-                setFormData({
-                    name: '',
-                    age: '',
-                    email: '',
-                    phone: '',
-                });
-                setFormError(null);
-                alert('Registration successful!');
-            } else {
-                const errorData = await response.json();
-                console.error('Failed to register:', errorData);
-                setFormError('Failed to register. Please try again.');
-            }
-        } catch (error) {
-            console.error('Error registering:', error);
-            setFormError('Error registering. Please try again.');
-        }
-    };
+    //         if (response.ok) {
+    //             const data = await response.json();
+    //             console.log('Registration successful:', data);
+    //             setFormData({
+    //                 name: '',
+    //                 age: '',
+    //                 email: '',
+    //                 phone: '',
+    //             });
+    //             setFormError(null);
+    //             alert('Registration successful!');
+    //         } else {
+    //             const errorData = await response.json();
+    //             console.error('Failed to register:', errorData);
+    //             setFormError('Failed to register. Please try again.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error registering:', error);
+    //         setFormError('Error registering. Please try again.');
+    //     }
+    // };
 
     return (
         <div className="bg-gray-100 min-h-screen">
@@ -120,7 +120,7 @@ const EventDetails = () => {
                         </p>
                     </div>
                     <div className="my-8 px-4 md:px-6 lg:px-72">
-                        <form onSubmit={handleSubmit} className="bg-gray-200 p-6 rounded-lg shadow-md">
+                        {/* <form onSubmit={handleSubmit} className="bg-gray-200 p-6 rounded-lg shadow-md">
                             <h3 className="text-lg font-semibold mb-4">Register for the Event</h3>
                             {formError && (
                                 <p className="text-red-500 mb-4">{formError}</p>
@@ -179,7 +179,7 @@ const EventDetails = () => {
                             >
                                 Register
                             </button>
-                        </form>
+                        </form> */}
                     </div>
                 </div>
             ) : (
