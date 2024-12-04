@@ -27,6 +27,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import DeleteNews from './pages/Admin/DeleteNews';
 import AddNews from './pages/Admin/AddNews';
 import SkaterForm from "./components/SkaterForm";
+import NewAbout from './pages/NewAbout';
+import State from './pages/State';
+import National from './pages/National';
 
 
 // Component to use location hook within Router context
@@ -99,6 +102,22 @@ const AppRoutes = () => {
         }
       />
       <Route
+        path="/state"
+        element={
+          <PageTransition>
+            <State />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/national"
+        element={
+          <PageTransition>
+            <National />
+          </PageTransition>
+        }
+      />
+      <Route
         path="/events/:id"
         element={
           <PageTransition>
@@ -143,6 +162,14 @@ const AppRoutes = () => {
         element={
           <PageTransition>
             <Login />
+          </PageTransition>
+        }
+      />
+       <Route
+        path="/newabout"
+        element={
+          <PageTransition>
+            <NewAbout />
           </PageTransition>
         }
       />

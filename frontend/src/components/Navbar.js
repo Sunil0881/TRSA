@@ -65,7 +65,7 @@ const Navbar = () => {
         </div>
       </div>
       <nav className="hidden items-center md:flex md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
-        <Link to="/" className={linkClasses('/')}>
+        <Link to="/newabout" className={linkClasses('/newabout')}>
           About
         </Link>
         <Link to="/team" className={linkClasses('/team')}>
@@ -88,13 +88,13 @@ const Navbar = () => {
           {isAchievementsDropdownOpen && (
             <div className="absolute left-0 mt-2 w-48 z-20 bg-white text-blue-800 shadow-lg rounded">
               <Link
-                to="/achievements/national"
+                to="/national"
                 className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
               >
                 National
               </Link>
               <Link
-                to="/achievements/state"
+                to="/state"
                 className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
               >
                 State 

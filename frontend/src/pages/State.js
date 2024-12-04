@@ -1,11 +1,10 @@
 import React from 'react'
 import Banner from '../components/Banner'
-import AchievementsList from '../components/AchievementsList'
 import Footer from "../components/Footer"
 import Navbar from '../components/Navbar'
-import AchievementsNational from '../components/AchievementsNational'
+import AchievementsState from '../components/AchievementsState'
 
-const Achievements = () => {
+const State = () => {
   return (
     <div>
       <Navbar />
@@ -15,7 +14,7 @@ const Achievements = () => {
       />
 
       <div className=" min-h-screen  p-6">
-             <AchievementsList /> 
+             <AchievementsState/> 
           
 
       </div>
@@ -27,4 +26,4 @@ const Achievements = () => {
   )
 }
 
-export default Achievements
+export default State
