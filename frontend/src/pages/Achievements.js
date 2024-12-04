@@ -15,7 +15,7 @@ const Achievements = () => {
       />
 
       <div className=" min-h-screen  p-6">
-             <AchievementsList /> 
+             <AchievementsList />
           
 
       </div>

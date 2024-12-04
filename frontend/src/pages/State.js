@@ -14,7 +14,7 @@ const State = () => {
       />
 
       <div className=" min-h-screen  p-6">
-             <AchievementsState/> 
+             <AchievementsState/>
           
 
       </div>
