@@ -72,8 +72,8 @@ const AdminNavbar = () => {
         <Link to="/addskaters" className={linkClasses("/addskaters")}>
           Add Skaters
         </Link>
-        <Link to="/registrations" className={linkClasses("/registrations")}>
-          Registrations
+        <Link to="/message" className={linkClasses("/message")}>
+          Message
         </Link> 
         <Link to="/addimage" className={linkClasses("/addimage")}>
           Add Gallery
