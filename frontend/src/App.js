@@ -30,6 +30,7 @@ import SkaterForm from "./components/SkaterForm";
 import NewAbout from './pages/NewAbout';
 import State from './pages/State';
 import National from './pages/National';
+import MessageSender from './components/MessageSender';
 
 
 // Component to use location hook within Router context
@@ -98,6 +99,14 @@ const AppRoutes = () => {
         element={
           <PageTransition>
             <Club />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/message"
+        element={
+          <PageTransition>
+            <MessageSender />
           </PageTransition>
         }
       />
