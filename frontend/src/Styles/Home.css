@@ -1,0 +1,26 @@
+.breaking-news {
+  background-color: #ff4d4d; /* Bright red background */
+  color: white; /* White text for contrast */
+  padding: 10px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 2px solid #cc0000; /* Slightly darker border for emphasis */
+}
+
+.breaking-news marquee {
+  display: block;
+  font-size: 16px;
+  font-weight: normal;
+  color: #ffffff; /* Keep marquee text white */
+}
+
+.breaking-news marquee:hover {
+  animation-play-state: paused; /* Pause animation on hover for readability */
+}
+
+.breaking-news strong {
+  color: #ffff00; /* Highlight the title in yellow */
+}
+

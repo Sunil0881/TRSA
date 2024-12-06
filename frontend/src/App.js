@@ -31,7 +31,7 @@ import NewAbout from './pages/NewAbout';
 import State from './pages/State';
 import National from './pages/National';
 import MessageSender from './components/MessageSender';
-
+import AdminAddNews from "./pages/Admin/AdminAddNews"
 
 // Component to use location hook within Router context
 const AppRoutes = () => {
@@ -330,6 +330,7 @@ const AppRoutes = () => {
           )
         }
       />
+       <Route path="/admin-add-news" element={<AdminAddNews />} />
     </Routes>
   );
 };

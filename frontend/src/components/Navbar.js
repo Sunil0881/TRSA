@@ -77,6 +77,7 @@ const Navbar = () => {
         <Link to="/events" className={linkClasses('/events')}>
           Events
         </Link>
+        
         <div
           className="relative"
           onMouseEnter={() => handleMouseEnter(setIsAchievementsDropdownOpen)}
@@ -133,6 +134,7 @@ const Navbar = () => {
         <Link to="/gallery" className={linkClasses('/gallery')}>
           Gallery
         </Link>
+        
       </nav>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
     </div>

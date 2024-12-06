@@ -2,12 +2,31 @@ import React from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
 import Footer from '../../components/Footer';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import "../../Styles/Home.css"
 
 const AdminHome = () => {
+  const [news, setNews] = useState({ title: "", description: "" });
+
+  useEffect(() => {
+    // Fetch the latest news
+    axios
+      .get("http://localhost:5000/news")
+      .then((response) => setNews(response.data.news))
+      .catch((error) => console.error(error));
+  }, []);
   return (
     <div className="flex flex-col min-h-screen">
       <AdminNavbar />
-
+      <div>
+      <div className="breaking-news">
+        <marquee>
+          <strong>{news.title || "No Breaking News"}</strong>:{" "}
+          {news.description || ""}
+        </marquee>
+      </div>
+    </div>
       <main className="flex-grow p-6">
         <div className="max-w-4xl mx-auto py-28"> 
           {/* Welcome Section */}

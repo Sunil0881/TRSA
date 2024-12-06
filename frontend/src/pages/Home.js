@@ -7,12 +7,33 @@ import Count from '../components/Count'
 import Questions from '../components/Questions'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import "../Styles/Home.css"
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Home = () => {
+  const [news, setNews] = useState({ title: "", description: "" });
+
+  useEffect(() => {
+    // Fetch the latest news
+    axios
+      .get("http://localhost:5000/news")
+      .then((response) => setNews(response.data.news))
+      .catch((error) => console.error(error));
+  }, []);
+  
   return (
 
     <div>
         <Navbar />
+        <div>
+      <div className="breaking-news">
+        <marquee>
+          <strong>{news.title || "No Breaking News"}</strong>:{" "}
+          {news.description || ""}
+        </marquee>
+      </div>
+    </div>
         <Hero />
         <div className='text-blue-800 pl-5 md:pl-20 text-lg md:text-2xl lg:pl-32 lg:text-4xl  pb-5 md:pb-10 font-semibold '>
           What We Do ?

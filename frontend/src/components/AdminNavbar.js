@@ -78,6 +78,7 @@ const AdminNavbar = () => {
         <Link to="/addimage" className={linkClasses("/addimage")}>
           Add Gallery
         </Link>
+        <Link to="/admin-add-news">Breaking News</Link>
       </nav>
       <AdminMobile isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
     </div>
