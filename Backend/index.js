@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const bodyParser = require('body-parser');
+const { sendEmail } = require("./mailservice");
 
 require('dotenv').config();
 
@@ -571,19 +572,54 @@ app.post('/api/skaterprofiles', async (req, res) => {
 });
 
 // Route to get all skater profiles
+// Route to get all skater profiles (name and email only)
 app.get('/api/skaterprofiles', async (req, res) => {
   try {
-    // Fetch all skater profiles
-    const skaterProfiles = await SkaterProfile.find();
-    
+    // Fetch all skater profiles with only name and email fields
+    const skaterProfiles = await SkaterProfile.find({}, { name: 1, email: 1 });
+
     // Respond with profiles
-    res.status(200).json(skaterProfiles);
+    res.status(200).json({
+      message: "Skater profiles fetched successfully",
+      profiles: skaterProfiles,
+    });
   } catch (error) {
+    // Log the error for debugging
+    console.error('Error fetching skater profiles:', error);
+
     // Handle errors
     res.status(500).json({ 
       message: 'Error fetching skater profiles', 
       error: error.message 
     });
+  }
+});
+
+// POST route to send messages
+app.post('/send', async (req, res) => {
+  const { selectedUsers, subject, message } = req.body; // Get data from frontend
+
+  // Loop through selected users and send emails
+  try {
+    const emailPromises = selectedUsers.map(async (email) => {
+      const htmlMessage = `
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `;
+
+      // Send the email to the selected user
+      await sendEmail(email, subject, htmlMessage, ''); // Send to individual user
+    });
+
+    // Wait for all emails to be sent
+    await Promise.all(emailPromises);
+
+    // Send response after all emails are sent
+    res.status(200).json({ message: 'Messages sent successfully!' });
+  } catch (error) {
+    console.error('Error sending emails:', error);
+    res.status(500).json({ message: 'Failed to send messages' });
   }
 });
 

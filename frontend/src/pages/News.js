@@ -7,7 +7,7 @@ const News = () => {
     <div>
         <Navbar/>
         <div>
-       
+      
         
             <NewsList/>
 
