@@ -797,6 +797,96 @@ app.delete('/api/registrations/:id', async (req, res) => {
 });
 
 
+// Breaking News Schema
+const breakingNewsSchema = new mongoose.Schema({
+  content: {
+    type: String,
+    required: true,
+    trim: true,
+    maxlength: 1000 // Optional: limit content length
+  },
+  lastUpdated: {
+    type: Date,
+    default: Date.now
+  }
+}, { 
+  // Ensure only one document can be created
+  timestamps: true 
+});
+
+// Ensure only one document exists
+breakingNewsSchema.pre('save', async function(next) {
+  if (this.isNew) {
+    const count = await this.constructor.countDocuments();
+    if (count > 0) {
+      return next(new Error('Only one breaking news content is allowed'));
+    }
+  }
+  next();
+});
+
+const BreakingNews = mongoose.model('BreakingNews', breakingNewsSchema);
+
+// Breaking News Route
+app.post('/api/breaking-news', async (req, res) => {
+  try {
+    // Remove existing breaking news
+    await BreakingNews.deleteMany({});
+
+    // Create new breaking news
+    const newBreakingNews = new BreakingNews({
+      content: req.body.content
+    });
+
+    await newBreakingNews.save();
+    res.status(201).json(newBreakingNews);
+  } catch (error) {
+    res.status(400).json({ 
+      message: 'Error creating breaking news', 
+      error: error.message 
+    });
+  }
+});
+
+// GET route for breaking news
+app.get('/api/breaking-news', async (req, res) => {
+  try {
+    const breakingNews = await BreakingNews.findOne();
+    if (!breakingNews) {
+      return res.status(404).json({ message: 'No breaking news found' });
+    }
+    res.json(breakingNews);
+  } catch (error) {
+    res.status(500).json({ 
+      message: 'Server error', 
+      error: error.message 
+    });
+  }
+});
+
+// PATCH route for breaking news
+app.patch('/api/breaking-news', async (req, res) => {
+  try {
+    const breakingNews = await BreakingNews.findOne();
+    
+    if (!breakingNews) {
+      return res.status(404).json({ message: 'No breaking news found to update' });
+    }
+
+    // Update content if provided
+    if (req.body.content) {
+      breakingNews.content = req.body.content;
+    }
+
+    await breakingNews.save();
+    res.json(breakingNews);
+  } catch (error) {
+    res.status(400).json({ 
+      message: 'Error updating breaking news', 
+      error: error.message 
+    });
+  }
+});
 
 
 
