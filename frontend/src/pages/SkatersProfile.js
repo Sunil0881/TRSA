@@ -10,7 +10,7 @@ const SkaterProfile = () => {
   useEffect(() => {
     const fetchSkaters = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/skaterprofiles');
+        const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles');
         const data = await response.json();
         
         // Access the profiles array from the response
