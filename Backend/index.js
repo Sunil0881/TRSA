@@ -575,8 +575,8 @@ app.post('/api/skaterprofiles', async (req, res) => {
 // Route to get all skater profiles (name and email only)
 app.get('/api/skaterprofiles', async (req, res) => {
   try {
-    // Fetch all skater profiles with only name and email fields
-    const skaterProfiles = await SkaterProfile.find({}, { name: 1, email: 1 });
+    // Fetch all skater profiles with all fields
+    const skaterProfiles = await SkaterProfile.find({});
 
     // Respond with profiles
     res.status(200).json({

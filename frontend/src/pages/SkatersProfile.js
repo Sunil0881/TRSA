@@ -10,18 +10,24 @@ const SkaterProfile = () => {
   useEffect(() => {
     const fetchSkaters = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles');
+        const response = await fetch('http://localhost:5000/api/skaterprofiles');
         const data = await response.json();
-        setSkaters(data);
-        setFilteredSkaters(data);
+        
+        // Access the profiles array from the response
+        const skaterProfiles = data.profiles || [];
+        
+        setSkaters(skaterProfiles);
+        setFilteredSkaters(skaterProfiles);
+        console.log("datass", skaterProfiles);
       } catch (error) {
         console.error('Error fetching skaters:', error);
+        setSkaters([]); // Set to empty array on error
+        setFilteredSkaters([]);
       }
     };
-
+  
     fetchSkaters();
   }, []);
-
   useEffect(() => {
     const results = skaters.filter((skater) =>
       Object.keys(skater).some((key) =>
