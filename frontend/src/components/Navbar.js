@@ -34,22 +34,22 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="mb-3 ">
+      <div className="mb-3">
         <img src={Recline} alt="recline" />
       </div>
       <div className="relative flex justify-between px-5 md:px-10">
-        <div className="flex">
+        <div className="flex items-center">
           <a href="/">
             <img src={logo} width={100} height={100} alt="logo" />
           </a>
           <div>
             <a href="/">
-              <h1 className="text-black ml-24 mt-3 text-md md:text-3xl lg:text-5xl font-bold">
+              <h1 className="text-black ml-4 md:ml-24 mt-3 text-md md:text-3xl lg:text-5xl font-bold">
                 Thiruvallur District Roller Skating Association.
               </h1>
             </a>
             <a href="/">
-              <h1 className="text-black ml-96 text-md md:text-3xl lg:text-xl font-semibold">
+              <h1 className="text-black ml-4 md:ml-96 text-md md:text-3xl lg:text-xl font-semibold">
                 (Affiliated to Tamilnadu Roller Skating Association)
               </h1>
             </a>
@@ -64,79 +64,92 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <nav className="hidden items-center md:flex md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
-        <Link to="/newabout" className={linkClasses('/newabout')}>
-          About
-        </Link>
-        <Link to="/team" className={linkClasses('/team')}>
-          Association
-        </Link>
-        <Link to="/News" className={linkClasses('/News')}>
-          News
-        </Link>
-        <Link to="/events" className={linkClasses('/events')}>
-          Events
-        </Link>
-        
+      {/* Desktop Menu */}
+      <nav className="hidden md:flex items-center md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
+        <Link to="/newabout" className={linkClasses('/newabout')}>About</Link>
+        <Link to="/team" className={linkClasses('/team')}>Association</Link>
+        <Link to="/News" className={linkClasses('/News')}>News</Link>
+        <Link to="/events" className={linkClasses('/events')}>Events</Link>
+
         <div
           className="relative"
           onMouseEnter={() => handleMouseEnter(setIsAchievementsDropdownOpen)}
           onMouseLeave={() => handleMouseLeave(setIsAchievementsDropdownOpen)}
         >
-          <Link to="/achievements" className={linkClasses('/achievements')}>
-            Achievements
-          </Link>
+          <Link to="/achievements" className={linkClasses('/achievements')}>Achievements</Link>
           {isAchievementsDropdownOpen && (
             <div className="absolute left-0 mt-2 w-48 z-20 bg-white text-blue-800 shadow-lg rounded">
-              <Link
-                to="/national"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
+              <Link to="/national" className="block px-4 py-2 hover:bg-blue-800 hover:text-white">
                 National
               </Link>
-              <Link
-                to="/state"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
+              <Link to="/state" className="block px-4 py-2 hover:bg-blue-800 hover:text-white">
                 State 
               </Link>
             </div>
           )}
         </div>
-        <Link to="/club" className={linkClasses('/club')}>
-          Associative Clubs
-        </Link>
+
+        <Link to="/club" className={linkClasses('/club')}>Associative Clubs</Link>
+
         <div
           className="relative"
           onMouseEnter={() => handleMouseEnter(setIsSkatersDropdownOpen)}
           onMouseLeave={() => handleMouseLeave(setIsSkatersDropdownOpen)}
         >
-          <Link to="/skatersprofile" className={linkClasses('/skatersprofile')}>
-            Skaters Profile
-          </Link>
+          <Link to="/skatersprofile" className={linkClasses('/skatersprofile')}>Skaters Profile</Link>
           {isSkatersDropdownOpen && (
             <div className="absolute left-0 mt-2 w-48 bg-white z-20 text-blue-800 shadow-lg rounded">
-              <Link
-                to="/skaterform"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
+              <Link to="/skaterform" className="block px-4 py-2 hover:bg-blue-800 hover:text-white">
                 Registration
               </Link>
-              <Link
-                to="/skatersprofile"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
+              <Link to="/skatersprofile" className="block px-4 py-2 hover:bg-blue-800 hover:text-white">
                 Profile
               </Link>
             </div>
           )}
         </div>
-        <Link to="/gallery" className={linkClasses('/gallery')}>
-          Gallery
-        </Link>
-        
+
+        <Link to="/gallery" className={linkClasses('/gallery')}>Gallery</Link>
       </nav>
+
+      {/* Mobile Menu */}
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
+
+      {/* Mobile Dropdowns */}
+      <nav className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-blue-800 text-white`}>
+        <Link to="/newabout" className={linkClasses('/newabout')}>About</Link>
+        <Link to="/team" className={linkClasses('/team')}>Association</Link>
+        <Link to="/News" className={linkClasses('/News')}>News</Link>
+        <Link to="/events" className={linkClasses('/events')}>Events</Link>
+
+        <div className="relative">
+          <Link to="/achievements" className={linkClasses('/achievements')}>Achievements</Link>
+          <div className={isAchievementsDropdownOpen ? 'block' : 'hidden'}>
+            <Link to="/national" className="block px-4 py-2 hover:bg-blue-800 hover:text-white">
+              National
+            </Link>
+            <Link to="/state" className="block px-4 py-2 hover:bg-blue-800 hover:text-white">
+              State 
+            </Link>
+          </div>
+        </div>
+
+        <Link to="/club" className={linkClasses('/club')}>Associative Clubs</Link>
+
+        <div className="relative">
+          <Link to="/skatersprofile" className={linkClasses('/skatersprofile')}>Skaters Profile</Link>
+          <div className={isSkatersDropdownOpen ? 'block' : 'hidden'}>
+            <Link to="/skaterform" className="block px-4 py-2 hover:bg-blue-800 hover:text-white">
+              Registration
+            </Link>
+            <Link to="/skatersprofile" className="block px-4 py-2 hover:bg-blue-800 hover:text-white">
+              Profile
+            </Link>
+          </div>
+        </div>
+
+        <Link to="/gallery" className={linkClasses('/gallery')}>Gallery</Link>
+      </nav>
     </div>
   );
 };

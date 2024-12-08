@@ -10,23 +10,28 @@ const AdminHome = () => {
   const [news, setNews] = useState({ title: "", description: "" });
 
   useEffect(() => {
-    // Fetch the latest news
     axios
-      .get("http://localhost:5000/news")
-      .then((response) => setNews(response.data.news))
-      .catch((error) => console.error(error));
+      .get("https://trsabackend.vercel.app/api/news")
+      .then((response) => {
+        const latestNews = response.data.news;
+        setNews({
+          title: latestNews?.title || "No Breaking News",
+          description: latestNews?.description || "",
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching news:", error);
+        setNews({ title: "No Breaking News", description: "" });
+      });
   }, []);
   return (
     <div className="flex flex-col min-h-screen">
       <AdminNavbar />
-      <div>
       <div className="breaking-news">
-        <marquee>
-          <strong>{news.title || "No Breaking News"}</strong>:{" "}
-          {news.description || ""}
-        </marquee>
-      </div>
-    </div>
+  <marquee>
+    <strong>{news.title}</strong>: {news.description}
+  </marquee>
+</div>
       <main className="flex-grow p-6">
         <div className="max-w-4xl mx-auto py-28"> 
           {/* Welcome Section */}
