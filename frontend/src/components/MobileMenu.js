@@ -46,6 +46,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
          <Link to="/gallery"  className="text-black text-xl" onClick={onClose}>
         Gallery
         </Link>
+        
        
       </nav>
     </div>

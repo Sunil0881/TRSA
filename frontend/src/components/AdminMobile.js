@@ -31,14 +31,17 @@ const AdminMobile = ({ isOpen, onClose }) => {
         </button>
       </div>
       <nav className="flex flex-col items-center mt-8 space-y-4">
-      <Link to="/admin" className="text-black text-xl" onClick={onClose}>
-          Home
+      <Link to="/admin/adminabout" className="text-black text-xl" onClick={onClose}>
+          About
         </Link>
 
         <Link to="/achievementspost" className="text-black text-xl" onClick={onClose}>
         AchievementsPost
         </Link>
         
+        <Link to="/addnews"  className="text-black text-xl" onClick={onClose}>
+        Add News
+        </Link>
        
         <Link to="/addupdates"  className="text-black text-xl" onClick={onClose}>
         AddUpdates
@@ -51,15 +54,19 @@ const AdminMobile = ({ isOpen, onClose }) => {
         <Link to="/addskaters" className="text-black text-xl" onClick={onClose}>
        Add Skaters
         </Link>
-
-        <Link to="/registrations" className="text-black text-xl" onClick={onClose}>
-        Registrations
+        <Link to="/message" className="text-black text-xl" onClick={onClose}>
+         Message
         </Link>
 
-        <Link to="/addimage"  className="text-black text-xl" onClick={onClose}>
+        <Link to="/addimage" className="text-black text-xl" onClick={onClose}>
         Add Gallery
         </Link>
 
+        <Link to="/admin-add-news"  className="text-black text-xl" onClick={onClose}>
+        Breaking News
+       </Link>
+            
+  
         <button 
             onClick={handleLogout} 
             className="text-black text-xl"

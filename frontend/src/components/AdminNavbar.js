@@ -58,7 +58,8 @@ const AdminNavbar = () => {
       
       {/* Desktop Navbar Links */}
       <nav className="hidden md:flex items-center md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
-        <Link to="/admin" className={linkClasses("/admin")}>Home</Link>
+        {/* <Link to="/admin" className={linkClasses("/admin")}>Home</Link> */}
+        <Link to="/admin/adminabout" className={linkClasses("/admin/adminabout")}>About</Link>
         <Link to="/achievementspost" className={linkClasses("/achievementspost")}>AchievementsPost</Link>
         <Link to="/addnews" className={linkClasses("/addnews")}>Add News</Link>
         <Link to="/addupdates" className={linkClasses("/addupdates")}>AddUpdates</Link>
@@ -70,8 +71,9 @@ const AdminNavbar = () => {
       </nav>
       
       {/* Mobile Menu */}
+      {/*already have seperate component as adminmobile  */}
       <nav className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-blue-800 text-white`}>
-        <Link to="/admin" className={linkClasses("/admin")}>Home</Link>
+        <Link to="/admin/adminabout" className={linkClasses("/admin/adminabout")}>About</Link>
         <Link to="/achievementspost" className={linkClasses("/achievementspost")}>AchievementsPost</Link>
         <Link to="/addnews" className={linkClasses("/addnews")}>Add News</Link>
         <Link to="/addupdates" className={linkClasses("/addupdates")}>AddUpdates</Link>

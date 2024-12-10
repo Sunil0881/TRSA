@@ -32,7 +32,7 @@ import State from './pages/State';
 import National from './pages/National';
 import MessageSender from './components/MessageSender';
 import AdminAddNews from "./pages/Admin/AdminAddNews"
-
+import AdminAbout from "./pages/Admin/AdminAbout";
 // Component to use location hook within Router context
 const AppRoutes = () => {
   const location = useLocation();
@@ -331,6 +331,21 @@ const AppRoutes = () => {
         }
       />
        <Route path="/admin-add-news" element={<AdminAddNews />} />
+       <Route
+        path="/admin/adminabout"
+        element={
+          localStorage.getItem('authenticated') === 'true' ? (
+            <PageTransition>
+           <AdminAbout />
+           </PageTransition>
+          ):(
+            <PageTransition>
+              <Login />
+            </PageTransition>
+
+          )
+        }
+      />
     </Routes>
   );
 };
