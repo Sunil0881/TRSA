@@ -16,11 +16,13 @@ const AddSkaters = () => {
         const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles');
         const data = await response.json();
         console.log("Fetched skater data:", data); // Add this line
-        const skatersWithAge = data.map(skater => ({
-          ...skater,
-          age: calculateAge(skater.dob),
-          ageCategory: getAgeCategory(calculateAge(skater.dob))
-        }));
+        const skatersWithAge = Array.isArray(data)
+          ? data.map((skater) => ({
+              ...skater,
+              age: calculateAge(skater.dob),
+              ageCategory: getAgeCategory(calculateAge(skater.dob)),
+            }))
+          : [];
         setSkaters(skatersWithAge);
         setFilteredSkaters(skatersWithAge);
       } catch (error) {

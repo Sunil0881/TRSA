@@ -571,7 +571,6 @@ app.post('/api/skaterprofiles', async (req, res) => {
   }
 });
 
-// Route to get all skater profiles
 // Route to get all skater profiles (name and email only)
 app.get('/api/skaterprofiles', async (req, res) => {
   try {
