@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from "../components/Footer";
 import { FaSearch, FaUser, FaVenusMars, FaSkating, FaBuilding } from 'react-icons/fa';
 
 const SkaterProfile = () => {
@@ -63,7 +64,10 @@ const SkaterProfile = () => {
         {/* Mobile view: Cards */}
         <div className="md:hidden grid grid-cols-1 gap-6">
           {filteredSkaters.map((skater, index) => (
-            <div key={skater._id} className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div
+              key={skater._id}
+              className="bg-white rounded-lg shadow-md overflow-hidden"
+            >
               <div className="p-4">
                 <div className="flex items-center mb-4">
                   <img
@@ -72,7 +76,9 @@ const SkaterProfile = () => {
                     className="h-16 w-16 object-cover rounded-full mr-4"
                   />
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-800">{skater.name}</h2>
+                    <h2 className="text-xl font-semibold text-gray-800">
+                      {skater.name}
+                    </h2>
                     <p className="text-sm text-gray-600">#{index + 1}</p>
                   </div>
                 </div>
@@ -100,17 +106,32 @@ const SkaterProfile = () => {
           <table className="w-full bg-white shadow-lg rounded-lg overflow-hidden">
             <thead className="bg-gray-200">
               <tr>
-                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">S.no</th>
-                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Profile</th>
-                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Name</th>
-                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Gender</th>
-                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Event Category</th>
-                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">Representative Club</th>
+                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">
+                  S.no
+                </th>
+                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">
+                  Profile
+                </th>
+                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">
+                  Name
+                </th>
+                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">
+                  Gender
+                </th>
+                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">
+                  Event Category
+                </th>
+                <th className="py-3 px-6 text-left text-gray-600 font-semibold uppercase">
+                  Representative Club
+                </th>
               </tr>
             </thead>
             <tbody>
               {filteredSkaters.map((skater, index) => (
-                <tr key={skater._id} className="border-b border-gray-200 hover:bg-gray-100 transition duration-150">
+                <tr
+                  key={skater._id}
+                  className="border-b border-gray-200 hover:bg-gray-100 transition duration-150"
+                >
                   <td className="py-4 px-6 text-gray-800">{index + 1}</td>
                   <td className="py-4 px-6">
                     <img
@@ -119,7 +140,9 @@ const SkaterProfile = () => {
                       className="h-12 w-12 object-cover rounded-full"
                     />
                   </td>
-                  <td className="py-4 px-6 text-gray-800 font-medium">{skater.name}</td>
+                  <td className="py-4 px-6 text-gray-800 font-medium">
+                    {skater.name}
+                  </td>
                   <td className="py-4 px-6 text-gray-600">
                     <div className="flex items-center">
                       <FaVenusMars className="mr-2 text-blue-500" />
@@ -144,6 +167,7 @@ const SkaterProfile = () => {
           </table>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

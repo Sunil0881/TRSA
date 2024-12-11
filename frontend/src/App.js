@@ -33,6 +33,9 @@ import National from './pages/National';
 import MessageSender from './components/MessageSender';
 import AdminAddNews from "./pages/Admin/AdminAddNews"
 import AdminAbout from "./pages/Admin/AdminAbout";
+import International from './pages/International';
+import District from './pages/District';
+
 // Component to use location hook within Router context
 const AppRoutes = () => {
   const location = useLocation();
@@ -55,13 +58,14 @@ const AppRoutes = () => {
           </PageTransition>
         }
       />
-       <Route 
-         path="/clubs/:stateName" 
-         element={
+      <Route
+        path="/clubs/:stateName"
+        element={
           <PageTransition>
             <ClubDetail />
-            </PageTransition>
-          } />
+          </PageTransition>
+        }
+      />
       <Route
         path="/about"
         element={
@@ -127,6 +131,22 @@ const AppRoutes = () => {
         }
       />
       <Route
+        path="/international"
+        element={
+          <PageTransition>
+            <International />
+          </PageTransition>
+        }
+      />
+      <Route
+        path="/district"
+        element={
+          <PageTransition>
+            <District />
+          </PageTransition>
+        }
+      />
+      <Route
         path="/events/:id"
         element={
           <PageTransition>
@@ -174,7 +194,7 @@ const AppRoutes = () => {
           </PageTransition>
         }
       />
-       <Route
+      <Route
         path="/newabout"
         element={
           <PageTransition>
@@ -183,16 +203,17 @@ const AppRoutes = () => {
         }
       />
       <Route
-      path ="/news"
-      element={
-      <PageTransition>
-        <News/>
-      </PageTransition>}
+        path="/news"
+        element={
+          <PageTransition>
+            <News />
+          </PageTransition>
+        }
       />
       <Route
         path="/admin"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <AdminHome />
             </PageTransition>
@@ -206,7 +227,7 @@ const AppRoutes = () => {
       <Route
         path="/achievementspost"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <AchievementsPost />
             </PageTransition>
@@ -220,7 +241,7 @@ const AppRoutes = () => {
       <Route
         path="/addupdates"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <AddUpdates />
             </PageTransition>
@@ -234,7 +255,7 @@ const AppRoutes = () => {
       <Route
         path="/addevents"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <AddEvents />
             </PageTransition>
@@ -248,7 +269,7 @@ const AppRoutes = () => {
       <Route
         path="/addskaters"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <AddSkaters />
             </PageTransition>
@@ -262,7 +283,7 @@ const AppRoutes = () => {
       <Route
         path="/addimage"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <AddImages />
             </PageTransition>
@@ -273,25 +294,25 @@ const AppRoutes = () => {
           )
         }
       />
-      < Route 
-        path ='/addnews'
+      <Route
+        path="/addnews"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <AddNews />
             </PageTransition>
-            ) : (
-              <PageTransition>
-                <Login />
-              </PageTransition>
-              )
-              }
-              />
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
 
-           <Route
+      <Route
         path="/deletenews"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <DeleteNews />
             </PageTransition>
@@ -305,7 +326,7 @@ const AppRoutes = () => {
       <Route
         path="/deleteachi"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <DeleteAchi />
             </PageTransition>
@@ -319,7 +340,7 @@ const AppRoutes = () => {
       <Route
         path="/registrations"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
               <RegistrationList />
             </PageTransition>
@@ -330,19 +351,18 @@ const AppRoutes = () => {
           )
         }
       />
-       <Route path="/admin-add-news" element={<AdminAddNews />} />
-       <Route
+      <Route path="/admin-add-news" element={<AdminAddNews />} />
+      <Route
         path="/admin/adminabout"
         element={
-          localStorage.getItem('authenticated') === 'true' ? (
+          localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
-           <AdminAbout />
-           </PageTransition>
-          ):(
+              <AdminAbout />
+            </PageTransition>
+          ) : (
             <PageTransition>
               <Login />
             </PageTransition>
-
           )
         }
       />

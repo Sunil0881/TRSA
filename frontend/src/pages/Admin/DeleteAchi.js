@@ -103,96 +103,125 @@ const DeleteAchi = () => {
     };
 
     return (
-        <div className="container mx-auto lg:px-5 lg:pl-10">
-            {/* Filter Button */}
-            <div className="flex justify-end mb-4 pt-10 lg:mr-20">
-                <button
-                    onClick={toggleFilters}
-                    className="px-4 py-2 bg-blue-700 text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
-                >
-                    {showFilters ? 'Hide Filters' : 'Show Filters'}
-                </button>
-            </div>
-
-            {/* Filters Section */}
-            {showFilters && (
-                <div className="flex flex-col sm:flex-row gap-6 mb-6 lg:ml-24">
-                    <div className="w-full sm:w-1/2">
-                        <label htmlFor="year" className="block text-base font-medium text-gray-800 mb-2">Year</label>
-                        <select
-                            id="year"
-                            value={selectedYear}
-                            onChange={handleYearChange}
-                            className="w-full max-w-xs border border-gray-300 rounded-lg p-2 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
-                        >
-                            <option value="">Select Year</option>
-                            {yearRange.map((year) => (
-                                <option key={year} value={year}>{year}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Level Checkboxes */}
-                    <div className="w-full sm:w-1/2">
-                        <p className="block text-base font-medium text-gray-800 mb-2">Level</p>
-                        <div className="flex flex-col space-y-2">
-                            <label className="flex items-center">
-                                <input
-                                    type="checkbox"
-                                    value="state"
-                                    checked={selectedLevels.includes('state')}
-                                    onChange={handleLevelChange}
-                                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
-                                />
-                                <span className="ml-2 text-gray-800">State</span>
-                            </label>
-                            <label className="flex items-center">
-                                <input
-                                    type="checkbox"
-                                    value="national"
-                                    checked={selectedLevels.includes('national')}
-                                    onChange={handleLevelChange}
-                                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
-                                />
-                                <span className="ml-2 text-gray-800">National</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Main Content: Achievements List */}
-            <div className="w-full lg:max-h-screen lg:overflow-y-auto lg:pr-4 custom-scrollbar">
-                {loading ? (
-                    <div className="loading">
-                        <div className="spinner"></div>
-                    </div>
-                ) : error ? (
-                    <p className="text-red-500 text-center">{error}</p>
-                ) : filteredAchievements.length > 0 ? (
-                    filteredAchievements.map((achievement) => (
-                        <div key={achievement._id} className="relative mb-4">
-                            <AchievementsCard
-                                id={achievement._id}
-                                image={achievement.image}
-                                title={achievement.title}
-                                description={achievement.description}
-                                year={achievement.year}
-                                level={achievement.level}
-                            />
-                            <button
-                                onClick={() => handleDelete(achievement._id)}
-                                className="absolute top-0 right-0 mt-2 mr-2 px-3 py-1 bg-red-600 text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300"
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    ))
-                ) : (
-                    <p>No achievements found</p>
-                )}
-            </div>
+      <div className="container mx-auto lg:px-5 lg:pl-10">
+        {/* Filter Button */}
+        <div className="flex justify-end mb-4 pt-10 lg:mr-20">
+          <button
+            onClick={toggleFilters}
+            className="px-4 py-2 bg-blue-700 text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          >
+            {showFilters ? "Hide Filters" : "Show Filters"}
+          </button>
         </div>
+
+        {/* Filters Section */}
+        {showFilters && (
+          <div className="flex flex-col sm:flex-row gap-6 mb-6 lg:ml-24">
+            <div className="w-full sm:w-1/2">
+              <label
+                htmlFor="year"
+                className="block text-base font-medium text-gray-800 mb-2"
+              >
+                Year
+              </label>
+              <select
+                id="year"
+                value={selectedYear}
+                onChange={handleYearChange}
+                className="w-full max-w-xs border border-gray-300 rounded-lg p-2 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              >
+                <option value="">Select Year</option>
+                {yearRange.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Level Checkboxes */}
+            <div className="w-full sm:w-1/2">
+              <p className="block text-base font-medium text-gray-800 mb-2">
+                Level
+              </p>
+              <div className="flex flex-col space-y-2">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    value="state"
+                    checked={selectedLevels.includes("state")}
+                    onChange={handleLevelChange}
+                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
+                  />
+                  <span className="ml-2 text-gray-800">State</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    value="national"
+                    checked={selectedLevels.includes("national")}
+                    onChange={handleLevelChange}
+                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
+                  />
+                  <span className="ml-2 text-gray-800">National</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    value="district"
+                    checked={selectedLevels.includes("district")}
+                    onChange={handleLevelChange}
+                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
+                  />
+                  <span className="ml-2 text-gray-800">District</span>
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    value="international"
+                    checked={selectedLevels.includes("international")}
+                    onChange={handleLevelChange}
+                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded"
+                  />
+                  <span className="ml-2 text-gray-800">Interational</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Main Content: Achievements List */}
+        <div className="w-full lg:max-h-screen lg:overflow-y-auto lg:pr-4 custom-scrollbar">
+          {loading ? (
+            <div className="loading">
+              <div className="spinner"></div>
+            </div>
+          ) : error ? (
+            <p className="text-red-500 text-center">{error}</p>
+          ) : filteredAchievements.length > 0 ? (
+            filteredAchievements.map((achievement) => (
+              <div key={achievement._id} className="relative mb-4">
+                <AchievementsCard
+                  id={achievement._id}
+                  image={achievement.image}
+                  title={achievement.title}
+                  description={achievement.description}
+                  year={achievement.year}
+                  level={achievement.level}
+                />
+                <button
+                  onClick={() => handleDelete(achievement._id)}
+                  className="absolute top-0 right-0 mt-2 mr-2 px-3 py-1 bg-red-600 text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300"
+                >
+                  Delete
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>No achievements found</p>
+          )}
+        </div>
+      </div>
     );
 };
 

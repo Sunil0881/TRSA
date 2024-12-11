@@ -86,7 +86,7 @@ const AchievementsPost = () => {
               <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
               <div
                 className={`absolute left-1 top-1 w-6 h-6 rounded-full transition-transform transform ${
-                  toggle ? 'translate-x-full bg-red-500' : 'bg-green-500'
+                  toggle ? "translate-x-full bg-red-500" : "bg-green-500"
                 }`}
               >
                 {toggle ? (
@@ -126,7 +126,7 @@ const AchievementsPost = () => {
         </div>
 
         <h1 className="text-2xl md:text-4xl font-semibold text-center pb-10 text-blue-800">
-          {toggle ? 'Delete Achievement' : 'Post Your Achievement'}
+          {toggle ? "Delete Achievement" : "Post Your Achievement"}
         </h1>
 
         <div className="bg-white rounded-3xl shadow-2xl shadow-slate-500">
@@ -142,7 +142,11 @@ const AchievementsPost = () => {
                   onChange={(e) =>
                     setTitle(e.target.value.slice(0, maxTitleLength))
                   }
-                  style={{ display: 'block', marginBottom: '10px', padding: '10px' }}
+                  style={{
+                    display: "block",
+                    marginBottom: "10px",
+                    padding: "10px",
+                  }}
                   maxLength={maxTitleLength}
                 />
                 <p className="text-sm text-gray-500 text-right">
@@ -154,20 +158,20 @@ const AchievementsPost = () => {
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload}
-                  style={{ display: 'block', marginBottom: '10px' }}
+                  style={{ display: "block", marginBottom: "10px" }}
                 />
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload2}
-                  style={{ display: 'block', marginBottom: '10px' }}
+                  style={{ display: "block", marginBottom: "10px" }}
                 />
               </div>
               {image && (
                 <img
                   src={image}
                   alt="Uploaded"
-                  style={{ maxWidth: '100%', marginBottom: '10px' }}
+                  style={{ maxWidth: "100%", marginBottom: "10px" }}
                 />
               )}
               <div className="px-3 lg:px-7">
@@ -176,10 +180,12 @@ const AchievementsPost = () => {
                   placeholder="Description"
                   value={description}
                   onChange={(e) =>
-                    setDescription(e.target.value.slice(0, maxDescriptionLength))
+                    setDescription(
+                      e.target.value.slice(0, maxDescriptionLength)
+                    )
                   }
                   rows={4}
-                  style={{ marginBottom: '10px' }}
+                  style={{ marginBottom: "10px" }}
                   maxLength={maxDescriptionLength}
                 />
                 <p className="text-sm text-gray-500 text-right">
@@ -193,26 +199,28 @@ const AchievementsPost = () => {
                   placeholder="Year"
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
-                  style={{ marginBottom: '10px' }}
+                  style={{ marginBottom: "10px" }}
                 />
                 <select
                   className="w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
-                  style={{ marginBottom: '10px' }}
+                  style={{ marginBottom: "10px" }}
                 >
                   <option value="" disabled>
                     Select Level
                   </option>
-                  <option value="State">State</option>
+                  <option value="International">Interational</option>
                   <option value="National">National</option>
+                  <option value="State">State</option>
+                  <option value="District">District</option>
                 </select>
               </div>
               <div className="flex justify-center pt-10 pb-5">
                 <button
                   className="bg-blue-800 text-white py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
                   onClick={handleSaveAchievement}
-                  style={{ marginTop: '10px', padding: '10px' }}
+                  style={{ marginTop: "10px", padding: "10px" }}
                 >
                   Save Achievement
                 </button>
@@ -220,7 +228,7 @@ const AchievementsPost = () => {
             </div>
           ) : (
             // Delete Achievement Component
-            <DeleteAchi/>
+            <DeleteAchi />
           )}
         </div>
       </div>

@@ -47,7 +47,13 @@ const Navbar = () => {
       <div className="relative flex justify-between px-3 md:px-10">
         <div className="flex gap-10 p-2 w-full justify-end items-center ml-16">
           <a href="/">
-            <img src={logo} width={100} height={100} alt="logo" className="mr-5" />
+            <img
+              src={logo}
+              width={100}
+              height={100}
+              alt="logo"
+              className="mr-5"
+            />
           </a>
           <div>
             <a href="/">
@@ -108,6 +114,12 @@ const Navbar = () => {
           {isAchievementsDropdownOpen && (
             <div className="absolute left-0 mt-2 w-48 z-20 bg-white text-blue-800 shadow-lg rounded">
               <Link
+                to="/international"
+                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
+              >
+                International
+              </Link>
+              <Link
                 to="/national"
                 className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
               >
@@ -118,6 +130,12 @@ const Navbar = () => {
                 className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
               >
                 State
+              </Link>
+              <Link
+                to="/district"
+                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
+              >
+                District
               </Link>
             </div>
           )}
