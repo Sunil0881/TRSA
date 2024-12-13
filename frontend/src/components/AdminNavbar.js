@@ -85,7 +85,7 @@ const AdminNavbar = () => {
       </div>
 
       {/* Desktop Navbar Links */}
-      <nav className="hidden md:flex items-center md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
+      <nav className="hidden md:flex items-center md:justify-center font-semibold lg:gap-9 md:gap-2 bg-blue-800 text-white">
         {/* <Link to="/admin" className={linkClasses("/admin")}>Home</Link> */}
         <Link
           to="/admin/adminabout"

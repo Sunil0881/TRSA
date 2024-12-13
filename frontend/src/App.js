@@ -35,6 +35,7 @@ import AdminAddNews from "./pages/Admin/AdminAddNews"
 import AdminAbout from "./pages/Admin/AdminAbout";
 import International from './pages/International';
 import District from './pages/District';
+import ContactUs from './pages/ContactUs';
 
 // Component to use location hook within Router context
 const AppRoutes = () => {
@@ -364,6 +365,15 @@ const AppRoutes = () => {
               <Login />
             </PageTransition>
           )
+        }
+      />
+
+<Route
+        path="/contactus"
+        element={
+          <PageTransition>
+            <ContactUs />
+          </PageTransition>
         }
       />
     </Routes>

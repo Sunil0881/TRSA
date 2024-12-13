@@ -82,7 +82,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Menu */}
-      <nav className="hidden md:flex items-center justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
+      <nav className="hidden md:flex items-center justify-center font-semibold lg:gap-9 md:gap-2 bg-blue-800 text-white">
         <Link to="/newabout" className={linkClasses("/newabout")}>
           About
         </Link>
@@ -167,6 +167,10 @@ const Navbar = () => {
         <Link to="/gallery" className={linkClasses("/gallery")}>
           Gallery
         </Link>
+        <Link to="/contactus" className={linkClasses("/gallery")}>
+          Contact Us
+        </Link>
+
       </nav>
 
       {/* Mobile Menu */}
@@ -237,6 +241,9 @@ const Navbar = () => {
         <Link to="/gallery" className={linkClasses("/gallery")}>
           Gallery
         </Link>
+
+        
+
       </nav>
     </div>
   );

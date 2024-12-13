@@ -53,6 +53,9 @@ const MobileMenu = ({ isOpen, onClose }) => {
          <Link to="/gallery"  className="text-black text-xl" onClick={onClose}>
         Gallery
         </Link>
+         <Link to="/contactus"  className="text-black text-xl" onClick={onClose}>
+         Contact US
+        </Link>
         
        
       </nav>
