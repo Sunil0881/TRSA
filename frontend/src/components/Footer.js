@@ -53,7 +53,7 @@ const Footer = () => {
             </div> */}
         </div>
         <div className='md:flex md:justify-between pt-10 text-center lg:px-40 lg:pt-10 md:items-center md:px-10 md:pt-8' >
-            <p className='text-white '>2024, All rights reserved</p>
+            <p className='text-white '>2024,TRSA All rights reserved</p>
             <div className='flex gap-3 pb-3 pt-3 md:pt-0 justify-center'>
                 <img src={insta} alt='insta' className='h-10'></img>
                 <img src={twitter} alt='twitter' className='h-10'></img>

@@ -17,7 +17,7 @@ import rajasekar from "../assets/rajasekar.jpg";
 import soundar from "../assets/soundar.jpg";
 import anbu from "../assets/anbu.jpg";
 import Footer from "./Footer";
-
+import Rajesh from "../assets/Rajesh.jpg"
 const Team = () => {
   const teamMembers = [
     {
@@ -48,7 +48,7 @@ const Team = () => {
       },
     },
     {
-      image: Kumaran,
+      image: Rajesh,
       name: "Mr. Rajesh K",
       designation: "Vice President",
       socialLinks: {

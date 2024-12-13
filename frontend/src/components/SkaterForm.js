@@ -45,10 +45,24 @@ const SkaterForm = () => {
   };
 
   const clubs = [
+    "ISSA - KNPM",
+    "Rockers Speed Skating Academy",
+    "Sathya Speed Skating Academy",
+    "U Can Do Skating Academy",
+    "SNS Skaters Academy",
+    "Thaisha Roller Skating Academy",
+    "Parthi Skating Academy",
+    "Spunk",
+    "Anna Nagar Roller Skating Academy",
+    "Champions Roller Skating Academy",
+    "ES Skating Academy",
+    "New India Club",
+    "Success Sports Academy",
     'RSFI Delhi', 
     'Mumbai Skating Club', 
     'Bangalore Roller Sports', 
-    'Chennai Skaters Association'
+    'Chennai Skaters Association',
+    "Others"
   ];
 
   const handleSaveSkater = async () => {
@@ -244,6 +258,15 @@ const SkaterForm = () => {
                 <option value="Figure Skating">Figure Skating</option>
                 <option value="Artistic Skating">Artistic Skating</option>
                 <option value="Inline Hockey">Inline Hockey</option>
+                <option value="Speed Quad">Speed Quad</option>
+                <option value="Speed Inline">Speed Inline</option>
+                <option value="Roller Hockey">Roller Hockey</option>
+                <option value="Inline Freestyle">Inline Freestyle</option>
+                <option value="Alpine Downhill">Alpine Downhill</option>
+                <option value="Roller Derby">Roller Derby</option>
+                <option value="Roller Freestyle">Roller Freestyle</option>
+                <option value="Roller Scooter">Roller Scooter</option>
+                <option value="Skate Boarding">Skate Boarding</option>
               </select>
             </div>
   

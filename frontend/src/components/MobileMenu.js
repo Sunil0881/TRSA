@@ -19,11 +19,11 @@ const MobileMenu = ({ isOpen, onClose }) => {
         </button>
       </div>
       <nav className="flex flex-col items-center mt-8 space-y-4">
-        <Link to="/" className="text-black text-xl" onClick={onClose}>
-          Home
+        <Link to="/newabout" className="text-black text-xl" onClick={onClose}>
+          About
          </Link>
-        <Link to="/events" className="text-black text-xl" onClick={onClose}>
-          Events
+        <Link to="/team" className="text-black text-xl" onClick={onClose}>
+          Association
          </Link>
         
        
@@ -31,16 +31,23 @@ const MobileMenu = ({ isOpen, onClose }) => {
           Associative Club
          </Link>
 
+         <Link to="/News" className="text-black text-xl" onClick={onClose}>
+          News
+         </Link>
+         <Link to="/events" className="text-black text-xl" onClick={onClose}>
+          Events
+         </Link>
+
         <Link to="/achievements" className="text-black text-xl" onClick={onClose}>
           Achievements
          </Link>
 
-        <Link to="/skatersprofile" className="text-black text-xl" onClick={onClose}>
-          Skaters Profile
+         <Link to="/club" className="text-black text-xl" onClick={onClose}>
+          Associative Clubs
          </Link>
 
-        <Link to="/membership" className="text-black text-xl" onClick={onClose}>
-          Membership
+        <Link to="/skatersprofile" className="text-black text-xl" onClick={onClose}>
+          Skaters Profile
          </Link>
 
          <Link to="/gallery"  className="text-black text-xl" onClick={onClose}>
