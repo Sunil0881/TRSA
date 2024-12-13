@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import React from 'react';
-import logo from '../assets/newlogo.png';
-import Recline from '../assets/recline.png';
+import { useState } from "react";
+import React from "react";
+import logo from "../assets/newlogo.png";
+import Recline from "../assets/recline.png";
+import MobileMenu from "./MobileMenu";
+import { Link, useLocation } from "react-router-dom";
 import nav1 from "../assets/nav1.png";
 import nav2 from "../assets/nav2.png";
 import nav3 from "../assets/nav3.png";
@@ -9,12 +11,11 @@ import nav4 from "../assets/nav4.png";
 import nav5 from "../assets/nav5.png";
 import nav6 from "../assets/nav6.png";
 import nav7 from "../assets/nav7.png";
-import MobileMenu from './MobileMenu';
-import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAchievementsDropdownOpen, setIsAchievementsDropdownOpen] = useState(false);
+  const [isAchievementsDropdownOpen, setIsAchievementsDropdownOpen] =
+    useState(false);
   const [isSkatersDropdownOpen, setIsSkatersDropdownOpen] = useState(false);
   const location = useLocation();
   let dropdownTimeout;
@@ -34,62 +35,54 @@ const Navbar = () => {
     }, 200); // Delay in milliseconds
   };
 
-  const linkClasses = (path) =>
-    `hover:scale-95 md:text-lg lg:text-xl md:my-4 lg:my-5 md:px-2 lg:px-4 py-2 rounded ${
-      location.pathname === path ? 'bg-white text-blue-800' : ''
-    }`;
+  const linkClasses = (path) => `
+    hover:scale-95 md:text-lg lg:text-xl md:my-4 lg:my-5 md:px-2 lg:px-4 py-2 rounded ${
+      location.pathname === path ? "bg-white text-blue-800" : ""
+    }
+  `;
 
   return (
     <div>
       <div className="">
-        <img src={Recline} alt="recline" />
+        <img src={Recline} alt="recline" className="hidden md:block" />
       </div>
-      <div className="relative flex justify-between px-3 md:px-10">
-        <div className="flex gap-10 p-2 w-full justify-end items-center ml-16">
-          <a href="/">
-            <img
-              src={logo}
-              width={100}
-              height={100}
-              alt="logo"
-              className="mr-5"
-            />
-          </a>
+      <div className="relative flex justify-between px-3 md:px-10 items-center">
+        <a href="/" className="flex items-center">
+          <img
+            src={logo}
+            width={100}
+            height={100}
+            alt="logo"
+            className="mr-5"
+          />
           <div>
-            <a href="/">
-              <h1 className="text-black text-sm md:text-xl lg:text-2xl font-bold">
-                Thiruvallur District Roller Skating Association.
-              </h1>
-            </a>
-            <a href="/">
-              <h1 className="text-black text-xs md:text-lg lg:text-md font-semibold">
-                (Affiliated to Tamilnadu Roller Skating Association)
-              </h1>
-            </a>
+            <h1 className="text-black text-sm md:text-xl lg:text-2xl font-bold">
+              Thiruvallur District Roller Skating Association.
+            </h1>
+            <h1 className="text-black text-xs md:text-lg lg:text-md font-semibold">
+              (Affiliated to Tamilnadu Roller Skating Association)
+            </h1>
           </div>
-
-          <div className="flex gap-3 p-2 w-full justify-end">
-            <img src={nav1} alt="icon" className="h-12 w-16"></img>
-            <img src={nav2} alt="icon" className="h-12 w-20"></img>
-            <img src={nav3} alt="icon" className="h-12 w-16"></img>
-            <img src={nav4} alt="icon" className="h-12 w-20"></img>
-            <img src={nav5} alt="icon" className="h-12 w-16"></img>
-            <img src={nav6} alt="icon" className="h-12 w-16"></img>
-            <img src={nav7} alt="icon" className="h-12 w-16"></img>
-          </div>
-        </div>
-
-        <div className="flex md:hidden">
-          <button
-            className="text-black text-2xl focus:outline-none"
-            onClick={toggleMobileMenu}
-          >
-            &#9776; {/* Hamburger icon */}
-          </button>
+        </a>
+        <button
+          className="text-black text-2xl md:hidden focus:outline-none"
+          onClick={toggleMobileMenu}
+        >
+          &#9776; {/* Hamburger icon */}
+        </button>
+        <div className="hidden lg:flex gap-3 p-2">
+          <img src={nav1} alt="icon" className="h-12 w-16" />
+          <img src={nav2} alt="icon" className="h-12 w-20" />
+          <img src={nav3} alt="icon" className="h-12 w-16" />
+          <img src={nav4} alt="icon" className="h-12 w-20" />
+          <img src={nav5} alt="icon" className="h-12 w-16" />
+          <img src={nav6} alt="icon" className="h-12 w-16" />
+          <img src={nav7} alt="icon" className="h-12 w-16" />
         </div>
       </div>
+
       {/* Desktop Menu */}
-      <nav className="hidden md:flex items-center md:justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
+      <nav className="hidden md:flex items-center justify-center font-semibold lg:gap-12 md:gap-2 bg-blue-800 text-white">
         <Link to="/newabout" className={linkClasses("/newabout")}>
           About
         </Link>
@@ -241,7 +234,6 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-
         <Link to="/gallery" className={linkClasses("/gallery")}>
           Gallery
         </Link>
