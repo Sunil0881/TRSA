@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="">
+      <div>
         <img src={Recline} alt="recline" className="hidden md:block" />
       </div>
       <div className="relative flex justify-between px-3 md:px-10 items-center">
