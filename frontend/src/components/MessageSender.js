@@ -17,7 +17,7 @@ const MessageSender = () => {
     const fetchUsers = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/skaterprofiles" // Replace with your API endpoint
+          "https://trsabackend.vercel.app/api/skaterprofiles" // Replace with your API endpoint
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -63,7 +63,7 @@ const MessageSender = () => {
 
     try {
       // Send the selected users' emails to the backend
-      const response = await fetch("http://localhost:5000/send", {
+      const response = await fetch("https://trsabackend.vercel.app/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

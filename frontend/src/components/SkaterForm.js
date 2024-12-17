@@ -69,7 +69,7 @@ const SkaterForm = () => {
     const formattedFormData = { ...formData };
     
     try {
-      const response = await fetch('http://localhost:5000/api/skaterprofiles', {
+      const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formattedFormData)

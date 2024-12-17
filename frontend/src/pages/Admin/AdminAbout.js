@@ -12,7 +12,7 @@ const AdminAbout = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/breaking-news")
+    fetch("https://trsabackend.vercel.app/api/breaking-news")
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

@@ -14,7 +14,7 @@ const DeleteNews = () => {
 
         const fetchNews = async () =>{
             try {
-              const response = await fetch('http://localhost:5000/api/news');
+              const response = await fetch('https://trsabackend.vercel.app/api/news');
 
                 
                
@@ -50,7 +50,7 @@ const DeleteNews = () => {
      const handleDelete = async (id) =>{
         if (window.confirm('Are you sure you want to delete this event?')) {
         try {
-             const response = await fetch (`http://localhost:5000/api/news/${id}`, {
+             const response = await fetch (`https://trsabackend.vercel.app/api/news/${id}`, {
                   method: 'DELETE',
         }) ;
 
