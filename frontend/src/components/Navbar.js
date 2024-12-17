@@ -14,8 +14,7 @@ import nav7 from "../assets/nav7.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAchievementsDropdownOpen, setIsAchievementsDropdownOpen] =
-    useState(false);
+  const [isAchievementsDropdownOpen, setIsAchievementsDropdownOpen] = useState(false);
   const [isSkatersDropdownOpen, setIsSkatersDropdownOpen] = useState(false);
   const location = useLocation();
   let dropdownTimeout;
@@ -32,72 +31,69 @@ const Navbar = () => {
   const handleMouseLeave = (dropdownSetter) => {
     dropdownTimeout = setTimeout(() => {
       dropdownSetter(false);
-    }, 200); // Delay in milliseconds
+    }, 200);
   };
 
   const linkClasses = (path) => `
-    hover:scale-95 md:text-lg lg:text-xl md:my-4 lg:my-5 md:px-2 lg:px-4 py-2 rounded ${
-      location.pathname === path ? "bg-white text-blue-800" : ""
-    }
+    transition-all duration-200 ease-in-out
+    text-sm sm:text-base md:text-lg lg:text-xl
+    px-2 sm:px-3 md:px-4 lg:px-6
+    py-2 sm:py-3
+    my-1 sm:my-2 md:my-3 lg:my-4
+    rounded hover:bg-blue-700
+    ${location.pathname === path ? "bg-white text-blue-800" : ""}
   `;
 
   return (
-    <div>
+    <div className="w-full">
       <div>
-        <img src={Recline} alt="recline" className="hidden md:block" />
+        <img src={Recline} alt="recline" className="hidden md:block w-full object-cover" />
       </div>
-      <div className="relative flex justify-between px-3 md:px-10 items-center">
+      <div className="relative flex justify-between px-2 sm:px-4 md:px-6 lg:px-10 items-center py-2 sm:py-3">
         <a href="/" className="flex items-center">
           <img
             src={logo}
-            width={100}
-            height={100}
             alt="logo"
-            className="mr-5"
+            className="w-12 sm:w-16 md:w-20 lg:w-24 mr-2 sm:mr-3 md:mr-5"
           />
-          <div>
-            <h1 className="text-black text-sm md:text-xl lg:text-2xl font-bold">
+          <div className="flex-shrink">
+            <h1 className="text-black text-xs sm:text-sm md:text-xl lg:text-2xl font-bold leading-tight">
               Thiruvallur District Roller Skating Association.
             </h1>
-            <h1 className="text-black text-xs md:text-lg lg:text-md font-bold">
+            <h1 className="text-black text-xs sm:text-xs md:text-sm lg:text-base font-bold leading-tight">
               (Affiliated to Tamilnadu Roller Skating Association)
             </h1>
           </div>
         </a>
+        
         <button
           className="text-black text-2xl md:hidden focus:outline-none"
           onClick={toggleMobileMenu}
         >
-          &#9776; {/* Hamburger icon */}
+          &#9776;
         </button>
-        <div className="hidden lg:flex gap-3 p-2">
-          <img src={nav1} alt="icon" className="h-12 w-16" />
-          <img src={nav2} alt="icon" className="h-12 w-20" />
-          <img src={nav3} alt="icon" className="h-12 w-16" />
-          <img src={nav4} alt="icon" className="h-12 w-20" />
-          <img src={nav5} alt="icon" className="h-12 w-16" />
-          <img src={nav6} alt="icon" className="h-12 w-16" />
-          <img src={nav7} alt="icon" className="h-12 w-16" />
+        
+        <div className="hidden lg:flex gap-2 xl:gap-3 p-2">
+          {[nav1, nav2, nav3, nav4, nav5, nav6, nav7].map((nav, index) => (
+            <img 
+              key={index} 
+              src={nav} 
+              alt={`icon-${index + 1}`} 
+              className="h-8 w-12 xl:h-12 xl:w-16 object-contain"
+            />
+          ))}
         </div>
       </div>
 
       {/* Desktop Menu */}
-      <nav className="hidden md:flex items-center justify-center font-semibold lg:gap-9 md:gap-2 bg-blue-800 text-white">
-        <Link to="/newabout" className={linkClasses("/newabout")}>
-          About
-        </Link>
-        <Link to="/team" className={linkClasses("/team")}>
-          Association
-        </Link>
-        <Link to="/News" className={linkClasses("/News")}>
-          News
-        </Link>
-        <Link to="/events" className={linkClasses("/events")}>
-          Events
-        </Link>
+      <nav className="hidden md:flex items-center justify-center flex-wrap font-semibold gap-1 sm:gap-2 lg:gap-4 xl:gap-6 bg-blue-800 text-white p-2">
+        <Link to="/newabout" className={linkClasses("/newabout")}>About</Link>
+        <Link to="/team" className={linkClasses("/team")}>Association</Link>
+        <Link to="/News" className={linkClasses("/News")}>News</Link>
+        <Link to="/events" className={linkClasses("/events")}>Events</Link>
 
         <div
-          className="relative"
+          className="relative group"
           onMouseEnter={() => handleMouseEnter(setIsAchievementsDropdownOpen)}
           onMouseLeave={() => handleMouseLeave(setIsAchievementsDropdownOpen)}
         >
@@ -105,41 +101,24 @@ const Navbar = () => {
             Achievements
           </Link>
           {isAchievementsDropdownOpen && (
-            <div className="absolute left-0 mt-2 w-48 z-20 bg-white text-blue-800 shadow-lg rounded">
-              <Link
-                to="/international"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
-                International
-              </Link>
-              <Link
-                to="/national"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
-                National
-              </Link>
-              <Link
-                to="/state"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
-                State
-              </Link>
-              <Link
-                to="/district"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
-                District
-              </Link>
+            <div className="absolute left-0 mt-1 w-36 sm:w-40 md:w-44 lg:w-48 z-20 bg-white text-blue-800 shadow-lg rounded transform scale-100 opacity-100 transition-all duration-200">
+              {["International", "National", "State", "District"].map((item) => (
+                <Link
+                  key={item}
+                  to={`/${item.toLowerCase()}`}
+                  className="block px-3 py-2 text-sm hover:bg-blue-800 hover:text-white transition-colors duration-200"
+                >
+                  {item}
+                </Link>
+              ))}
             </div>
           )}
         </div>
 
-        <Link to="/club" className={linkClasses("/club")}>
-          Associative Clubs
-        </Link>
+        <Link to="/club" className={linkClasses("/club")}>Associative Clubs</Link>
 
         <div
-          className="relative"
+          className="relative group"
           onMouseEnter={() => handleMouseEnter(setIsSkatersDropdownOpen)}
           onMouseLeave={() => handleMouseLeave(setIsSkatersDropdownOpen)}
         >
@@ -147,103 +126,56 @@ const Navbar = () => {
             Skaters Profile
           </Link>
           {isSkatersDropdownOpen && (
-            <div className="absolute left-0 mt-2 w-48 bg-white z-20 text-blue-800 shadow-lg rounded">
-              <Link
-                to="/skaterform"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
-                Registration
-              </Link>
-              <Link
-                to="/skatersprofile"
-                className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-              >
-                Profile
-              </Link>
+            <div className="absolute left-0 mt-1 w-36 sm:w-40 md:w-44 lg:w-48 z-20 bg-white text-blue-800 shadow-lg rounded transform scale-100 opacity-100 transition-all duration-200">
+              {[
+                { title: "Registration", path: "/skaterform" },
+                { title: "Profile", path: "/skatersprofile" }
+              ].map((item) => (
+                <Link
+                  key={item.title}
+                  to={item.path}
+                  className="block px-3 py-2 text-sm hover:bg-blue-800 hover:text-white transition-colors duration-200"
+                >
+                  {item.title}
+                </Link>
+              ))}
             </div>
           )}
         </div>
 
-        <Link to="/gallery" className={linkClasses("/gallery")}>
-          Gallery
-        </Link>
-        <Link to="/contactus" className={linkClasses("/contactus")}>
-          Contact Us
-        </Link>
-
+        <Link to="/gallery" className={linkClasses("/gallery")}>Gallery</Link>
+        <Link to="/contactus" className={linkClasses("/contactus")}>Contact Us</Link>
       </nav>
 
       {/* Mobile Menu */}
       <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
 
-      {/* Mobile Dropdowns */}
+      {/* Mobile Navigation */}
       <nav
         className={`md:hidden ${
           isMobileMenuOpen ? "block" : "hidden"
-        } bg-blue-800 text-white`}
+        } bg-blue-800 text-white p-4 space-y-2`}
       >
-        <Link to="/newabout" className={linkClasses("/newabout")}>
-          About
-        </Link>
-        <Link to="/team" className={linkClasses("/team")}>
-          Association
-        </Link>
-        <Link to="/News" className={linkClasses("/News")}>
-          News
-        </Link>
-        <Link to="/events" className={linkClasses("/events")}>
-          Events
-        </Link>
-
-        <div className="relative">
-          <Link to="/achievements" className={linkClasses("/achievements")}>
-            Achievements
+        {[
+          { path: "/newabout", label: "About" },
+          { path: "/team", label: "Association" },
+          { path: "/News", label: "News" },
+          { path: "/events", label: "Events" },
+          { path: "/achievements", label: "Achievements" },
+          { path: "/club", label: "Associative Clubs" },
+          { path: "/skatersprofile", label: "Skaters Profile" },
+          { path: "/gallery", label: "Gallery" },
+          { path: "/contactus", label: "Contact Us" }
+        ].map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className={`block ${linkClasses(item.path)}`}
+            onClick={toggleMobileMenu}
+          >
+            {item.label}
           </Link>
-          <div className={isAchievementsDropdownOpen ? "block" : "hidden"}>
-            <Link
-              to="/national"
-              className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-            >
-              National
-            </Link>
-            <Link
-              to="/state"
-              className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-            >
-              State
-            </Link>
-          </div>
-        </div>
-
-        <Link to="/club" className={linkClasses("/club")}>
-          Associative Clubs
-        </Link>
-
-        <div className="relative">
-          <Link to="/skatersprofile" className={linkClasses("/skatersprofile")}>
-            Skaters Profile
-          </Link>
-          <div className={isSkatersDropdownOpen ? "block" : "hidden"}>
-            <Link
-              to="/skaterform"
-              className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-            >
-              Registration
-            </Link>
-            <Link
-              to="/skatersprofile"
-              className="block px-4 py-2 hover:bg-blue-800 hover:text-white"
-            >
-              Profile
-            </Link>
-          </div>
-        </div>
-        <Link to="/gallery" className={linkClasses("/gallery")}>
-          Gallery
-        </Link>
-
-        
-
+        ))}
       </nav>
     </div>
   );
