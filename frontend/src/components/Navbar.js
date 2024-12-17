@@ -59,7 +59,7 @@ const Navbar = () => {
             <h1 className="text-black text-sm md:text-xl lg:text-2xl font-bold">
               Thiruvallur District Roller Skating Association.
             </h1>
-            <h1 className="text-black text-xs md:text-lg lg:text-md font-semibold">
+            <h1 className="text-black text-xs md:text-lg lg:text-md font-bold">
               (Affiliated to Tamilnadu Roller Skating Association)
             </h1>
           </div>
