@@ -26,10 +26,6 @@ const MobileMenu = ({ isOpen, onClose }) => {
           Association
          </Link>
         
-       
-        <Link to="/club" className="text-black text-xl" onClick={onClose}>
-          Associative Club
-         </Link>
 
          <Link to="/News" className="text-black text-xl" onClick={onClose}>
           News
