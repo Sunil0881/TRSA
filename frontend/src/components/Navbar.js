@@ -167,7 +167,7 @@ const Navbar = () => {
         <Link to="/gallery" className={linkClasses("/gallery")}>
           Gallery
         </Link>
-        <Link to="/contactus" className={linkClasses("/gallery")}>
+        <Link to="/contactus" className={linkClasses("/contactus")}>
           Contact Us
         </Link>
 

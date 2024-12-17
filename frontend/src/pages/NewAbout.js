@@ -1,15 +1,37 @@
 
-import React from 'react';
+import {React ,useEffect , useState} from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import tdrsalogo from "../assets/tdrsa_logo2.png";
 import vision from "../assets/vision.png";
+import axios from 'axios';
 
 const NewAbout = () => {
+  const [news, setNews] = useState({ title: "", description: "" });
+  useEffect(() => {
+    axios
+      .get("https://trsabackend.vercel.app/api/news")
+      .then((response) => {
+        const latestNews = response.data.news;
+        setNews({
+          title: latestNews?.title || "No Breaking News",
+          description: latestNews?.description || "",
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching news:", error);
+        setNews({ title: "No Breaking News", description: "" });
+      });
+  }, []);
   return (
     <div>
       <div>
         <Navbar />
+        <div className="breaking-news">
+  <marquee>
+    <strong>{news.title}</strong>: {news.description}
+  </marquee>
+</div>
       </div>
       <div className="">
         <div className='lg:flex p-4 lg:p-20'>

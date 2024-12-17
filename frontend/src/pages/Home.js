@@ -9,37 +9,19 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import "../Styles/Home.css"
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+
 
 const Home = () => {
-  const [news, setNews] = useState({ title: "", description: "" });
+  
 
-  useEffect(() => {
-    axios
-      .get("https://trsabackend.vercel.app/api/news")
-      .then((response) => {
-        const latestNews = response.data.news;
-        setNews({
-          title: latestNews?.title || "No Breaking News",
-          description: latestNews?.description || "",
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching news:", error);
-        setNews({ title: "No Breaking News", description: "" });
-      });
-  }, []);
+  
   
   return (
 
     <div>
         <Navbar />
       
-        <div className="breaking-news">
-  <marquee>
-    <strong>{news.title}</strong>: {news.description}
-  </marquee>
-</div>
+        
     
         <Hero />
         <div className='text-blue-800 pl-5 md:pl-20 text-lg md:text-2xl lg:pl-32 lg:text-4xl  pb-5 md:pb-10 font-semibold '>

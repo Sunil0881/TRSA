@@ -9,8 +9,8 @@ const clubsData = [
     {
         // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/andaman-logo.jpeg', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'Rockers Speed Sketing Academy',
-        clubName: 'Rockers Speed Sketing Academy', 
+        stateName: 'Rockers Speed Skating Academy',
+        clubName: 'Rockers Speed Skating Academy', 
         location: 'Thiruvallur',
         members: [
           {
@@ -33,8 +33,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/ap.jpg', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'Sathya Speed Sketing Academy',
-        clubName: 'Sathya Speed Sketing Academy', 
+        stateName: 'Sathya Speed Skating Academy',
+        clubName: 'Sathya Speed Skating Academy', 
         location: 'Thiruvallur',
         members: [
           {
@@ -81,8 +81,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'U Can Do Sketing Academy',
-        clubName: 'U Can Do Sketing Academy',
+        stateName: 'U Can Do Skating Academy',
+        clubName: 'U Can Do Skating Academy',
         location: 'Thiruvallur',
         members: [
           {
@@ -105,8 +105,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'SNJ Sketing Academy',
-        clubName: 'SNJ Sketing Academy',
+        stateName: 'SNJ Skating Academy',
+        clubName: 'SNJ Skating Academy',
         location: 'Thiruvallur',
         members: [
           {
@@ -130,8 +130,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2021/11/stickey.png', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'Thaisha Roller Sketing Academy',
-        clubName: 'Thaisha Roller Sketing Academy',
+        stateName: 'Thaisha Roller Skating Academy',
+        clubName: 'Thaisha Roller Skating Academy',
         location: 'Thiruvallur',
         members: [
           {
@@ -154,8 +154,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/chandigarh.jpg', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'Parthi Sketing Academy',
-        clubName: 'Parthi Sketing Academy',
+        stateName: 'Parthi Skating Academy',
+        clubName: 'Parthi Skating Academy',
         location: 'Thiruvallur',
         members: [
           {
@@ -203,8 +203,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/delhi.jpg', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'Anna Nagar Roller Sketing Academy',
-        clubName: 'Anna Nagar Roller Sketing Academy',
+        stateName: 'Anna Nagar Roller Skating Academy',
+        clubName: 'Anna Nagar Roller Skating Academy',
         location: 'Thiruvallur',
         members: [
           {
@@ -227,8 +227,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/goa.jpg', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'Champions Roller Sketing Academy',
-        clubName: 'Champions Roller Sketing Academy',
+        stateName: 'Champions Roller Skating Academy',
+        clubName: 'Champions Roller Skating Academy',
         location: 'Thiruvallur',
         members: [
           {
@@ -275,8 +275,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/HIMACHAL-LOGO.jpeg', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'ES Sketing Academy',
-        clubName: 'ES Sketing Academy',
+        stateName: 'ES Skating Academy',
+        clubName: 'ES Skating Academy',
         location: 'Thiruvallur',
         members: [
           {

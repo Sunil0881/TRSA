@@ -47,7 +47,7 @@ const AppRoutes = () => {
         path="/"
         element={
           <PageTransition>
-            <Home />
+            <NewAbout />
           </PageTransition>
         }
       />
@@ -67,14 +67,8 @@ const AppRoutes = () => {
           </PageTransition>
         }
       />
-      <Route
-        path="/about"
-        element={
-          <PageTransition>
-            <About />
-          </PageTransition>
-        }
-      />
+    
+     
       <Route
         path="/membership"
         element={
@@ -216,7 +210,7 @@ const AppRoutes = () => {
         element={
           localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
-              <AdminHome />
+              <AdminAbout />
             </PageTransition>
           ) : (
             <PageTransition>

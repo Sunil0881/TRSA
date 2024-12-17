@@ -254,8 +254,6 @@ const SkaterForm = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               >
                 <option value="">Select Category</option>
-                <option value="Speed Skating">Speed Skating</option>
-                <option value="Figure Skating">Figure Skating</option>
                 <option value="Artistic Skating">Artistic Skating</option>
                 <option value="Inline Hockey">Inline Hockey</option>
                 <option value="Speed Quad">Speed Quad</option>
