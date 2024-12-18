@@ -87,7 +87,7 @@ const Club = () => {
     {
       // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
       logo: tdrsalogo,
-      stateName: 'ELUMALAI SPEED SKATING ACADEMY (ESSA)',
+      stateName: 'Elumalai Speed Skating Academy (ESSA)',
       // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
     },
     // {
