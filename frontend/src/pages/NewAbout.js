@@ -7,22 +7,22 @@ import vision from "../assets/vision.png";
 import axios from 'axios';
 
 const NewAbout = () => {
-  const [news, setNews] = useState({ title: "", description: "" });
-  useEffect(() => {
-    axios
-      .get("https://trsabackend.vercel.app/api/news")
-      .then((response) => {
-        const latestNews = response.data.news;
-        setNews({
-          title: latestNews?.title || "No Breaking News",
-          description: latestNews?.description || "",
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching news:", error);
-        setNews({ title: "No Breaking News", description: "" });
-      });
-  }, []);
+  const [news, setNews] = useState({ title: "News", description: "Annual General Body Meeting on 20.12.2024, @ 6.00PM, Royal Club, Ayanambakkam, Cordially Invited all office bearers and Special invitees." });
+  // useEffect(() => {
+  //   axios
+  //     .get("https://trsabackend.vercel.app/api/news")
+  //     .then((response) => {
+  //       const latestNews = response.data.news;
+  //       setNews({
+  //         title: latestNews?.title || "No Breaking News",
+  //         description: latestNews?.description || "",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching news:", error);
+  //       setNews({ title: "No Breaking News", description: "" });
+  //     });
+  // }, []);
   return (
     <div>
       <div>

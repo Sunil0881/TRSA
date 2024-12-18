@@ -17,13 +17,13 @@ const ContactUs = () => {
               If you have any questions or inquiries, feel free to reach out to our secretary:
             </p>
             <div className="text-gray-700">
-              <p className="font-medium">Kumaran M</p>
+              <p className="font-semibold">Secretary</p>
               <p>Phone: <a href="tel:+1234567890" className="text-blue-500 hover:underline">9876543210</a></p>
-              <p>Email: <a href="mailto:john.doe@example.com" className="text-blue-500 hover:underline">examplegmail@gmail.com</a></p>
+              <p>Email: <a href="mailto:john.doe@example.com" className="text-blue-500 hover:underline">thiruvallurskate@gmail.com</a></p>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form */}  
           <form className="bg-gray-50 p-6 rounded-lg shadow-sm">
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
