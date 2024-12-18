@@ -32,7 +32,7 @@ const AddNews = () => {
             image
         };
 
-        const urlvar = 'http://localhost:5000';
+        const urlvar = 'https://trsabackend.vercel.app';
            
         try {
             

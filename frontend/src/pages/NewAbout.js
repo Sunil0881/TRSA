@@ -126,7 +126,7 @@ const NewAbout = () => {
 
             ))}
           </ul>
-        </div>
+        </div> 
       </div>
 
       <div>

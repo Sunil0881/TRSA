@@ -46,29 +46,28 @@ const Navbar = () => {
       <div>
         <img src={Recline} alt="recline" className="hidden md:block" />
       </div>
-      <div className="relative flex justify-between px-3 md:px-10 items-center">
+      <div className="relative flex justify-between px-2 sm:px-4 md:px-6 lg:px-10 items-center py-2 sm:py-3">
         <a href="/" className="flex items-center">
           <img
             src={logo}
-            width={100}
-            height={100}
             alt="logo"
-            className="mr-5"
+            className="w-12 sm:w-16 md:w-20 lg:w-24 mr-2 sm:mr-3 md:mr-5"
           />
-          <div>
-            <h1 className="text-black text-sm md:text-xl lg:text-2xl font-bold">
+          <div className="flex-shrink">
+            <h1 className="text-black text-xs sm:text-sm md:text-xl lg:text-2xl font-bold leading-tight">
               Thiruvallur District Roller Skating Association.
             </h1>
-            <h1 className="text-black text-xs md:text-lg lg:text-md font-bold">
+            <h1 className="text-black text-xs sm:text-xs md:text-sm lg:text-base font-bold leading-tight">
               (Affiliated to Tamilnadu Roller Skating Association)
             </h1>
           </div>
         </a>
+        
         <button
           className="text-black text-2xl md:hidden focus:outline-none"
           onClick={toggleMobileMenu}
         >
-          &#9776; {/* Hamburger icon */}
+          &#9776;
         </button>
         <div className="hidden lg:flex gap-3 p-2">
           <img src={nav1} alt="icon" className="h-12 w-16" />
