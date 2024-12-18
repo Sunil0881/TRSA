@@ -1,8 +1,18 @@
-// NewsCard.jsx
-import React from 'react';
+import React, { useState } from 'react';
+import './Card.css'; // Import the CSS file for styles
 import { useNavigate } from 'react-router-dom';
 
-const NewsCard = ({ title, description, image, id }) => {
+const NewsCard = ({ image, title, description, id }) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   const navigate = useNavigate();
   const descriptionLength = 120;
 
@@ -19,28 +29,28 @@ const NewsCard = ({ title, description, image, id }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-      <div className="p-4">
-        <h2 className="text-2xl font-semibold text-blue-600 mb-4">{title}</h2>
-        <div className="aspect-w-16 aspect-h-9 mb-4">
-          <img 
-            src={image} 
-            alt={title} 
-            className="w-full h-48 object-cover rounded-md"
-          />
+    <div className="card-container" onClick={openPopup}>
+      <div className="card">
+        <div className="card-image">
+          <img src={image} alt={title} className="card-img" />
         </div>
-        <p className="text-gray-700 mb-4">
-          {truncate(description, descriptionLength)}
-        </p>
-        <div className="flex justify-between items-center">
-          <button
-            onClick={readMore}
-            className="text-blue-600 font-semibold hover:text-blue-800 transition-colors"
-          >
-            Read More
-          </button>
+        <div className="card-content">
+          <h2 className="card-title">{title}</h2>
+          <p className="card-description">{truncate(description, descriptionLength)}</p>
         </div>
       </div>
+
+      {isPopupOpen && (
+        <div className="popup-overlay" onClick={closePopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <h3 className="popup-title">{title}</h3>
+            <p className="popup-description">{description}</p>
+            <button className="popup-close-btn" onClick={closePopup}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
