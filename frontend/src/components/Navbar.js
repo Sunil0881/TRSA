@@ -55,7 +55,7 @@ const Navbar = () => {
             className="w-12 sm:w-16 md:w-20 lg:w-24 mr-2 sm:mr-3 md:mr-5"
           />
           <div className="flex-shrink">
-            <h1 className="text-black text-xs sm:text-sm md:text-xl lg:text-2xl font-bold leading-tight">
+            <h1 className="text-black text-5xl sm:text-sm md:text-xl lg:text-4xl font-bold leading-tight">
               Thiruvallur District Roller Skating Association.
             </h1>
             <h1 className="text-black text-xs sm:text-xs md:text-sm lg:text-base font-bold leading-tight">

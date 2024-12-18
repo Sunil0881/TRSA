@@ -74,9 +74,9 @@ const AchievementsDistrict = () => {
         </div>
 
         {/* Updates (1/3 of the screen) */}
-        <div className="w-full lg:w-1/3 lg:ml-8 flex justify-center lg:block">
+        {/* <div className="w-full lg:w-1/3 lg:ml-8 flex justify-center lg:block">
           <Updates />
-        </div>
+        </div> */}
       </div>
     </div>
   );
