@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../Styles/Scroll.css'; // Import your Scroll.css for the loader
-
+import { BACKEND_URL } from '../../constants';
 const DeleteEvent = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true); // Loader state
@@ -10,7 +10,7 @@ const DeleteEvent = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/events');
+        const response = await fetch(`${BACKEND_URL}/api/events`);
         
         // Check if the response status is OK
         if (!response.ok) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
 import { FaSearch, FaVenusMars, FaSkating, FaBuilding, FaCalendar, FaPhone, FaEnvelope, FaIdCard, FaFileAlt } from 'react-icons/fa';
-
+import { BACKEND_URL } from '../../constants';
 const AddSkaters = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [error, setError] = useState('');
@@ -13,7 +13,7 @@ const AddSkaters = () => {
   useEffect(() => {
     const fetchSkaters = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles');
+        const response = await fetch(`${BACKEND_URL}/api/skaterprofiles`);
         const data = await response.json();
         console.log("Fetched skater data:", data); // Add this line
         const skatersWithAge = Array.isArray(data)

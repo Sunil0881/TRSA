@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
-
+import { BACKEND_URL } from '../../constants';
 const AddImages = () => {
   const [images, setImages] = useState([]);
 
@@ -22,7 +22,7 @@ const AddImages = () => {
       images
     };
 
-    const urlvar = 'https://trsabackend.vercel.app';
+    const urlvar = `${BACKEND_URL}`;
 
     try {
       const response = await fetch(`${urlvar}/api/gallery`, {  // Adjusted endpoint for gallery

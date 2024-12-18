@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import "../../Styles/Scroll.css";
-
+import { BACKEND_URL } from '../../constants';
 const DeleteUpdate = () => {
     const [updates, setUpdates] = useState([]);
 
     useEffect(() => {
         const fetchUpdates = async () => {
             try {
-                const response = await fetch('https://trsabackend.vercel.app/api/updates');
+                const response = await fetch(`${BACKEND_URL}/api/updates`);
                 const data = await response.json();
                 setUpdates(data);
             } catch (error) {
@@ -20,7 +20,7 @@ const DeleteUpdate = () => {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`https://trsabackend.vercel.app/api/updates/${id}`, {
+            const response = await fetch(`${BACKEND_URL}/api/updates/${id}`, {
                 method: 'DELETE',
             });
 

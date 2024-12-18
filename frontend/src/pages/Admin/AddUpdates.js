@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
 import DeleteUpdate from './DeleteUpdate'; // Assume this is your delete component
-
+import { BACKEND_URL } from '../../constants';
 const AddUpdates = () => {
   const [toggle, setToggle] = useState(false); // Added toggle state
   const [updateText, setUpdateText] = useState('');
@@ -19,7 +19,7 @@ const AddUpdates = () => {
       text: updateText,
     };
 
-    const urlvar = 'https://trsabackend.vercel.app';
+    const urlvar =`${BACKEND_URL}`;
 
     try {
       const response = await fetch(`${urlvar}/api/updates`, {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminNavbar from '../../components/AdminNavbar';
-
+import { BACKEND_URL } from '../../constants';
 // Constants
-const API_BASE_URL = 'https://trsabackend.vercel.app/api';
+const API_BASE_URL = '${BACKEND_URL}';
 
 const AdminBreakingNews = () => {
   // State Management

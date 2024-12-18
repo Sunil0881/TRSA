@@ -5,6 +5,8 @@ import Footer from '../../components/Footer';
 import tdrsalogo from "../../assets/tdrsa_logo2.png";
 import vision from "../../assets/vision.png";
 import { useEffect, useState } from 'react';
+import { BACKEND_URL } from '../../constants';
+
 const AdminAbout = () => {
   const [news, setNews] = useState({
     title: "No Breaking News",
@@ -12,7 +14,7 @@ const AdminAbout = () => {
   });
 
   useEffect(() => {
-    fetch("https://trsabackend.vercel.app/api/breaking-news")
+    fetch(`${BACKEND_URL}/api/breaking-news`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

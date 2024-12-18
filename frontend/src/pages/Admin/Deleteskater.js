@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaTrash } from 'react-icons/fa';
-
+import { BACKEND_URL } from '../../constants';
 const DeleteSkater = () => {
   const [skaters, setSkaters] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,7 +9,7 @@ const DeleteSkater = () => {
   useEffect(() => {
     const fetchSkaters = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles');
+        const response = await fetch(`${BACKEND_URL}/api/skaterprofiles`);
         const data = await response.json();
         setSkaters(data);
         setFilteredSkaters(data); // Initialize with all skaters

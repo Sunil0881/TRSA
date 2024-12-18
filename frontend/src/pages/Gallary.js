@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { motion, AnimatePresence } from 'framer-motion'; // Import necessary components from Framer Motion
 import "../Styles/AchievementDetail.css"; // Ensure this file includes the loader and modal styles
+import { BACKEND_URL } from '../constants';
 
 const Gallary = () => {
   const [images, setImages] = useState([]);
@@ -14,7 +15,7 @@ const Gallary = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/gallery');
+        const response = await fetch(`${BACKEND_URL}/api/gallery`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-
+import { BACKEND_URL } from '../constants';
 const EventDetails = () => {
     const { id } = useParams();
     const [event, setEvent] = useState(null);
@@ -19,7 +19,7 @@ const EventDetails = () => {
     useEffect(() => {
         const fetchEventData = async () => {
             try {
-                const response = await fetch(`https://trsabackend.vercel.app/api/events/${id}`);
+                const response = await fetch(`${BACKEND_URL}/api/events/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

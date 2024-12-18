@@ -1,7 +1,7 @@
 // NewsList.jsx
 import React, { useState, useEffect } from 'react';
 import NewsCard from './NewsCard';
-
+import { BACKEND_URL } from '../constants';
 const NewsList = () => {
   const [news, setNews] = useState([]);
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ const NewsList = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/news');
+        const response = await fetch(`${BACKEND_URL}/api/news`);
         
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

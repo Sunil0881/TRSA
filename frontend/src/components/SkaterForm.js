@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
-
+import { BACKEND_URL } from '../constants';
 const SkaterForm = () => {
   const [formData, setFormData] = useState({
     rsfiNo: '',
@@ -69,7 +69,7 @@ const SkaterForm = () => {
     const formattedFormData = { ...formData };
     
     try {
-      const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles', {
+      const response = await fetch(`${BACKEND_URL}/api/skaterprofiles`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formattedFormData)

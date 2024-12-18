@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from '../assets/Eventsimg.png';
-import Euro from '../assets/Euro.png';
+
 
 const EventBanner = () => {
   return (

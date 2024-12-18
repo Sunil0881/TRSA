@@ -1,10 +1,10 @@
 // src/components/AdminLoginPage.js
 import React, { useState } from 'react';
-
+import { BACKEND_URL } from '../constants';
 const AdminLogin = () => {
     const [admin, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const urlvar = 'https://trsabackend.vercel.app';
+    const urlvar = `${BACKEND_URL}`;
     
 
     const handleSubmit = async (e) => {

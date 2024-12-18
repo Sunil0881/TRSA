@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AchievementsCard from '../../components/AchievementCard';
 import "../../Styles/Scroll.css";
-
+import { BACKEND_URL } from '../../constants';
 const DeleteAchi = () => {
     const [achievements, setAchievements] = useState([]);
     const [filteredAchievements, setFilteredAchievements] = useState([]);
@@ -17,7 +17,7 @@ const DeleteAchi = () => {
     useEffect(() => {
         const fetchAchievements = async () => {
             try {
-                const response = await fetch('https://trsabackend.vercel.app/api/achievements');
+                const response = await fetch(`${BACKEND_URL}/api/achievements`);
                 
                 // Check if the response status is OK
                 if (!response.ok) {

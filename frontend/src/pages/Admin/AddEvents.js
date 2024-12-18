@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
 import DeleteEvent from './DeleteEvent'; // Import DeleteEvent component
-
+import { BACKEND_URL } from '../../constants';
 const AddEvents = () => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
@@ -38,7 +38,7 @@ const AddEvents = () => {
       location,
     };
 
-    const urlvar = 'https://trsabackend.vercel.app';
+    const urlvar =`${BACKEND_URL}`;
 
     try {
       const response = await fetch(`${urlvar}/api/events`, {

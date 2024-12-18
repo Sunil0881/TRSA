@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import "../Styles/Updates.css"
-
+import { BACKEND_URL } from '../constants';
 const Updates = () => {
     const [updates, setUpdates] = useState([]);
 
     useEffect(() => {
         const fetchUpdates = async () => {
             try {
-                const response = await fetch('https://trsabackend.vercel.app/api/updates');
+                const response = await fetch(`${BACKEND_URL}/api/updates`);
                 const data = await response.json();
                 setUpdates(data);
             } catch (error) {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect,useState } from 'react';
 import '../../Styles/Scroll.css'
+import { BACKEND_URL } from '../../constants';
 const DeleteNews = () => {
     // bring news from backend
      const [news, setNews] = useState([]);
@@ -14,7 +15,7 @@ const DeleteNews = () => {
 
         const fetchNews = async () =>{
             try {
-              const response = await fetch('https://trsabackend.vercel.app/api/news');
+              const response = await fetch(`${BACKEND_URL}/api/news`);
 
                 
                
@@ -50,7 +51,7 @@ const DeleteNews = () => {
      const handleDelete = async (id) =>{
         if (window.confirm('Are you sure you want to delete this event?')) {
         try {
-             const response = await fetch (`https://trsabackend.vercel.app/api/news/${id}`, {
+             const response = await fetch (`${BACKEND_URL}/api/news/${id}`, {
                   method: 'DELETE',
         }) ;
 

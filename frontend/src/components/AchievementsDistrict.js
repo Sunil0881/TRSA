@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AchievementsCard from "./AchievementCard";
 import Updates from "./Updates";
 import "../Styles/Scroll.css";
-
+import { BACKEND_URL } from "../constants";
 const AchievementsDistrict = () => {
   const [achievements, setAchievements] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +12,7 @@ const AchievementsDistrict = () => {
     const fetchAchievements = async () => {
       try {
         const response = await fetch(
-          "https://trsabackend.vercel.app/api/achievements"
+          `${BACKEND_URL}/api/achievements`
         );
 
         if (!response.ok) {

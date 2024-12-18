@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import AdminNavbar from '../../components/AdminNavbar';
 import DeleteNews from './DeleteNews';
+import { BACKEND_URL } from '../../constants';
 const AddNews = () => {
 
     const [title,setTitle] = useState('');
@@ -32,7 +33,7 @@ const AddNews = () => {
             image
         };
 
-        const urlvar = 'https://trsabackend.vercel.app';
+        const urlvar = `${BACKEND_URL}`;
            
         try {
             

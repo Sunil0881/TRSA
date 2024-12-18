@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { BACKEND_URL } from "../constants";
 const MessageSender = () => {
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -17,7 +17,7 @@ const MessageSender = () => {
     const fetchUsers = async () => {
       try {
         const response = await fetch(
-          "https://trsabackend.vercel.app/api/skaterprofiles" // Replace with your API endpoint
+          `${BACKEND_URL}/api/skaterprofiles` // Replace with your API endpoint
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

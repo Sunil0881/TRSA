@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminNavbar from '../../components/AdminNavbar';
 import DeleteAchi from './DeleteAchi'; // Assume this is your delete component
-
+import { BACKEND_URL } from '../../constants';
 const AchievementsPost = () => {
   const [toggle, setToggle] = useState(false);
   const [image, setImage] = useState(null);
@@ -41,7 +41,7 @@ const AchievementsPost = () => {
       image2,
     };
 
-    const urlvar = 'https://trsabackend.vercel.app';
+    const urlvar = `${BACKEND_URL}`;
 
     try {
       const response = await fetch(`${urlvar}/api/achievementspost`, {

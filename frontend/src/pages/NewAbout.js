@@ -5,42 +5,42 @@ import Footer from '../components/Footer';
 import tdrsalogo from "../assets/tdrsa_logo2.png";
 import vision from "../assets/vision.png";
 import axios from 'axios';
-
+import { BACKEND_URL } from '../constants';
 const NewAbout = () => {
-  const [news, setNews] = useState({ title: "News", description: "Annual General Body Meeting on 20.12.2024, @ 6.00PM, Royal Club, Ayanambakkam, Cordially Invited all office bearers and Special invitees." });
-  // useEffect(() => {
-  //    fetch("https://trsabackend.vercel.app/api/breaking-news")
-  //      .then((response) => {
-  //        if (!response.ok) {
-  //          throw new Error('Network response was not ok');
-  //        }
-  //        return response.json();
-  //      })
-  //      .then((data) => {
-  //        // Option 1: If you want to keep the content as is
-  //        setNews({
-  //          title: "Breaking News",
-  //          description: data?.content || "No Breaking News"
-  //        });
+  const [news, setNews] = useState({ title: "", description: "" });
+  useEffect(() => {
+     fetch(`${BACKEND_URL}/api/breaking-news`)
+       .then((response) => {
+         if (!response.ok) {
+           throw new Error('Network response was not ok');
+         }
+         return response.json();
+       })
+       .then((data) => {
+         // Option 1: If you want to keep the content as is
+         setNews({
+           title: "Breaking News",
+           description: data?.content || "No Breaking News"
+         });
          
-  //        // Option 2: If your content follows a "Title: Description" format
-  //        // const [title, ...descriptionParts] = (data?.content || "No Breaking News: ").split(":");
-  //        // setNews({
-  //        //   title: title.trim(),
-  //        //   description: descriptionParts.join(":").trim() || ""
-  //        // });
+         // Option 2: If your content follows a "Title: Description" format
+         // const [title, ...descriptionParts] = (data?.content || "No Breaking News: ").split(":");
+         // setNews({
+         //   title: title.trim(),
+         //   description: descriptionParts.join(":").trim() || ""
+         // });
          
-  //        console.log(data); // Log the received data
-  //        console.log(news); // Note: This will show the previous state due to closure
-  //      })
-  //      .catch((error) => {
-  //        console.error("Error fetching breaking news:", error);
-  //        setNews({
-  //          title: "No Breaking News",
-  //          description: ""
-  //        });
-  //      });
-  //  }, []);
+         console.log(data); // Log the received data
+         console.log(news); // Note: This will show the previous state due to closure
+       })
+       .catch((error) => {
+         console.error("Error fetching breaking news:", error);
+         setNews({
+           title: "No Breaking News",
+           description: ""
+         });
+       });
+   }, []);
   return (
     <div>
       <div>

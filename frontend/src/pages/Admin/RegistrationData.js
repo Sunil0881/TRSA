@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/AdminNavbar';
-
+import { BACKEND_URL } from '../../constants';
 const RegistrationList = () => {
   const [registrations, setRegistrations] = useState([]);
   const [events, setEvents] = useState([]);
@@ -13,7 +13,7 @@ const RegistrationList = () => {
   useEffect(() => {
     const fetchRegistrations = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/registrations');
+        const response = await fetch(`${BACKEND_URL}/api/registrations`);
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         setRegistrations(data);
@@ -25,7 +25,7 @@ const RegistrationList = () => {
 
     const fetchEvents = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/events');
+        const response = await fetch(`${BACKEND_URL}/api/events`);
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         setEvents(data);
@@ -72,7 +72,7 @@ const RegistrationList = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this registration?')) {
       try {
-        const response = await fetch(`https://trsabackend.vercel.app/api/registrations/${id}`, {
+        const response = await fetch(`${BACKEND_URL}/api/registrations/${id}`, {
           method: 'DELETE',
         });
         if (response.ok) {

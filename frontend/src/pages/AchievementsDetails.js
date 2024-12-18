@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-
+import { BACKEND_URL } from '../constants';
 const AchievementsDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -15,14 +15,14 @@ const AchievementsDetails = () => {
     useEffect(() => {
         const fetchAchievementData = async () => {
             try {
-                const response = await fetch(`https://trsabackend.vercel.app/api/achievements/${id}`);
+                const response = await fetch(`${BACKEND_URL}/api/achievements/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
                 setAchievement(data);
 
-                const allAchievementsResponse = await fetch('https://trsabackend.vercel.app/api/achievements');
+                const allAchievementsResponse = await fetch(`${BACKEND_URL}/api/achievements`);
                 const allAchievementsData = await allAchievementsResponse.json();
                 setAchievements(allAchievementsData);
 

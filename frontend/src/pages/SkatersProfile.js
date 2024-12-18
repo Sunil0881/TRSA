@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
 import { FaSearch, FaUser, FaVenusMars, FaSkating, FaBuilding } from 'react-icons/fa';
-
+import { BACKEND_URL } from '../constants';
 const SkaterProfile = () => {
   const [skaters, setSkaters] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,7 +11,7 @@ const SkaterProfile = () => {
   useEffect(() => {
     const fetchSkaters = async () => {
       try {
-        const response = await fetch('https://trsabackend.vercel.app/api/skaterprofiles');
+        const response = await fetch(`${BACKEND_URL}/api/skaterprofiles`);
         const data = await response.json();
         
         // Access the profiles array from the response
