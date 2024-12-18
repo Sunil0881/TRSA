@@ -75,13 +75,19 @@ const Club = () => {
     {
       // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/HIMACHAL-LOGO.jpeg', // Replace with your logo URL
       logo: tdrsalogo,
-      stateName: 'ES Skating Academy',
+      stateName: 'Dolphin Speed Skating Academy ( DSSA )',
       // clubName: 'HIMACHAL SKATING ASSOCIATION'
     },
     {
       // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
       logo: tdrsalogo,
-      stateName: 'Success Spirits Academy',
+      stateName: 'Success Sports Academy',
+      // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
+    },
+    {
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'ELUMALAI SPEED SKATING ACADEMY (ESSA)',
       // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
     },
     // {

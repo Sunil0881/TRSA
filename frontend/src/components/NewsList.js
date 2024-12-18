@@ -62,8 +62,10 @@ const NewsList = () => {
             description={item.description}
             image={item.image}
           />
+          
         ))}
       </div>
+      
     </div>
   );
 };

@@ -17,8 +17,8 @@ const ContactUs = () => {
               If you have any questions or inquiries, feel free to reach out to our secretary:
             </p>
             <div className="text-gray-700">
-              <p className="font-semibold">Secretary</p>
-              <p>Phone: <a href="tel:+1234567890" className="text-blue-500 hover:underline">9876543210</a></p>
+              <p className="font-semibold">The Secretary</p>
+              <p>Phone: <a href="tel:+1234567890" className="text-blue-500 hover:underline">94442 46644</a></p>
               <p>Email: <a href="mailto:john.doe@example.com" className="text-blue-500 hover:underline">thiruvallurskate@gmail.com</a></p>
             </div>
           </div>

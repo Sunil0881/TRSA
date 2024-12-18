@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../assets/footerlogo.png"
+import logo from "../assets/newlogo.png";
 import insta from "../assets/insta.png"
 import twitter from "../assets/twitter.png"
 import youtube from "../assets/youtube.png"

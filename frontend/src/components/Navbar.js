@@ -11,6 +11,7 @@ import nav4 from "../assets/nav4.png";
 import nav5 from "../assets/nav5.png";
 import nav6 from "../assets/nav6.png";
 import nav7 from "../assets/nav7.png";
+import logo1 from "../assets/footerlogo.png"
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -70,6 +71,7 @@ const Navbar = () => {
           &#9776;
         </button>
         <div className="hidden lg:flex gap-3 p-2">
+        <img src={logo1} alt="icon" className="h-12 w-16" />
           <img src={nav1} alt="icon" className="h-12 w-16" />
           <img src={nav2} alt="icon" className="h-12 w-20" />
           <img src={nav3} alt="icon" className="h-12 w-16" />
