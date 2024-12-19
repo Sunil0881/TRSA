@@ -90,6 +90,32 @@ const Club = () => {
       stateName: 'Elumalai Speed Skating Academy (ESSA)',
       // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
     },
+    {
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'New Chennai Speed Skating Club',
+      // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
+    },
+    {
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Spartan Prasanth Speed Skating Academy',
+      // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
+    },
+    {
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'Independent Speed Skating Academy',
+      // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
+    },
+    {
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo URL
+      logo: tdrsalogo,
+      stateName: 'MM Tigers Skating Academy ',
+      // clubName: 'JAMMU & KASHMIR ROLLER SKATING ASSOCIATION'
+    },
+    
+      // logo: 'https://indiaskate.com/wp-content/uploads/2020/03/jammu-kashmir.jpg', // Replace with your logo UR
     // {
     //   logo: 'https://indiaskate.com/wp-content/uploads/2022/01/JHARKAND-LOGO.jpeg', // Replace with your logo URL
     //   stateName: 'Jharkhand',

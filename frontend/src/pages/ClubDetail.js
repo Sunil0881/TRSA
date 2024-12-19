@@ -14,9 +14,10 @@ const clubsData = [
         location: 'Thiruvallur',
         members: [
           {
-            name: 'MR.XXX',
+            name: 'V.SANJESH',
             image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
             position: 'President',
+            phno : "9841008657",
           }
         ],
       },
@@ -56,9 +57,10 @@ const clubsData = [
         location: 'Thiruvallur',
         members: [
           {
-            name: 'MR.XXX',
+            name: 'Ram kumar N',
             image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
             position: 'President',
+            phno:"9994123451",
           }
         ],
       },
@@ -70,9 +72,10 @@ const clubsData = [
         location: 'Thiruvallur',
         members: [
           {
-            name: 'MR.XXX',
+            name: 'SARAVANAN N',
             image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
             position: 'President',
+            phno:"99403 63574",
           }
           
         ],
@@ -100,9 +103,10 @@ const clubsData = [
         location: 'Thiruvallur',
         members: [
           {
-            name: 'MR.XXX',
+            name: 'L.PARTHI BAN',
             image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
             position: 'President',
+            phno:"9940348470",
           }
           
         ],
@@ -115,9 +119,10 @@ const clubsData = [
         location: 'Thiruvallur',
         members: [
           {
-            name: 'MR.XXX',
+            name: 'R.RAJARAJAN',
             image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
             position: 'President',
+            phno: "9042288373",
           }
         ],
       },
@@ -129,9 +134,10 @@ const clubsData = [
         location: 'Thiruvallur',
         members: [
           {
-            name: 'MR.XXX',
+            name: 'Unnikrishnan KP',
             image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
             position: 'President',
+            phno: "9444012338",
           }
         ],
       },
@@ -143,9 +149,10 @@ const clubsData = [
         location: 'Thiruvallur',
         members: [
           {
-            name: 'MR.XXX',
+            name: 'ABDUL',
             image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
             position: 'President',
+            phno:"8925000633",
           }
         ],
       },
@@ -166,8 +173,8 @@ const clubsData = [
       {
         // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/HIMACHAL-LOGO.jpeg', // Replace with your logo URL
         logo: tdrsalogo,
-        stateName: 'ELUMALAI SPEED SKATING ACADEMY (ESSA)',
-        clubName: 'ELUMALAI SPEED SKATING ACADEMY (ESSA)',
+        stateName: 'Elumalai Speed Skating Academy (ESSA)',
+        clubName: 'Elumalai Speed Skating Academy (ESSA)',
         location: 'Thiruvallur',
         members: [
           {
@@ -206,7 +213,67 @@ const clubsData = [
             phno:"8754575530"
           }
         ],
-      }
+      },
+      {
+        // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/andaman-logo.jpeg', // Replace with your logo URL
+        logo: tdrsalogo,
+        stateName: 'Spartan Prasanth Speed Skating Academy',
+        clubName: 'Spartan Prasanth Speed Skating Academy', 
+        location: 'SALIGRAMAM',
+        members: [
+          {
+            name: 'PRASANTH S',
+            image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
+            position: 'Authorised Person',
+            phno:" 9790745971"
+          }
+        ],
+      },  {
+        // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/andaman-logo.jpeg', // Replace with your logo URL
+        logo: tdrsalogo,
+        stateName: 'New Chennai Speed Skating Club',
+        clubName: 'New Chennai Speed Skating Club', 
+        location: 'SALIGRAMAM',
+        members: [
+          {
+            name: 'Praveen Raj R',
+            image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
+            position: 'Authorised Person',
+            phno:" 9600013212"
+          }
+        ],
+      },
+        
+      {
+        // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/andaman-logo.jpeg', // Replace with your logo URL
+        logo: tdrsalogo,
+        stateName: 'Independent Speed Skating Academy',
+        clubName: 'Independent Speed Skating Academy', 
+        location: 'SALIGRAMAM',
+        members: [
+          {
+            name: 'Shamir Danish',
+            image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
+            position: 'Authorised Person',
+            phno:"9176350793"
+          }
+        ],
+      },
+      {
+        // logo: 'https://indiaskate.com/wp-content/uploads/2022/01/andaman-logo.jpeg', // Replace with your logo URL
+        logo: tdrsalogo,
+        stateName: 'MM Tigers Skating Academy ',
+        clubName: 'MM Tigers Skating Academy ', 
+        location: 'SALIGRAMAM',
+        members: [
+          {
+            name: 'M.Meenambigai',
+            image: 'https://indiaskate.com/wp-content/uploads/2020/04/team-placeholder-150x150.jpg',
+            position: 'Authorised Person',
+            phno:"9790110081"
+          }
+        ],
+      },
 ];
 
 const ClubDetail = () => {

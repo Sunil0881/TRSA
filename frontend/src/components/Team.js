@@ -18,6 +18,8 @@ import soundar from "../assets/soundar.jpg";
 import anbu from "../assets/anbu.jpg";
 import Footer from "./Footer";
 import Rajesh from "../assets/Rajesh.jpg"
+import devarajan from "../assets/lawyer.jpeg"
+
 const Team = () => {
   const teamMembers = [
     {
@@ -153,6 +155,15 @@ const Team = () => {
       socialLinks: {
         call: "9962264144",
         
+      },
+    },
+    {
+      image: devarajan,
+      name: "Mr. Devarajan",
+      designation: "Legal Adviser",
+      socialLinks: {
+        call: " ",
+        email:" ",
       },
     },
   ];

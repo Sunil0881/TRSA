@@ -23,7 +23,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
           About
          </Link>
         <Link to="/team" className="text-black text-xl" onClick={onClose}>
-          Association
+        Office Bearers
          </Link>
         
 

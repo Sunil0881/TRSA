@@ -88,7 +88,7 @@ const Navbar = () => {
           About
         </Link>
         <Link to="/team" className={linkClasses("/team")}>
-          Association
+         Office Bearers
         </Link>
         <Link to="/News" className={linkClasses("/News")}>
           News
