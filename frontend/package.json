@@ -50,6 +50,5 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.6"
-  },
-  "proxy": "http://13.51.195.135:5000"
+  }
 }
