@@ -55,15 +55,15 @@ const Navbar = () => {
             className="w-12 sm:w-16 md:w-20 lg:w-24 mr-2 sm:mr-3 md:mr-5"
           />
           <div className="flex-shrink">
-            <h1 className="text-black text-5xl sm:text-sm md:text-xl lg:text-4xl font-bold leading-tight">
+            <h1 className="text-black text-lg sm:text-lg md:text-xl lg:text-4xl font-bold leading-tight">
               Thiruvallur District Roller Skating Association.
             </h1>
-            <h1 className="text-black text-xs sm:text-xs md:text-sm lg:text-base font-bold leading-tight">
+            <h1 className="text-black text-sm sm:text-sm md:text-base lg:text-lg font-bold leading-tight">
               (Affiliated to Tamilnadu Roller Skating Association)
             </h1>
           </div>
         </a>
-        
+
         <button
           className="text-black text-2xl md:hidden focus:outline-none"
           onClick={toggleMobileMenu}
@@ -71,7 +71,7 @@ const Navbar = () => {
           &#9776;
         </button>
         <div className="hidden lg:flex gap-3 p-2">
-        <img src={logo1} alt="icon" className="h-12 w-16" />
+          <img src={logo1} alt="icon" className="h-12 w-16" />
           <img src={nav1} alt="icon" className="h-12 w-16" />
           <img src={nav2} alt="icon" className="h-12 w-20" />
           <img src={nav3} alt="icon" className="h-12 w-16" />
@@ -171,7 +171,6 @@ const Navbar = () => {
         <Link to="/contactus" className={linkClasses("/contactus")}>
           Contact Us
         </Link>
-
       </nav>
 
       {/* Mobile Menu */}
@@ -242,9 +241,6 @@ const Navbar = () => {
         <Link to="/gallery" className={linkClasses("/gallery")}>
           Gallery
         </Link>
-
-        
-
       </nav>
     </div>
   );
