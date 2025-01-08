@@ -112,15 +112,15 @@ const SkaterForm = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <div className="container mx-auto p-6">
-        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Add Skater Profile</h2>
+      <div className="container p-6 mx-auto">
+        <h2 className="mb-6 text-3xl font-bold text-center text-gray-800">Add Skater Profile</h2>
         
-        {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
+        {error && <p className="mb-4 text-center text-red-500">{error}</p>}
   
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rsfiNo">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="rsfiNo">
                 RSFI No (Optional)
               </label>
               <input
@@ -129,12 +129,12 @@ const SkaterForm = () => {
                 name="rsfiNo"
                 value={formData.rsfiNo}
                 onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="name">
                 Name *
               </label>
               <input
@@ -144,12 +144,12 @@ const SkaterForm = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="parentName">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="parentName">
                 Parent/Guardian Name *
               </label>
               <input
@@ -159,12 +159,12 @@ const SkaterForm = () => {
                 value={formData.parentName}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="dob">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="dob">
                 Date of Birth *
               </label>
               <input
@@ -174,12 +174,12 @@ const SkaterForm = () => {
                 value={formData.dob}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gender">
+                <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="gender">
                     Gender
                 </label>
                 <select
@@ -187,7 +187,7 @@ const SkaterForm = () => {
                     name="gender"
                     value={formData.gender}
                     onChange={handleInputChange}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 >
                     <option value="" disabled>Select Gender</option>
                     <option value="Male">Male</option>
@@ -197,7 +197,7 @@ const SkaterForm = () => {
                 </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="aadharNo">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="aadharNo">
                 Aadhar No *
               </label>
               <input
@@ -207,12 +207,12 @@ const SkaterForm = () => {
                 value={formData.aadharNo}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNo">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="phoneNo">
                 Phone No *
               </label>
               <input
@@ -222,12 +222,12 @@ const SkaterForm = () => {
                 value={formData.phoneNo}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
                 Email *
               </label>
               <input
@@ -237,12 +237,12 @@ const SkaterForm = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="eventCategory">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="eventCategory">
                 Event Category *
               </label>
               <select
@@ -251,11 +251,9 @@ const SkaterForm = () => {
                 value={formData.eventCategory}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               >
                 <option value="">Select Category</option>
-                <option value="Artistic Skating">Artistic Skating</option>
-                <option value="Inline Hockey">Inline Hockey</option>
                 <option value="Speed Quad">Speed Quad</option>
                 <option value="Speed Inline">Speed Inline</option>
                 <option value="Roller Hockey">Roller Hockey</option>
@@ -269,7 +267,7 @@ const SkaterForm = () => {
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="representativeClub">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="representativeClub">
                 Representative Club *
               </label>
               <select
@@ -278,7 +276,7 @@ const SkaterForm = () => {
                 value={formData.representativeClub}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               >
                 <option value="">Select Club</option>
                 {clubs.map(club => (
@@ -288,7 +286,7 @@ const SkaterForm = () => {
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="coachName">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="coachName">
                 Coach Name *
               </label>
               <input
@@ -298,12 +296,12 @@ const SkaterForm = () => {
                 value={formData.coachName}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="skaterPhoto">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="skaterPhoto">
                 Skater Photo *
               </label>
               <input
@@ -313,19 +311,19 @@ const SkaterForm = () => {
                 onChange={handleInputChange}
                 accept="image/*"
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
               {formData.skaterPhoto && (
                 <img
                   src={formData.skaterPhoto}
                   alt="Skater"
-                  className="mt-2 h-24 w-24 object-cover rounded"
+                  className="object-cover w-24 h-24 mt-2 rounded"
                 />
               )}
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="proofType">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="proofType">
                 Identity Proof Type *
               </label>
               <select
@@ -334,7 +332,7 @@ const SkaterForm = () => {
                 value={formData.proofType}
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               >
                 <option value="">Select Proof Type</option>
                 <option value="Aadhar">Aadhar</option>
@@ -343,7 +341,7 @@ const SkaterForm = () => {
             </div>
   
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fileUrl">
+              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="fileUrl">
                 Identity Proof File *
               </label>
               <input
@@ -353,13 +351,13 @@ const SkaterForm = () => {
                 accept="image/*"
                 onChange={handleInputChange}
                 required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
               {formData.fileUrl && (
                 <img 
                   src={formData.fileUrl} 
                   alt="Identity Proof" 
-                  className="mt-2 h-24 w-24 object-cover rounded"
+                  className="object-cover w-24 h-24 mt-2 rounded"
                 />
               )}
             </div>
@@ -369,7 +367,7 @@ const SkaterForm = () => {
             <button
               type="button"
               onClick={handleSaveSkater}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105"
+              className="px-4 py-2 font-bold text-white transition duration-300 ease-in-out transform bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline hover:scale-105"
             >
               Save Skater Profile
             </button>

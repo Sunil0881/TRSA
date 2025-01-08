@@ -243,8 +243,6 @@ app.delete('/api/achievements/:id', async (req, res) => {
   }
 });
 
-
-
   const updateSchema = new mongoose.Schema({
     text: String,
   });
@@ -347,79 +345,79 @@ app.delete('/api/events/:id', async (req, res) => {
 
 const skaterProfileSchema = new mongoose.Schema(
   {
-    rsfiNo: { 
-      type: String, 
-      required: false // Optional field
+    rsfiNo: {
+      type: String,
+      required: false, // Optional field
     },
-    name: { 
-      type: String, 
-      required: true 
+    name: {
+      type: String,
+      required: true,
     },
-    parentName: { 
-      type: String, 
-      required: true 
+    parentName: {
+      type: String,
+      required: true,
     },
-    dob: { 
-      type: Date, 
-      required: true 
+    dob: {
+      type: Date,
+      required: true,
     },
-    gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
-    aadharNo: { 
-      type: String, 
+    gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
+    aadharNo: {
+      type: String,
       required: true,
       validate: {
         validator: function (v) {
           return /^\d{12}$/.test(v); // Aadhar must be 12 digits
         },
-        message: "Aadhar number must be 12 digits."
-      }
+        message: "Aadhar number must be 12 digits.",
+      },
     },
-    phoneNo: { 
-      type: String, 
+    phoneNo: {
+      type: String,
       required: true,
       validate: {
         validator: function (v) {
           return /^\d{10}$/.test(v); // Phone number must be 10 digits
         },
-        message: "Phone number must be 10 digits."
-      }
+        message: "Phone number must be 10 digits.",
+      },
     },
-    email: { 
-      type: String, 
+    email: {
+      type: String,
       required: true,
       validate: {
         validator: function (v) {
           return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); // Basic email regex
         },
-        message: "Invalid email format."
-      }
+        message: "Invalid email format.",
+      },
     },
-    eventCategory: { 
-      type: String, 
+    eventCategory: {
+      type: String,
       required: true,
-      enum: ['Speed Skating', 'Figure Skating', 'Artistic Skating', 'Inline Hockey']
+      enum: ["Artistic Skating","Inline Hockey","Speed Inline","Roller Hockey","Inline Freestyle","Alpine Downhill","Roller Derby","Roller Freestyle","Roller Scooter","Skate Boarding"],
     },
-    representativeClub: { 
-      type: String, 
-      required: true 
+    representativeClub: {
+      type: String,
+      required: true,
     },
-    coachName: { 
-      type: String, 
-      required: true 
+    coachName: {
+      type: String,
+      required: true,
     },
-    skaterPhoto: { 
-      type: String, 
-      required: true 
+    skaterPhoto: {
+      type: String,
+      required: true,
     },
     proofType: {
       type: String,
-      enum: ['Aadhar', 'Birth Certificate'],
-      required: true
+      enum: ["Aadhar", "Birth Certificate"],
+      required: true,
     },
     fileUrl: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -484,7 +482,7 @@ app.post('/api/skaterprofiles', async (req, res) => {
     }
     
     // Event Category validation
-    const validCategories = ['Speed Skating', 'Figure Skating', 'Artistic Skating', 'Inline Hockey'];
+    const validCategories = ["Artistic Skating","Inline Hockey","Speed Inline","Roller Hockey","Inline Freestyle","Alpine Downhill","Roller Derby","Roller Freestyle","Roller Scooter","Skate Boarding"];
     if (!eventCategory || !validCategories.includes(eventCategory)) {
       errors.push('Invalid event category.');
     }
@@ -886,8 +884,6 @@ app.patch('/api/breaking-news', async (req, res) => {
     });
   }
 });
-
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

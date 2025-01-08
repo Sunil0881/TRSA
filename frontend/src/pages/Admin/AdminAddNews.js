@@ -57,16 +57,16 @@ const AdminBreakingNews = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="flex flex-col min-h-screen bg-gray-100">
       {/* Header */}
     <AdminNavbar />
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-20 ">
-        <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6">
+      <main className="container flex-grow px-4 py-20 mx-auto ">
+        <div className="max-w-2xl p-6 mx-auto bg-white shadow-lg rounded-xl">
           {/* Error Message */}
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <div className="relative px-4 py-3 mb-4 text-red-700 bg-red-100 border border-red-400 rounded" role="alert">
               <span className="block sm:inline">{error}</span>
             </div>
           )}
@@ -74,7 +74,7 @@ const AdminBreakingNews = () => {
           {/* News Content Form */}
           <form onSubmit={handleUpdateNews} className="space-y-4">
             <div>
-              <label htmlFor="breaking-news" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="breaking-news" className="block mb-2 text-sm font-medium text-gray-700">
                 Breaking News Content
               </label>
               <textarea
@@ -105,7 +105,7 @@ const AdminBreakingNews = () => {
           </form>
 
           {/* Informational Text */}
-          <div className="mt-4 text-sm text-gray-500 text-center">
+          <div className="mt-4 text-sm text-center text-gray-500">
             <p>
               * Updating will replace the existing breaking news with new content
             </p>
@@ -114,7 +114,7 @@ const AdminBreakingNews = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-200 p-4 text-center">
+      <footer className="p-4 text-center bg-gray-200">
         <p className="text-sm text-gray-600">
           © {new Date().getFullYear()} Breaking News Management
         </p>

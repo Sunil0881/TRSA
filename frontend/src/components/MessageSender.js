@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BACKEND_URL } from "../constants";
+import AdminNavbar from "./AdminNavbar";
 const MessageSender = () => {
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -93,99 +94,108 @@ const MessageSender = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
-      <h2 className="text-2xl font-bold mb-6">Send Messages to Skaters</h2>
+    <div>
+      <AdminNavbar />
+      <div className="container max-w-4xl p-6 mx-auto">
+        <h2 className="mb-6 text-2xl font-bold">Send Messages to Skaters</h2>
 
-      {notification.show && (
-        <div
-          className={`p-4 mb-4 rounded-lg ${
-            notification.type === "success"
-              ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-700"
-          }`}
-        >
-          {notification.message}
-        </div>
-      )}
+        {notification.show && (
+          <div
+            className={`p-4 mb-4 rounded-lg ${
+              notification.type === "success"
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-700"
+            }`}
+          >
+            {notification.message}
+          </div>
+        )}
 
-      <form onSubmit={sendEmails} className="space-y-6">
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              Select Recipients
-            </label>
-            <div className="mb-2">
-              <button
-                type="button"
-                onClick={handleSelectAll}
-                className="text-sm text-blue-600 hover:text-blue-800"
-              >
-                {selectedUsers.length === users.length
-                  ? "Deselect All"
-                  : "Select All"}
-              </button>
-            </div>
-            <div className="max-h-48 overflow-y-auto border rounded-lg p-2">
-              {users.map((user) => (
-                <label
-                  key={user.email}
-                  className="flex items-center space-x-2 p-2 hover:bg-gray-50"
+        <form onSubmit={sendEmails} className="space-y-6">
+          <div className="space-y-4">
+            <div>
+              <label className="block mb-2 text-sm font-medium">
+                Select Recipients
+              </label>
+              <div className="mb-2">
+                <button
+                  type="button"
+                  onClick={handleSelectAll}
+                  className="text-sm text-blue-600 hover:text-blue-800"
                 >
-                  <input
-                    type="checkbox"
-                    checked={selectedUsers.includes(user.email)}
-                    onChange={() => handleUserSelect(user.email)}
-                    className="rounded border-gray-300"
-                  />
-                  <span>
-                    {user.name} - {user.email}
-                  </span>
-                </label>
-              ))}
+                  {selectedUsers.length === users.length
+                    ? "Deselect All"
+                    : "Select All"}
+                </button>
+              </div>
+              <div className="p-2 overflow-y-auto border rounded-lg max-h-48">
+                {users.map((user) => (
+                  <label
+                    key={user.email}
+                    className="flex items-center p-2 space-x-2 hover:bg-gray-50"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedUsers.includes(user.email)}
+                      onChange={() => handleUserSelect(user.email)}
+                      className="border-gray-300 rounded"
+                    />
+                    <span>
+                      {user.name} - {user.email}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label
+                className="block mb-2 text-sm font-medium"
+                htmlFor="subject"
+              >
+                Subject
+              </label>
+              <input
+                id="subject"
+                type="text"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                className="w-full p-2 border rounded-lg"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                className="block mb-2 text-sm font-medium"
+                htmlFor="message"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="w-full h-32 p-2 border rounded-lg"
+                required
+              />
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-2" htmlFor="subject">
-              Subject
-            </label>
-            <input
-              id="subject"
-              type="text"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              className="w-full p-2 border rounded-lg"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2" htmlFor="message">
-              Message
-            </label>
-            <textarea
-              id="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="w-full p-2 border rounded-lg h-32"
-              required
-            />
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading || selectedUsers.length === 0}
-          className={`w-full py-2 px-4 rounded-lg text-white 
+          <button
+            type="submit"
+            disabled={loading || selectedUsers.length === 0}
+            className={`w-full py-2 px-4 rounded-lg text-white 
                         ${
                           loading || selectedUsers.length === 0
                             ? "bg-gray-400 cursor-not-allowed"
                             : "bg-blue-600 hover:bg-blue-700"
                         }`}
-        >
-          {loading ? "Sending..." : "Send Messages"}
-        </button>
-      </form>
+          >
+            {loading ? "Sending..." : "Send Messages"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

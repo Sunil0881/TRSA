@@ -49,7 +49,7 @@ const AddUpdates = () => {
   return (
     <div>
       <AdminNavbar />
-      <div className="px-4 md:px-6 lg:px-72 pt-20 relative">
+      <div className="relative px-4 pt-20 md:px-6 lg:px-72">
         {/* Toggle Button */}
         <div className="absolute top-0 right-0 mt-5 mr-5">
           <label className="flex items-center cursor-pointer">
@@ -60,7 +60,7 @@ const AddUpdates = () => {
               onChange={handleToggleChange}
             />
             <div className="relative">
-              <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
+              <div className="block h-8 bg-gray-600 rounded-full w-14"></div>
               <div
                 className={`absolute left-1 top-1 w-6 h-6 rounded-full transition-transform transform ${
                   toggle ? 'translate-x-full bg-red-500' : 'bg-green-500'
@@ -102,15 +102,15 @@ const AddUpdates = () => {
           </label>
         </div>
 
-        <h1 className="text-2xl md:text-4xl font-semibold text-center pb-10 text-blue-800">
+        <h1 className="pb-10 text-2xl font-semibold text-center text-blue-800 md:text-4xl">
           {toggle ? 'Delete Update' : 'Add New Update'}
         </h1>
 
-        <div className="bg-white rounded-3xl shadow-2xl shadow-slate-500">
+        <div className="bg-white shadow-2xl rounded-3xl shadow-slate-500">
           {!toggle ? (
             // Add Update Form
-            <div className="p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto ">
-              <h2 className="text-blue-800 text-2xl font-semibold mb-2">Add New Update</h2>
+            <div className="max-w-md p-6 mx-auto bg-white rounded-lg shadow-lg ">
+              <h2 className="mb-2 text-2xl font-semibold text-blue-800">Add New Update</h2>
               <div className="mb-4">
                 <textarea
                   placeholder="Enter update text"
@@ -120,18 +120,18 @@ const AddUpdates = () => {
                   maxLength={maxUpdateLength}
                   className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <p className="text-gray-500 text-sm mt-2">{updateText.length}/{maxUpdateLength} characters</p>
+                <p className="mt-2 text-sm text-gray-500">{updateText.length}/{maxUpdateLength} characters</p>
               </div>
               <div className="mb-4">
                 <button
                   onClick={handleAddUpdate}
-                  className="w-full bg-blue-800 text-white p-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 text-white bg-blue-800 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   Add Update
                 </button>
               </div>
-              {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
-              {success && <p className="text-green-600 text-sm mt-2">{success}</p>}
+              {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+              {success && <p className="mt-2 text-sm text-green-600">{success}</p>}
             </div>
           ) : (
             // Delete Update Component

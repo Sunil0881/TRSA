@@ -67,8 +67,7 @@ const AppRoutes = () => {
           </PageTransition>
         }
       />
-    
-     
+
       <Route
         path="/membership"
         element={
@@ -362,7 +361,7 @@ const AppRoutes = () => {
         }
       />
 
-<Route
+      <Route
         path="/contactus"
         element={
           <PageTransition>
