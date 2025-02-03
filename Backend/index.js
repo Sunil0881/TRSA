@@ -592,6 +592,24 @@ app.get('/api/skaterprofiles', async (req, res) => {
   }
 });
 
+app.delete("/api/skaterprofiles/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProfile = await SkaterProfile.findByIdAndDelete(id);
+
+    if (!deletedProfile) {
+      return res.status(404).json({ message: "Skater profile not found" });
+    }
+
+    res.status(200).json({ message: "Skater profile deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting skater profile:", error);
+    res
+      .status(500)
+      .json({ message: "Error deleting skater profile", error: error.message });
+  }
+});
+
 // POST route to send messages
 app.post('/send', async (req, res) => {
   const { selectedUsers, subject, message } = req.body; // Get data from frontend

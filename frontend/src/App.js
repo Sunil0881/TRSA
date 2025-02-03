@@ -12,7 +12,6 @@ import Login from './pages/Admin/Login';
 import Events from './pages/Events';
 import News from './pages/News';
 import AddEvents from './pages/Admin/AddEvents';
-import AddSkaters from './pages/Admin/AddSkaters';
 import SkaterProfile from './pages/SkatersProfile';
 import Gallary from './pages/Gallary';
 import AddImages from './pages/Admin/AddImages';
@@ -36,6 +35,7 @@ import AdminAbout from "./pages/Admin/AdminAbout";
 import International from './pages/International';
 import District from './pages/District';
 import ContactUs from './pages/ContactUs';
+import DeleteSkaters from './pages/Admin/DeleteSkaters';
 
 // Component to use location hook within Router context
 const AppRoutes = () => {
@@ -261,11 +261,11 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/addskaters"
+        path="/deleteskaters"
         element={
           localStorage.getItem("authenticated") === "true" ? (
             <PageTransition>
-              <AddSkaters />
+              <DeleteSkaters />
             </PageTransition>
           ) : (
             <PageTransition>

@@ -39,7 +39,7 @@ const AdminNavbar = () => {
         <img src={Recline} alt="recline" className="hidden md:block" />
       </div>
       <div className="mb-3">
-        <div className="relative flex justify-between px-3 md:px-10 items-center">
+        <div className="relative flex items-center justify-between px-3 md:px-10">
           <a href="/" className="flex items-center">
             <img
               src={logo}
@@ -49,34 +49,34 @@ const AdminNavbar = () => {
               className="mr-5"
             />
             <div>
-              <h1 className="text-black text-sm md:text-xl lg:text-2xl font-bold">
+              <h1 className="text-sm font-bold text-black md:text-xl lg:text-2xl">
                 Thiruvallur District Roller Skating Association.
               </h1>
-              <h1 className="text-black text-xs md:text-lg lg:text-md font-semibold">
+              <h1 className="text-xs font-semibold text-black md:text-lg lg:text-md">
                 (Affiliated to Tamilnadu Roller Skating Association)
               </h1>
             </div>
           </a>
           <button
-            className="text-black text-2xl md:hidden focus:outline-none"
+            className="text-2xl text-black md:hidden focus:outline-none"
             onClick={toggleMobileMenu}
           >
             &#9776; {/* Hamburger icon */}
           </button>
-          <div className="hidden lg:flex gap-3 p-2">
-            <img src={nav1} alt="icon" className="h-12 w-16" />
-            <img src={nav2} alt="icon" className="h-12 w-20" />
-            <img src={nav3} alt="icon" className="h-12 w-16" />
-            <img src={nav4} alt="icon" className="h-12 w-20" />
-            <img src={nav5} alt="icon" className="h-12 w-16" />
-            <img src={nav6} alt="icon" className="h-12 w-16" />
-            <img src={nav7} alt="icon" className="h-12 w-16" />
+          <div className="hidden gap-3 p-2 lg:flex">
+            <img src={nav1} alt="icon" className="w-16 h-12" />
+            <img src={nav2} alt="icon" className="w-20 h-12" />
+            <img src={nav3} alt="icon" className="w-16 h-12" />
+            <img src={nav4} alt="icon" className="w-20 h-12" />
+            <img src={nav5} alt="icon" className="w-16 h-12" />
+            <img src={nav6} alt="icon" className="w-16 h-12" />
+            <img src={nav7} alt="icon" className="w-16 h-12" />
           </div>
 
-          <header className="hidden md:flex items-center lg:gap-8 md:gap-4">
+          <header className="items-center hidden md:flex lg:gap-8 md:gap-4">
             <button
               onClick={handleLogout}
-              className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl"
+              className="px-4 py-3 text-xl text-white bg-blue-800 rounded hover:bg-blue-900 hover:scale-95"
             >
               Logout
             </button>
@@ -85,7 +85,7 @@ const AdminNavbar = () => {
       </div>
 
       {/* Desktop Navbar Links */}
-      <nav className="hidden md:flex items-center md:justify-center font-semibold lg:gap-9 md:gap-2 bg-blue-800 text-white">
+      <nav className="items-center hidden font-semibold text-white bg-blue-800 md:flex md:justify-center lg:gap-9 md:gap-2">
         {/* <Link to="/admin" className={linkClasses("/admin")}>Home</Link> */}
         <Link
           to="/admin/adminabout"
@@ -108,8 +108,8 @@ const AdminNavbar = () => {
         <Link to="/addevents" className={linkClasses("/addevents")}>
           Add events
         </Link>
-        <Link to="/addskaters" className={linkClasses("/addskaters")}>
-          Add Skaters
+        <Link to="/deleteskaters" className={linkClasses("/deleteskaters")}>
+          Delete Skaters
         </Link>
         <Link to="/message" className={linkClasses("/message")}>
           Message
@@ -150,8 +150,8 @@ const AdminNavbar = () => {
         <Link to="/addevents" className={linkClasses("/addevents")}>
           Add events
         </Link>
-        <Link to="/addskaters" className={linkClasses("/addskaters")}>
-          Add Skaters
+        <Link to="/deleteskaters" className={linkClasses("/deleteskaters")}>
+          Delete Skaters
         </Link>
         <Link to="/message" className={linkClasses("/message")}>
           Message
@@ -164,7 +164,7 @@ const AdminNavbar = () => {
         </Link>
         <button
           onClick={handleLogout}
-          className="text-white py-3 px-4 bg-blue-800 hover:bg-blue-900 hover:scale-95 rounded text-xl"
+          className="px-4 py-3 text-xl text-white bg-blue-800 rounded hover:bg-blue-900 hover:scale-95"
         >
           Logout
         </button>
