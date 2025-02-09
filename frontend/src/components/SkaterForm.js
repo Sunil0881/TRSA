@@ -1,24 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import Navbar from './Navbar';
 import { BACKEND_URL } from '../constants';
 const SkaterForm = () => {
   const [formData, setFormData] = useState({
-    rsfiNo: '',
-    name: '',
-    parentName: '',
-    dob: '',
-    gender: '',
-    aadharNo: '',
-    phoneNo: '',
-    email: '',
-    eventCategory: '',
-    representativeClub: '',
-    coachName: '',
-    skaterPhoto: '',
-    proofType: '',
-    fileUrl: ''
+    rsfiNo: "",
+    name: "",
+    parentName: "",
+    dob: "",
+    gender: "",
+    aadharNo: "",
+    phoneNo: "",
+    email: "",
+    eventCategory: "",
+    representativeClub: "",
+    coachName: "",
+    skaterPhoto: "",
+    proofType: "",
+    fileUrl: "",
   });
-  const [error, setError] = useState('');
+
+  const [error, setError] = useState("");
+  const [clubs, setClubs] = useState([]); // State to store club list
+
+  useEffect(() => {
+    // Fetch club data from the backend
+    const fetchClubs = async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/associative-club`);
+        const data = await response.json();
+
+        if (response.ok) {
+          setClubs(data.map((club) => club.clubName)); // Extract only club names
+        } else {
+          console.error("Failed to fetch club data:", data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching club data:", error);
+      }
+    };
+
+    fetchClubs();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -29,7 +51,7 @@ const SkaterForm = () => {
         const reader = new FileReader();
 
         reader.onloadend = () => {
-          setFormData(prevData => ({
+          setFormData((prevData) => ({
             ...prevData,
             [name]: reader.result,
           }));
@@ -37,75 +59,54 @@ const SkaterForm = () => {
         reader.readAsDataURL(file);
       }
     } else {
-      setFormData(prevData => ({
+      setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
     }
   };
 
-  const clubs = [
-    "ISSA - KNPM",
-    "Rockers Speed Skating Academy",
-    "Sathya Speed Skating Academy",
-    "U Can Do Skating Academy",
-    "SNS Skaters Academy",
-    "Thaisha Roller Skating Academy",
-    "Parthi Skating Academy",
-    "Spunk",
-    "Anna Nagar Roller Skating Academy",
-    "Champions Roller Skating Academy",
-    "ES Skating Academy",
-    "New India Club",
-    "Success Sports Academy",
-    'RSFI Delhi', 
-    'Mumbai Skating Club', 
-    'Bangalore Roller Sports', 
-    'Chennai Skaters Association',
-    "Others"
-  ];
-
   const handleSaveSkater = async () => {
     const formattedFormData = { ...formData };
-    
+
     try {
       const response = await fetch(`${BACKEND_URL}/api/skaterprofiles`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formattedFormData)
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formattedFormData),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        alert('Skater profile successfully added!');
+        alert("Skater profile successfully added!");
         setFormData({
-          rsfiNo: '',
-          name: '',
-          parentName: '',
-          dob: '',
-          aadharNo: '',
-          phoneNo: '',
-          email: '',
-          eventCategory: '',
-          representativeClub: '',
-          coachName: '',
-          skaterPhoto: '',
-          proofType: '',
-          fileUrl: ''
+          rsfiNo: "",
+          name: "",
+          parentName: "",
+          dob: "",
+          aadharNo: "",
+          phoneNo: "",
+          email: "",
+          eventCategory: "",
+          representativeClub: "",
+          coachName: "",
+          skaterPhoto: "",
+          proofType: "",
+          fileUrl: "",
         });
-        setError('');
+        setError("");
       } else {
-        const errorMessage = data.errors 
-          ? data.errors.join(', ') 
-          : (data.message || 'Failed to save the skater profile');
-        
+        const errorMessage = data.errors
+          ? data.errors.join(", ")
+          : data.message || "Failed to save the skater profile";
+
         alert(errorMessage);
         setError(errorMessage);
       }
     } catch (error) {
-      console.error('Full error:', error);
-      alert('Error saving the skater profile. Please try again.');
+      console.error("Full error:", error);
+      alert("Error saving the skater profile. Please try again.");
     }
   };
 
@@ -113,14 +114,19 @@ const SkaterForm = () => {
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <div className="container p-6 mx-auto">
-        <h2 className="mb-6 text-3xl font-bold text-center text-gray-800">Add Skater Profile</h2>
-        
+        <h2 className="mb-6 text-3xl font-bold text-center text-gray-800">
+          Add Skater Profile
+        </h2>
+
         {error && <p className="mb-4 text-center text-red-500">{error}</p>}
-  
+
         <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="rsfiNo">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="rsfiNo"
+              >
                 RSFI No (Optional)
               </label>
               <input
@@ -132,9 +138,12 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="name">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="name"
+              >
                 Name *
               </label>
               <input
@@ -147,9 +156,12 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="parentName">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="parentName"
+              >
                 Parent/Guardian Name *
               </label>
               <input
@@ -162,9 +174,12 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="dob">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="dob"
+              >
                 Date of Birth *
               </label>
               <input
@@ -179,25 +194,33 @@ const SkaterForm = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="gender">
-                    Gender
-                </label>
-                <select
-                    id="gender"
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                >
-                    <option value="" disabled>Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-                </div>
-  
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="gender"
+              >
+                Gender
+              </label>
+              <select
+                id="gender"
+                name="gender"
+                value={formData.gender}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              >
+                <option value="" disabled>
+                  Select Gender
+                </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="aadharNo">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="aadharNo"
+              >
                 Aadhar No *
               </label>
               <input
@@ -210,9 +233,12 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="phoneNo">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="phoneNo"
+              >
                 Phone No *
               </label>
               <input
@@ -225,9 +251,12 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="email"
+              >
                 Email *
               </label>
               <input
@@ -240,9 +269,12 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="eventCategory">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="eventCategory"
+              >
                 Event Category *
               </label>
               <select
@@ -265,13 +297,15 @@ const SkaterForm = () => {
                 <option value="Skate Boarding">Skate Boarding</option>
               </select>
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="representativeClub">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="representativeClub"
+              >
                 Representative Club *
               </label>
               <select
-                id="representativeClub"
                 name="representativeClub"
                 value={formData.representativeClub}
                 onChange={handleInputChange}
@@ -279,14 +313,19 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               >
                 <option value="">Select Club</option>
-                {clubs.map(club => (
-                  <option key={club} value={club}>{club}</option>
+                {clubs.map((club, index) => (
+                  <option key={index} value={club}>
+                    {club}
+                  </option>
                 ))}
               </select>
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="coachName">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="coachName"
+              >
                 Coach Name *
               </label>
               <input
@@ -299,9 +338,12 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="skaterPhoto">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="skaterPhoto"
+              >
                 Skater Photo *
               </label>
               <input
@@ -321,9 +363,12 @@ const SkaterForm = () => {
                 />
               )}
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="proofType">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="proofType"
+              >
                 Identity Proof Type *
               </label>
               <select
@@ -339,9 +384,12 @@ const SkaterForm = () => {
                 <option value="Birth Certificate">Birth Certificate</option>
               </select>
             </div>
-  
+
             <div className="mb-4">
-              <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="fileUrl">
+              <label
+                className="block mb-2 text-sm font-bold text-gray-700"
+                htmlFor="fileUrl"
+              >
                 Identity Proof File *
               </label>
               <input
@@ -354,15 +402,15 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               />
               {formData.fileUrl && (
-                <img 
-                  src={formData.fileUrl} 
-                  alt="Identity Proof" 
+                <img
+                  src={formData.fileUrl}
+                  alt="Identity Proof"
                   className="object-cover w-24 h-24 mt-2 rounded"
                 />
               )}
             </div>
           </div>
-  
+
           <div className="flex items-center justify-center mt-6">
             <button
               type="button"
@@ -376,7 +424,6 @@ const SkaterForm = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SkaterForm;
-

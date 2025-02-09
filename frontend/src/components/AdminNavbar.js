@@ -111,6 +111,12 @@ const AdminNavbar = () => {
         <Link to="/deleteskaters" className={linkClasses("/deleteskaters")}>
           Delete Skaters
         </Link>
+        <Link
+          to="/admin-associativeclub"
+          className={linkClasses("/admin-associativeclub")}
+        >
+          Associative Club
+        </Link>
         <Link to="/message" className={linkClasses("/message")}>
           Message
         </Link>
@@ -152,6 +158,12 @@ const AdminNavbar = () => {
         </Link>
         <Link to="/deleteskaters" className={linkClasses("/deleteskaters")}>
           Delete Skaters
+        </Link>
+        <Link
+          to="/admin-associativeclub"
+          className={linkClasses("/admin-associativeclub")}
+        >
+          Associative Club
         </Link>
         <Link to="/message" className={linkClasses("/message")}>
           Message

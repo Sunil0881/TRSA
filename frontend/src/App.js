@@ -36,6 +36,8 @@ import International from './pages/International';
 import District from './pages/District';
 import ContactUs from './pages/ContactUs';
 import DeleteSkaters from './pages/Admin/DeleteSkaters';
+import AdminAssociativeClub from './pages/Admin/AdminAssociativeClub';
+
 
 // Component to use location hook within Router context
 const AppRoutes = () => {
@@ -60,7 +62,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/clubs/:stateName"
+        path="/club/:id"
         element={
           <PageTransition>
             <ClubDetail />
@@ -274,6 +276,22 @@ const AppRoutes = () => {
           )
         }
       />
+
+      <Route
+        path="/admin-associativeclub"
+        element={
+          localStorage.getItem("authenticated") === "true" ? (
+            <PageTransition>
+              <AdminAssociativeClub />
+            </PageTransition>
+          ) : (
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          )
+        }
+      />
+
       <Route
         path="/addimage"
         element={

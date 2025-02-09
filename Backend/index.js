@@ -164,8 +164,6 @@ mongoose
     }
 });
 
-
-/////////////////
 //////////
 ///
   const achievementSchema = new mongoose.Schema({
@@ -900,6 +898,131 @@ app.patch('/api/breaking-news', async (req, res) => {
       message: 'Error updating breaking news', 
       error: error.message 
     });
+  }
+});
+
+const clubSchema = new mongoose.Schema({
+  clubName: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  district: {
+    type: String,
+    required: true,
+  },
+  members: [
+    {
+      memberName: {
+        type: String,
+        required: true,
+      },
+      role: {
+        type: String,
+        required: true,
+      },
+      profileImage: {
+        type: String, // URL for profile image
+        required: false,
+      },
+      mobileNumber: {
+        type: String, // Mobile number is optional
+        required: false,
+      },
+    },
+  ],
+});
+
+const Club = mongoose.model("Club", clubSchema);
+
+// POST - Create new club
+app.post("/api/associative-club", async (req, res) => {
+  try {
+    const existingClub = await Club.findOne({ clubName: req.body.clubName });
+    if (existingClub) {
+      return res.status(400).json({ message: "Club already exists" });
+    }
+
+    const club = new Club({
+      clubName: req.body.clubName,
+      district: req.body.district,
+      members: req.body.members,
+    });
+
+    const savedClub = await club.save();
+    res.status(201).json(savedClub);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// GET - Get all clubs with members
+app.get("/api/associative-club", async (req, res) => {
+  try {
+    const clubs = await Club.find();
+    res.json(clubs);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// GET - Get single club by ID with members
+app.get("/api/associative-club/:id", async (req, res) => {
+  try {
+    const club = await Club.findById(req.params.id);
+    if (!club) {
+      return res.status(404).json({ message: "Club not found" });
+    }
+    res.json(club);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// PUT - Update club members by ID
+app.put("/api/associative-club/:id", async (req, res) => {
+  try {
+    const club = await Club.findById(req.params.id);
+    if (!club) {
+      return res.status(404).json({ message: "Club not found" });
+    }
+
+    club.district = req.body.district || club.district;
+    club.members = req.body.members || club.members;
+
+    const updatedClub = await club.save();
+    res.json(updatedClub);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// DELETE - Delete club or specific member by ID
+app.delete("/api/associative-club/:id", async (req, res) => {
+  try {
+    const { memberId } = req.body;
+
+    if (memberId) {
+      const club = await Club.findById(req.params.id);
+      if (!club) {
+        return res.status(404).json({ message: "Club not found" });
+      }
+
+      club.members = club.members.filter(
+        (member) => member._id.toString() !== memberId
+      );
+      await club.save();
+      return res.json({ message: "Member deleted successfully" });
+    }
+
+    const deletedClub = await Club.findByIdAndDelete(req.params.id);
+    if (!deletedClub) {
+      return res.status(404).json({ message: "Club not found" });
+    }
+
+    res.json({ message: "Club and its members deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
