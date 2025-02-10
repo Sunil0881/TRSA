@@ -179,7 +179,7 @@ const AdminAssociativeClub = () => {
           </label>
         </div>
         <h1 className="pb-10 text-2xl font-semibold text-center text-blue-800 md:text-4xl">
-          {toggle ? "Delete Update" : "Add New Update"}
+          {toggle ? "Delete Club/member" : "Add New Club/member"}
         </h1>
         <div>
           {!toggle ? (
