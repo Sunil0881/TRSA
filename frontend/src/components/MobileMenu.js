@@ -39,7 +39,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
          </Link>
 
          <Link to="/club" className="text-black text-xl" onClick={onClose}>
-          Associative Clubs
+          Affiliated Clubs
          </Link>
 
         <Link to="/skatersprofile" className="text-black text-xl" onClick={onClose}>
