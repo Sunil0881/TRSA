@@ -136,7 +136,7 @@ const Navbar = () => {
         </div>
 
         <Link to="/club" className={linkClasses("/club")}>
-          Associative Clubs
+          Affiliated Clubs
         </Link>
 
         <div
@@ -216,7 +216,7 @@ const Navbar = () => {
         </div>
 
         <Link to="/club" className={linkClasses("/club")}>
-          Associative Clubs
+          Affiliated Clubs
         </Link>
 
         <div className="relative">
