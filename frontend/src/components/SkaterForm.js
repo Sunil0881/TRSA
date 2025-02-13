@@ -287,6 +287,7 @@ const SkaterForm = () => {
               >
                 <option value="">Select Category</option>
                 <option value="Speed Quad">Speed Quad</option>
+                <option value="Inline Hockey">Inline Hockey</option>
                 <option value="Speed Inline">Speed Inline</option>
                 <option value="Roller Hockey">Roller Hockey</option>
                 <option value="Inline Freestyle">Inline Freestyle</option>
