@@ -103,7 +103,7 @@ const AdminNavbar = () => {
           Add News
         </Link>
         <Link to="/addupdates" className={linkClasses("/addupdates")}>
-          AddUpdates
+          Add Updates
         </Link>
         <Link to="/addevents" className={linkClasses("/addevents")}>
           Add events
@@ -115,7 +115,7 @@ const AdminNavbar = () => {
           to="/admin-associativeclub"
           className={linkClasses("/admin-associativeclub")}
         >
-          Associative Club
+          Affiliated Club
         </Link>
         <Link to="/message" className={linkClasses("/message")}>
           Message
@@ -145,13 +145,13 @@ const AdminNavbar = () => {
           to="/achievementspost"
           className={linkClasses("/achievementspost")}
         >
-          AchievementsPost
+          Achievements Post
         </Link>
         <Link to="/addnews" className={linkClasses("/addnews")}>
           Add News
         </Link>
         <Link to="/addupdates" className={linkClasses("/addupdates")}>
-          AddUpdates
+          Add Updates
         </Link>
         <Link to="/addevents" className={linkClasses("/addevents")}>
           Add events
@@ -163,7 +163,7 @@ const AdminNavbar = () => {
           to="/admin-associativeclub"
           className={linkClasses("/admin-associativeclub")}
         >
-          Associative Club
+          Affiliated Club
         </Link>
         <Link to="/message" className={linkClasses("/message")}>
           Message
