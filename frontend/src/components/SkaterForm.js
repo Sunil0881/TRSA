@@ -296,6 +296,9 @@ const SkaterForm = () => {
                 <option value="Roller Freestyle">Roller Freestyle</option>
                 <option value="Roller Scooter">Roller Scooter</option>
                 <option value="Skate Boarding">Skate Boarding</option>
+                <option value="Skate Cross">Skate Cross</option>
+                <option value="Adjustable">Adjustable</option>
+                <option value="Fancy Inline">Fancy Inline</option>
               </select>
             </div>
 
