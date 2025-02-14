@@ -393,7 +393,21 @@ const skaterProfileSchema = new mongoose.Schema(
     eventCategory: {
       type: String,
       required: true,
-      enum: ["Artistic Skating","Inline Hockey","Speed Inline","Roller Hockey","Inline Freestyle","Alpine Downhill","Roller Derby","Roller Freestyle","Roller Scooter","Skate Boarding"],
+      enum: [
+        "Artistic Skating",
+        "Inline Hockey",
+        "Speed Inline",
+        "Roller Hockey",
+        "Inline Freestyle",
+        "Alpine Downhill",
+        "Roller Derby",
+        "Roller Freestyle",
+        "Roller Scooter",
+        "Skate Boarding",
+        "Skate Cross",
+        "Adjustable",
+        "Fancy Inline",
+      ],
     },
     representativeClub: {
       type: String,
