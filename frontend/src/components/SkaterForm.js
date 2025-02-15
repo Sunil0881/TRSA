@@ -286,19 +286,19 @@ const SkaterForm = () => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               >
                 <option value="">Select Category</option>
-                <option value="Speed Quad">Speed Quad</option>
-                <option value="Inline Hockey">Inline Hockey</option>
+                <option value="Adjustable">Adjustable</option>
+                <option value="Alpine Downhill">Alpine Downhill</option>
+                <option value="Fancy Inline">Fancy Inline</option>
                 <option value="Speed Inline">Speed Inline</option>
+                <option value="Inline Hockey">Inline Hockey</option>
                 <option value="Roller Hockey">Roller Hockey</option>
                 <option value="Inline Freestyle">Inline Freestyle</option>
-                <option value="Alpine Downhill">Alpine Downhill</option>
-                <option value="Roller Derby">Roller Derby</option>
                 <option value="Roller Freestyle">Roller Freestyle</option>
+                <option value="Roller Derby">Roller Derby</option>
                 <option value="Roller Scooter">Roller Scooter</option>
                 <option value="Skate Boarding">Skate Boarding</option>
                 <option value="Skate Cross">Skate Cross</option>
-                <option value="Adjustable">Adjustable</option>
-                <option value="Fancy Inline">Fancy Inline</option>
+                <option value="Speed Quad">Speed Quad</option>
               </select>
             </div>
 
